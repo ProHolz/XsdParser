@@ -1,16 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
+package proholz.xsdparser;
 
 /**
  * A class that serves as a base class to three classes that share similarities, {@link XsdAll}, {@link XsdChoice} and

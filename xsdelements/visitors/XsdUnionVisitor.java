@@ -1,8 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
-import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
-import org.xmlet.xsdparser.xsdelements.XsdUnion;
+package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdUnion} element, which can only contain {@link XsdSimpleType} as children.

@@ -1,9 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.enums;
-
-import org.xmlet.xsdparser.xsdelements.XsdComplexType;
-
-import java.util.Arrays;
-import java.util.List;
+package proholz.xsdparser;
 
 /**
  * An {@link Enum} with all the possible values for the block attribute of {@link XsdComplexType}.

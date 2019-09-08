@@ -1,20 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.core.utils.NamespaceInfo;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
-import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
-import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdSchemaVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+package proholz.xsdparser;
 
 public class XsdSchema extends XsdAnnotatedElements {
 

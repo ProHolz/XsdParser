@@ -1,11 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
+package proholz.xsdparser;
 
 /**
  * This class serves as a base to concrete {@link XsdAbstractElement} classes that can have a name attribute. This is

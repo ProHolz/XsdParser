@@ -1,18 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.stream.Stream;
+package proholz.xsdparser;
 
 /**
  * This class serves as a base to every element class, i.e. {@link XsdElement}, {@link XsdAttribute}, etc.

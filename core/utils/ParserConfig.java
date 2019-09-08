@@ -1,11 +1,6 @@
-package org.xmlet.xsdparser.core.utils;
+package proholz.xsdparser;
 
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 
-import java.util.Map;
-import java.util.function.BiFunction;
 
 public interface ParserConfig {
 

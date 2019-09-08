@@ -1,7 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.*;
-
+package proholz.xsdparser;
 /**
  * Represents the restrictions of the {@link XsdChoice} element, which can contain {@link XsdElement}, {@link XsdChoice},
  * {@link XsdGroup} or {@link XsdSequence} as children. Can also have {@link XsdAnnotation} children as per inheritance

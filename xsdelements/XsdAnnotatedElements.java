@@ -1,10 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.xmlet.xsdparser.core.XsdParserCore;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
-
+package proholz.xsdparser;
 /**
  * Serves as a base to every {@link XsdAbstractElement} concrete type which can have xsd:annotation as children. Extends
  * from {@link XsdIdentifierElements} because every concrete type that can contain xsd:annotation has children can also

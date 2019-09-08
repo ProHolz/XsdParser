@@ -1,9 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
-import org.xmlet.xsdparser.xsdelements.XsdAttribute;
-import org.xmlet.xsdparser.xsdelements.XsdAttributeGroup;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdAttributeGroup} element, which can only contain {@link XsdAttribute}

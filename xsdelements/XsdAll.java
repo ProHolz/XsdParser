@@ -1,15 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAllVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
-import java.util.stream.Stream;
+package proholz.xsdparser;
 
 /**
  * A class representing the xsd:all element. Since it shares the same attributes as {@link XsdChoice} or {@link XsdSequence}

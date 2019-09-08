@@ -1,12 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
-
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.AttributeValidations;
-import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
+package proholz.xsdparser;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as a

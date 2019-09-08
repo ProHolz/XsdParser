@@ -1,7 +1,5 @@
-package org.xmlet.xsdparser.xsdelements.elementswrapper;
+package proholz.xsdparser;
 
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
-import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
 
 /**
  * NamedConcreteElement is a wrapper class for an {@link XsdNamedElements} object which are {@link XsdAbstractElement}

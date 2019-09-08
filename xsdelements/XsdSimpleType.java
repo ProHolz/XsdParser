@@ -1,24 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.enums.SimpleTypeFinalEnum;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleTypeVisitor;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
-
-import javax.validation.constraints.NotNull;
-import java.security.InvalidParameterException;
-import java.util.*;
-
-import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdDoubleRestrictions.hasDifferentValue;
-import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdIntegerRestrictions.hasDifferentValue;
-import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdStringRestrictions.hasDifferentValue;
-import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdWhiteSpace.hasDifferentValue;
+package proholz.xsdparser;
 
 /**
  * A class representing the xsd:simpleType element.

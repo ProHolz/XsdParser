@@ -1,7 +1,6 @@
-package org.xmlet.xsdparser.xsdelements.elementswrapper;
+package proholz.xsdparser;
 
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
-import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
+
 
 /**
  * UnsolvedReference is a wrapper class for all objects which should be resolved in the parsing process, if possible.

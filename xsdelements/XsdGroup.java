@@ -1,19 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdGroupVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+package proholz.xsdparser;
 /**
  * A class representing the xsd:complexType element. Extends {@link XsdNamedElements} because it's one of the
  * {@link XsdAbstractElement} concrete classes that can have a {@link XsdNamedElements#name} attribute.

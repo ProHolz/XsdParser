@@ -1,7 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.enums;
-
-import java.util.Arrays;
-import java.util.List;
+package proholz.xsdparser;
 
 /**
  * An {@link Enum} with all the possible values for the block attribute.

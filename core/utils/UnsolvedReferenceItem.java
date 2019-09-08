@@ -1,11 +1,6 @@
-package org.xmlet.xsdparser.core.utils;
+package proholz.xsdparser;
 
-import org.xmlet.xsdparser.core.XsdParser;
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents an instance of an {@link UnsolvedReference} that the {@link XsdParser} wasn't able to solve. It contains

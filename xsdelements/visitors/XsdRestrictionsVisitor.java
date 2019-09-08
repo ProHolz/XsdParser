@@ -1,8 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
-
+package proholz.xsdparser;
 /**
  * Represents the restrictions of the {@link XsdRestriction} element, which can contain the following children:
  *      * {@link XsdEnumeration}

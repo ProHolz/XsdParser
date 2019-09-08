@@ -1,16 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.AttributeValidations;
-import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.enums.WhiteSpaceEnum;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
+package proholz.xsdparser;
 
 /**
  * States how the whiteSpace characters should be treated. The value is defined as an {@link String}.

@@ -1,14 +1,6 @@
-package org.xmlet.xsdparser.core.utils;
+package proholz.xsdparser;
 
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiFunction;
 
 public class DefaultParserConfig implements ParserConfig {
     @Override

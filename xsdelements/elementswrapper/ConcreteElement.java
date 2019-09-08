@@ -1,6 +1,6 @@
-package org.xmlet.xsdparser.xsdelements.elementswrapper;
+package proholz.xsdparser;
 
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
+
 
 /**
  * ConcreteElement is a wrapper class for an {@link XsdAbstractElement} object which doesn't have a ref attribute.

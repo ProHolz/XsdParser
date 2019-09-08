@@ -1,6 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.enums;
-
-import java.util.List;
+package proholz.xsdparser;
 
 /**
  * A shared interface for all the {@link Enum} classes of this solution.

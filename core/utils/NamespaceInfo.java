@@ -1,4 +1,4 @@
-package org.xmlet.xsdparser.core.utils;
+package proholz.xsdparser;
 
 public class NamespaceInfo {
 

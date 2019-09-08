@@ -1,4 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.exceptions;
+package proholz.xsdparser;
 
 /**
  * An exception that is thrown whenever the parsing process encounters a error in the values present in the XSD file.

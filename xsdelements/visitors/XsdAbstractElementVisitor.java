@@ -1,10 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
-
+package proholz.xsdparser;
 /**
  * This Visitor interface serves as a base to every {@link XsdAbstractElement} class visitors. It is meant to implement
  * the restrictions between elements of the XSD language.

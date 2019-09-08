@@ -1,8 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
-import org.xmlet.xsdparser.xsdelements.XsdAppInfo;
-import org.xmlet.xsdparser.xsdelements.XsdDocumentation;
+package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdAnnotation} element, which can only contain {@link XsdAppInfo} and

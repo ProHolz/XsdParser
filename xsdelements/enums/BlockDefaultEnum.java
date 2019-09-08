@@ -1,9 +1,6 @@
-package org.xmlet.xsdparser.xsdelements.enums;
+package proholz.xsdparser;
 
-import org.xmlet.xsdparser.xsdelements.XsdSchema;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * An {@link Enum} with all the possible values for the blockDefault attribute of {@link XsdSchema}.

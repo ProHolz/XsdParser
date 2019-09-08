@@ -1,21 +1,6 @@
-package org.xmlet.xsdparser.core;
+package proholz.xsdparser;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
-import org.xmlet.xsdparser.core.utils.ParserConfig;
-import org.xmlet.xsdparser.xsdelements.XsdSchema;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class XsdParserJar extends XsdParserCore {
 

@@ -1,8 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
-
+package proholz.xsdparser;
 /**
  * Represents the restrictions of all the XSD elements that can have an {@link XsdAnnotation} as children.
  */

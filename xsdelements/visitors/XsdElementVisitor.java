@@ -1,10 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
-import org.xmlet.xsdparser.xsdelements.XsdComplexType;
-import org.xmlet.xsdparser.xsdelements.XsdElement;
-import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdElement} element, which can only contain {@link XsdSimpleType} or

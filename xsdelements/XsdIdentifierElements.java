@@ -1,10 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.xmlet.xsdparser.core.XsdParserCore;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
-
+package proholz.xsdparser;
 /**
  * A class that serves as a base to every {@link XsdAbstractElement} concrete type that contains an id field.
  */

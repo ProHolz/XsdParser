@@ -1,14 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.AttributeValidations;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Map;
+package proholz.xsdparser;
 
 /**
  * States the maximum length of a given type, either a {@link String}, a {@link List} or another measurable type.

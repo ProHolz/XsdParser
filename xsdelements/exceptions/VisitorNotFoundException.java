@@ -1,6 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.exceptions;
-
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
+package proholz.xsdparser;
 
 /**
  * Exception that is thrown every time that an {@link XsdAbstractElement#accept} method is accessed when the concrete

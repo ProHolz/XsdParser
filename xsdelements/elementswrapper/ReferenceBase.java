@@ -1,10 +1,6 @@
-package org.xmlet.xsdparser.xsdelements.elementswrapper;
+package proholz.xsdparser;
 
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
-import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
 
-import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.REF_TAG;
-import static org.xmlet.xsdparser.xsdelements.XsdNamedElements.NAME_TAG;
 
 /**
  * An abstract class that is meant to wrap all the {@link XsdAbstractElement} objects. Its hierarchy is meant to help

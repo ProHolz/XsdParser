@@ -1,14 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.AttributeValidations;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
-
+package proholz.xsdparser;
 /**
  * States the number of fraction digits allowed in a numeric type. The value is defined as an {@link Integer}.
  */

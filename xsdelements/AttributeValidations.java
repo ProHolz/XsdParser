@@ -1,12 +1,4 @@
-package org.xmlet.xsdparser.xsdelements;
-
-import org.xmlet.xsdparser.xsdelements.enums.XsdEnum;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-
-import java.util.Arrays;
-import java.util.Optional;
-
-import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.MAX_OCCURS_TAG;
+package proholz.xsdparser;
 
 public class AttributeValidations {
 

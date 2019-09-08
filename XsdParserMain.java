@@ -1,4 +1,4 @@
-package org.xmlet.xsdparser;
+package proholz.xsdparser;
 
 import org.xmlet.xsdparser.core.XsdParserJar;
 

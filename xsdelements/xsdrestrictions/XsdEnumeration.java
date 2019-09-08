@@ -1,12 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
-
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
+package proholz.xsdparser;
 
 /**
  * Represents a value that a given XSD type is allowed to take. The value is defined as a {@link String}.

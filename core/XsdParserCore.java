@@ -1,22 +1,5 @@
-package org.xmlet.xsdparser.core;
+package proholz.xsdparser;
 
-import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.utils.DefaultParserConfig;
-import org.xmlet.xsdparser.core.utils.NamespaceInfo;
-import org.xmlet.xsdparser.core.utils.ParserConfig;
-import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
-import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.groupingBy;
 
 public abstract class XsdParserCore {
 

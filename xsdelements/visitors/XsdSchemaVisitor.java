@@ -1,7 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.*;
-
+package proholz.xsdparser;
 public class XsdSchemaVisitor extends AttributesVisitor {
 
     private XsdSchema owner;

@@ -1,17 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
-
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
-import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.XsdAttribute;
-import org.xmlet.xsdparser.xsdelements.XsdAttributeGroup;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the all elements that can contain {@link XsdAttribute} and {@link XsdAttributeGroup}.
