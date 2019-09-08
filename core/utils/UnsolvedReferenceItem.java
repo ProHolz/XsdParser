@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
@@ -24,9 +24,9 @@ public class UnsolvedReferenceItem {
 
     public UnsolvedReferenceItem(UnsolvedReference unsolvedReference){
         this.unsolvedReference = unsolvedReference;
-        this.parents = new ArrayList<>();
+        this.parents = new List<XsdAbstractElement>();
 
-        this.parents.add(unsolvedReference.getParent());
+        this.parents.Add(unsolvedReference.getParent());
     }
 
     public UnsolvedReference getUnsolvedReference() {

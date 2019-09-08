@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:all element. Since it shares the same attributes as {@link XsdChoice} or {@link XsdSequence}
@@ -31,7 +31,7 @@ public class XsdAll extends XsdMultipleElements {
      */
     private Integer maxOccurs;
 
-    private XsdAll(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
+    private XsdAll( XsdParserCore! parser,  Dictionary<String, String>! attributesMap){
         super(parser, attributesMap);
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
@@ -44,21 +44,21 @@ public class XsdAll extends XsdMultipleElements {
         visitorParam.visit(this);
     }
 
-    @Override
+    //@Override
     public XsdAllVisitor getVisitor() {
         return visitor;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdAll(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse( XsdParserCore! parser, XmlElement node) {
+        return xsdParseSkeleton(node, new XsdAll(parser, convertNodeMap(node.get_Attributes())));
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Integer getMinOccurs() {
         return minOccurs;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Integer getMaxOccurs() {
         return maxOccurs;
     }
@@ -66,8 +66,8 @@ public class XsdAll extends XsdMultipleElements {
     /**
      * @return The children elements that are of the type {@link XsdElement}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdElement> getChildrenElements() {
-        return getXsdElements().filter(element -> element instanceof XsdElement).map(element -> (XsdElement) element);
+        return getXsdElements().filter(element -> element instanceof XsdElement).Select(element -> (XsdElement) element);
     }
 }

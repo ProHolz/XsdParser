@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * States how the whiteSpace characters should be treated. The value is defined as an {@link String}.
@@ -13,11 +13,11 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
     private boolean fixed;
     private WhiteSpaceEnum value;
 
-    private XsdWhiteSpace(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdWhiteSpace(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
-        value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.PRESERVE, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
+        value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.preserve, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
     }
 
     @Override
@@ -26,15 +26,15 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public boolean isFixed() {
         return fixed;
     }
 
-    @Override
+   // @Override
     public XsdAnnotatedElementsVisitor getVisitor() {
         return visitor;
     }
@@ -48,7 +48,7 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
             return false;
         }
 
-        WhiteSpaceEnum o1Value = null;
+        WhiteSpaceEnum o1Value;
         WhiteSpaceEnum o2Value;
 
         if (o1 != null) {
@@ -57,7 +57,7 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
 
         if (o2 != null) {
             o2Value = o2.getValue();
-            return o2Value.equals(o1Value);
+            return o2Value.Equals(o1Value);
         }
 
         return false;

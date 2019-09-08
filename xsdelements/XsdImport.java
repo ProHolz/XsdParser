@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:import element.
@@ -27,7 +27,7 @@ public class XsdImport extends XsdAnnotatedElements {
      */
     private String schemaLocation;
 
-    private XsdImport(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdImport(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.namespace = attributesMap.getOrDefault(NAMESPACE, namespace);
@@ -49,16 +49,16 @@ public class XsdImport extends XsdAnnotatedElements {
         return visitor;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdImport(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdImport(parser, convertNodeMap(node.get_Attributes())));
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getNamespace() {
         return namespace;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getSchemaLocation() {
         return schemaLocation;
     }

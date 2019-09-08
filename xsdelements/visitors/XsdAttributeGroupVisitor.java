@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdAttributeGroup} element, which can only contain {@link XsdAttribute}
@@ -18,7 +18,7 @@ public class XsdAttributeGroupVisitor extends XsdAnnotatedElementsVisitor {
         this.owner = owner;
     }
 
-    @Override
+ //   @Override
     public XsdAttributeGroup getOwner() {
         return owner;
     }

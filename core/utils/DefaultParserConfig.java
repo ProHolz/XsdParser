@@ -1,11 +1,11 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
 public class DefaultParserConfig implements ParserConfig {
     @Override
-    public Map<String, String> getXsdTypesToJava() {
-        HashMap<String, String> xsdTypesToJava = new HashMap<>();
+    public Dictionary<String, String> getXsdTypesToJava() {
+        Dictionary<String, String> xsdTypesToJava = new Dictionary<String, String>();
 
         String string = "String";
         String xmlGregorianCalendar = "XMLGregorianCalendar";
@@ -106,8 +106,8 @@ public class DefaultParserConfig implements ParserConfig {
     }
 
     @Override
-    public Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> getParseMappers() {
-        Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> parseMappers = new HashMap<>();
+    public Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>> getParseMappers() {
+        Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>> parseMappers = new Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>>();
 
         parseMappers.put(XsdAll.XSD_TAG, XsdAll::parse);
         parseMappers.put(XsdAll.XS_TAG, XsdAll::parse);

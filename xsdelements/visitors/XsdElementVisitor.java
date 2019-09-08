@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdElement} element, which can only contain {@link XsdSimpleType} or
@@ -18,7 +18,7 @@ public class XsdElementVisitor extends XsdAnnotatedElementsVisitor {
         this.owner = owner;
     }
 
-    @Override
+//    @Override
     public XsdElement getOwner() {
         return owner;
     }

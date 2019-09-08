@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * A class representing the xsd:appInfo element. This class extends form {@link XsdAnnotationChildren} since it shares
  * a few similarities with {@link XsdDocumentation}, which is the other possible children of {@link XsdAnnotation}
@@ -11,7 +11,7 @@ public class XsdAppInfo extends XsdAnnotationChildren {
     public static final String XSD_TAG = "xsd:appinfo";
     public static final String XS_TAG = "xs:appinfo";
 
-    private XsdAppInfo(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdAppInfo( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -21,7 +21,7 @@ public class XsdAppInfo extends XsdAnnotationChildren {
         visitorParam.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse( XsdParserCore! parser, XmlElement node){
+        return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.get_Attributes())));
     }
 }

@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
@@ -46,11 +46,11 @@ public abstract class ReferenceBase {
     }
 
     private static String getName(XsdAbstractElement element){
-        return getNodeValue(element, NAME_TAG);
+        return getNodeValue(element, XsdAbstractElement.NAME_TAG);
     }
 
     static String getRef(XsdAbstractElement element){
-        return getNodeValue(element, REF_TAG);
+        return getNodeValue(element, XsdAbstractElement.REF_TAG);
     }
 
     /**

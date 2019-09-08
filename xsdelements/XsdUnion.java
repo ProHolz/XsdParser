@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:union element.
@@ -18,14 +18,14 @@ public class XsdUnion extends XsdAnnotatedElements {
     /**
      * A List of {@link XsdSimpleType} instances that represent the {@link XsdUnion}.
      */
-    private List<XsdSimpleType> simpleTypeList = new ArrayList<>();
+    private List<XsdSimpleType> simpleTypeList = new List<XsdSimpleType>();
 
     /**
      * Specifies a list of built-in data types or {@link XsdSimpleType} instance names defined in a XsdSchema.
      */
     private String memberTypes;
 
-    private XsdUnion(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdUnion(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.memberTypes = attributesMap.getOrDefault(MEMBER_TYPES_TAG, memberTypes);
@@ -46,16 +46,16 @@ public class XsdUnion extends XsdAnnotatedElements {
         return simpleTypeList;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public List<String> getMemberTypesList() {
         return Arrays.asList(memberTypes.split(" "));
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdUnion(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdUnion(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public void add(XsdSimpleType simpleType) {
-        simpleTypeList.add(simpleType);
+        simpleTypeList.Add(simpleType);
     }
 }

@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:restriction element.
@@ -24,7 +24,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     /**
      * A List of {@link XsdEnumeration} items, that represent a set of possible values for a given type.
      */
-    private List<XsdEnumeration> enumeration = new ArrayList<>();
+    private List<XsdEnumeration> enumeration = new List<XsdEnumeration>();
 
     /**
      * A {@link XsdFractionDigits} instance that specifies the number of fraction digits allowed in a numeric type.
@@ -86,7 +86,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
      */
     private String base;
 
-    private XsdRestriction(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdRestriction(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.base = attributesMap.getOrDefault(BASE_TAG, base);
@@ -110,16 +110,16 @@ public class XsdRestriction extends XsdAnnotatedElements {
         visitor.replaceUnsolvedAttributes(element);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdRestriction(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdRestriction(parser, convertNodeMap(node.get_Attributes())));
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttribute> getXsdAttributes() {
         return visitor.getXsdAttributes();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
         return visitor.getXsdAttributeGroup();
     }
@@ -229,7 +229,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     }
 
     public void add(XsdEnumeration enumerationMember) {
-        enumeration.add(enumerationMember);
+        enumeration.Add(enumerationMember);
     }
 
     public void setSimpleType(XsdSimpleType simpleType) {

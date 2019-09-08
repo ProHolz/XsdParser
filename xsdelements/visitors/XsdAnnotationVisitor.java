@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the {@link XsdAnnotation} element, which can only contain {@link XsdAppInfo} and

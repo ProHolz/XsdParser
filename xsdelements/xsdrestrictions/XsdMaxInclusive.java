@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * States the maximum numeric value that a given type might take, including the respective value. The value is defined
@@ -10,7 +10,7 @@ public class XsdMaxInclusive extends XsdDoubleRestrictions {
     public static final String XSD_TAG = "xsd:maxInclusive";
     public static final String XS_TAG = "xs:maxInclusive";
 
-    private XsdMaxInclusive(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdMaxInclusive(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam, XSD_TAG);
     }
 
@@ -20,7 +20,7 @@ public class XsdMaxInclusive extends XsdDoubleRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return ReferenceBase.createFromXsd(new XsdMaxInclusive(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return ReferenceBase.createFromXsd(new XsdMaxInclusive(parser, convertNodeMap(node.get_Attributes())));
     }
 }

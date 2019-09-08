@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:choice element. Since it shares the same attributes as {@link XsdChoice} or
@@ -32,7 +32,7 @@ public class XsdChoice extends XsdMultipleElements {
      */
     private String maxOccurs;
 
-    private XsdChoice(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdChoice(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
@@ -50,16 +50,16 @@ public class XsdChoice extends XsdMultipleElements {
         return visitor;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdChoice(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdChoice(parser, convertNodeMap(node.get_Attributes())));
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Integer getMinOccurs() {
         return minOccurs;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getMaxOccurs() {
         return maxOccurs;
     }
@@ -67,44 +67,44 @@ public class XsdChoice extends XsdMultipleElements {
     /**
      * @return The children elements that are of the type {@link XsdChoice}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdChoice> getChildrenChoices(){
         return getElements()
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdChoice)
-                .map(element -> (XsdChoice) element.getElement());
+                .Select(element -> (XsdChoice) element.getElement());
     }
 
     /**
      * @return The children elements that are of the type {@link XsdElement}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdElement> getChildrenElements(){
         return getElements()
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdElement)
-                .map(element -> (XsdElement) element.getElement());
+                .Select(element -> (XsdElement) element.getElement());
     }
 
     /**
      * @return The children elements that are of the type {@link XsdSequence}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdSequence> getChildrenSequences(){
         return getElements()
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdSequence)
-                .map(element -> (XsdSequence) element.getElement());
+                .Select(element -> (XsdSequence) element.getElement());
     }
 
     /**
      * @return The children elements that are of the type {@link XsdGroup}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdGroup> getChildrenGroups(){
         return getElements()
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdGroup)
-                .map(element -> (XsdGroup) element.getElement());
+                .Select(element -> (XsdGroup) element.getElement());
     }
 }

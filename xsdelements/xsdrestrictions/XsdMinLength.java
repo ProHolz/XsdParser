@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * States the minimum length of a given type, either a {@link String}, a {@link List} or another measurable type. This
@@ -11,7 +11,7 @@ public class XsdMinLength extends XsdIntegerRestrictions {
     public static final String XSD_TAG = "xsd:minLength";
     public static final String XS_TAG = "xs:minLength";
 
-    private XsdMinLength(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdMinLength(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
 
         value = AttributeValidations.validateRequiredNonNegativeInteger(XSD_TAG, VALUE_TAG, attributesMap.get(VALUE_TAG));
@@ -23,7 +23,7 @@ public class XsdMinLength extends XsdIntegerRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return ReferenceBase.createFromXsd(new XsdMinLength(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return ReferenceBase.createFromXsd(new XsdMinLength(parser, convertNodeMap(node.get_Attributes())));
     }
 }

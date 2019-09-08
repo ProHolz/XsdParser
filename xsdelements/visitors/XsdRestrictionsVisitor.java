@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * Represents the restrictions of the {@link XsdRestriction} element, which can contain the following children:
  *      * {@link XsdEnumeration}
@@ -30,7 +30,7 @@ public class XsdRestrictionsVisitor extends AttributesVisitor {
         this.owner = owner;
     }
 
-    @Override
+ //   @Override
     public XsdRestriction getOwner() {
         return owner;
     }

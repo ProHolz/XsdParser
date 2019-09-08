@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * A class representing the xsd:complexContent element.
  *
@@ -32,7 +32,7 @@ public class XsdComplexContent extends XsdAnnotatedElements {
      */
     private boolean mixed;
 
-    private XsdComplexContent(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdComplexContent(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.mixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(MIXED_TAG, "false"));
@@ -49,7 +49,7 @@ public class XsdComplexContent extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public boolean isMixed() {
         return mixed;
     }
@@ -58,13 +58,13 @@ public class XsdComplexContent extends XsdAnnotatedElements {
         return extension instanceof ConcreteElement ? (XsdExtension) extension.getElement() : null;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdRestriction getXsdRestriction(){
         return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public void setExtension(ReferenceBase extension) {

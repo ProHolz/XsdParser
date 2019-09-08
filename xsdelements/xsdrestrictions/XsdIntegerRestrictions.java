@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as an {@link Integer}.
@@ -21,7 +21,7 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
      */
     protected int value;
 
-    XsdIntegerRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    XsdIntegerRestrictions(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));

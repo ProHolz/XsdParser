@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * A class representing the xsd:complexType element. Extends {@link XsdNamedElements} because it's one of the
  * {@link XsdAbstractElement} concrete classes that can have a {@link XsdNamedElements#name} attribute.
@@ -37,14 +37,14 @@ public class XsdGroup extends XsdNamedElements {
      */
     private String maxOccurs;
 
-    private XsdGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdGroup(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
-    private XsdGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdGroup(XsdAbstractElement parent, XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         this(parser, attributesMap);
         setParent(parent);
     }
@@ -96,10 +96,10 @@ public class XsdGroup extends XsdNamedElements {
      */
     @Override
     public List<ReferenceBase> getElements() {
-        List<ReferenceBase> list = new ArrayList<>();
+        List<ReferenceBase> list = new List<ReferenceBase>();
 
         if (childElement != null){
-            list.add(ReferenceBase.createFromXsd(childElement));
+            list.Add(ReferenceBase.createFromXsd(childElement));
         }
 
         return list;
@@ -112,9 +112,9 @@ public class XsdGroup extends XsdNamedElements {
      * @return A copy of the object from which is called upon.
      */
     @Override
-    public XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(attributesMap);
-        placeHolderAttributes.remove(REF_TAG);
+    public XsdNamedElements clone(Dictionary<String, String>! placeHolderAttributes) {
+        placeHolderAttributes.Add(attributesMap);
+        placeHolderAttributes.Remove(REF_TAG);
 
         XsdGroup elementCopy = new XsdGroup(this.parent, this.parser, placeHolderAttributes);
 
@@ -127,11 +127,11 @@ public class XsdGroup extends XsdNamedElements {
 
     public void setChildElement(XsdMultipleElements childElement) {
         this.childElement = childElement;
-        childElement.getElements().forEach(childElementObj -> childElementObj.getElement().setParent(childElement));
+        childElement.getElements().ForEach(childElementObj -> childElementObj.getElement().setParent(childElement));
         this.childElement.setParent(this);
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdMultipleElements getChildElement() {
         return childElement;
     }
@@ -139,7 +139,7 @@ public class XsdGroup extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdAll getChildAsAll() {
         return XsdMultipleElements.getChildAsdAll(childElement);
     }
@@ -147,7 +147,7 @@ public class XsdGroup extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdChoice getChildAsChoice() {
         return XsdMultipleElements.getChildAsChoice(childElement);
     }
@@ -155,13 +155,13 @@ public class XsdGroup extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdSequence getChildAsSequence() {
         return XsdMultipleElements.getChildAsSequence(childElement);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public Integer getMinOccurs() {

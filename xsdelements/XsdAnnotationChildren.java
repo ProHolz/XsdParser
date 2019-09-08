@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * This class serves as a base to both {@link XsdAppInfo} and {@link XsdDocumentation} since they share similarities.
@@ -15,7 +15,7 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
      */
     private String content;
 
-    XsdAnnotationChildren(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    XsdAnnotationChildren( XsdParserCore! parser,  Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
         this.source = attributesMap.getOrDefault(SOURCE_TAG, source);
     }
@@ -44,7 +44,7 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
      *                           {@link XsdDocumentation}).
      * @return The annotationChildren wrapped in the correct {@link ReferenceBase} wrapper.
      */
-    static ReferenceBase xsdAnnotationChildrenParse(Node node, XsdAnnotationChildren annotationChildren){
+    static ReferenceBase xsdAnnotationChildrenParse(XmlElement node, XsdAnnotationChildren annotationChildren){
         annotationChildren.content = xsdRawContentParse(node);
 
         return ReferenceBase.createFromXsd(annotationChildren);

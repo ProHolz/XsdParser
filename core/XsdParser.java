@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 /**
@@ -35,10 +35,10 @@ public class XsdParser extends XsdParserCore{
     }
 
     private void parse(String filePath){
-        schemaLocations.add(filePath);
+        schemaLocations.Add(filePath);
         int index = 0;
 
-        while (schemaLocations.size() > index){
+        while (schemaLocations.Size() > index){
             String schemaLocation = schemaLocations.get(index);
             parseFile(schemaLocation);
             ++index;
@@ -58,7 +58,7 @@ public class XsdParser extends XsdParserCore{
         this.currentFile = filePath;
 
         try {
-            if (!new File(filePath).exists()){
+            if (!new File(filePath).Exists()){
                 throw new FileNotFoundException();
             }
 
@@ -77,7 +77,7 @@ public class XsdParser extends XsdParserCore{
      *      {@link ParserConfigurationException}.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
      */
-    private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
+    private XmlElement getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(filePath);
 
         doc.getDocumentElement().normalize();
@@ -85,7 +85,7 @@ public class XsdParser extends XsdParserCore{
         NodeList nodes = doc.getChildNodes();
 
         for (int i = 0; i < nodes.getLength(); i++) {
-            Node node = nodes.item(i);
+            XmlElement node = nodes.item(i);
             if (isXsdSchema(node)){
                 return node;
             }

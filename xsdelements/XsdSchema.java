@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 public class XsdSchema extends XsdAnnotatedElements {
 
@@ -54,14 +54,14 @@ public class XsdSchema extends XsdAnnotatedElements {
      */
     private String xmlns;
 
-    private Map<String, NamespaceInfo> namespaces = new HashMap<>();
+    private Dictionary<String, NamespaceInfo> namespaces = new Dictionary<>();
 
     /**
      * The children elements contained in this {@link XsdSchema} element.
      */
-    private List<XsdAbstractElement> elements = new ArrayList<>();
+    private List<XsdAbstractElement> elements = new List<XsdAbstractElement>();
 
-    private XsdSchema(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
+    private XsdSchema(XsdParserCore! parser, Dictionary<String, String>! attributesMap){
         super(parser, attributesMap);
 
         this.attributeFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, attributesMap.getOrDefault(ATTRIBUTE_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
@@ -73,7 +73,7 @@ public class XsdSchema extends XsdAnnotatedElements {
         this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
 
         for (String key : attributesMap.keySet()){
-            if (key.startsWith(XMLNS) && !attributesMap.get(key).contains("http")){
+            if (key.startsWith(XMLNS) && !attributesMap.get(key).Contains("http")){
                 String namespaceId = key.replace(XMLNS + ":", "");
                 namespaces.put(namespaceId, new NamespaceInfo(attributesMap.get(key)));
             }
@@ -92,19 +92,19 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     @Override
     public List<ReferenceBase> getElements() {
-        return elements.stream().map(ReferenceBase::createFromXsd).collect(Collectors.toList());
+        return elements.stream().Select(ReferenceBase::createFromXsd).collect(Collectors.toList());
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node) {
+        ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.get_Attributes())));
         XsdSchema xsdSchema = (XsdSchema) xsdSchemaRef.getElement();
 
         List<XsdImport> importsList = xsdSchema.getChildrenImports().collect(Collectors.toList());
 
-        Map<String, String> prefixLocations = new HashMap<>();
+        Dictionary<String, String> prefixLocations = new Dictionary<>();
 
         xsdSchema.getNamespaces()
-                 .forEach((prefix, namespaceInfo) -> {
+                 .ForEach((prefix, namespaceInfo) -> {
                      Optional<XsdImport> xsdImport = importsList.stream().filter(xsdImportObj -> xsdImportObj.getNamespace().equals(namespaceInfo.getName())).findFirst();
 
                      if (xsdImport.isPresent()){
@@ -119,69 +119,69 @@ public class XsdSchema extends XsdAnnotatedElements {
         return xsdSchemaRef;
     }
 
-    private void updatePrefixLocations(Map<String, String> prefixLocations) {
-        prefixLocations.forEach((prefix, fileLocation) ->
+    private void updatePrefixLocations(Dictionary<String, String> prefixLocations) {
+        prefixLocations.ForEach((prefix, fileLocation) ->
             namespaces.get(prefix).setFile(fileLocation)
         );
     }
 
     public void add(XsdInclude element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdImport element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdAnnotation element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdSimpleType element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdComplexType element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdGroup element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdAttributeGroup element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdElement element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
     public void add(XsdAttribute element) {
-        elements.add(element);
+        elements.Add(element);
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getAttributeFormDefault() {
         return attributeFormDefault.getValue();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getElementFormDefault() {
         return elementFormDefault.getValue();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getBlockDefault() {
         return blockDefault.getValue();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getFinalDefault() {
         return finalDefault.getValue();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getTargetNamespace() {
         return targetNamespace;
     }
@@ -193,94 +193,94 @@ public class XsdSchema extends XsdAnnotatedElements {
     /**
      * @return The children elements that are of the type {@link XsdInclude}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdInclude> getChildrenIncludes(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdInclude)
-                .map(element -> (XsdInclude) element);
+                .Select(element -> (XsdInclude) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdImport}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdImport> getChildrenImports(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdImport)
-                .map(element -> (XsdImport) element);
+                .Select(element -> (XsdImport) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdAnnotation}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAnnotation> getChildrenAnnotations(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdAnnotation)
-                .map(element -> (XsdAnnotation) element);
+                .Select(element -> (XsdAnnotation) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdSimpleType}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdSimpleType> getChildrenSimpleTypes(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdSimpleType)
-                .map(element -> (XsdSimpleType) element);
+                .Select(element -> (XsdSimpleType) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdComplexType}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdComplexType> getChildrenComplexTypes(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdComplexType)
-                .map(element -> (XsdComplexType) element);
+                .Select(element -> (XsdComplexType) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdGroup}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdGroup> getChildrenGroups(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdGroup)
-                .map(element -> (XsdGroup) element);
+                .Select(element -> (XsdGroup) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdAttributeGroup}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getChildrenAttributeGroups(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdAttributeGroup)
-                .map(element -> (XsdAttributeGroup) element);
+                .Select(element -> (XsdAttributeGroup) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdElement}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdElement> getChildrenElements(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdElement)
-                .map(element -> (XsdElement) element);
+                .Select(element -> (XsdElement) element);
     }
 
     /**
      * @return The children elements that are of the type {@link XsdAttribute}.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttribute> getChildrenAttributes(){
         return getXsdElements()
                 .filter(element -> element instanceof XsdAttribute)
-                .map(element -> (XsdAttribute) element);
+                .Select(element -> (XsdAttribute) element);
     }
 
-    public Map<String, NamespaceInfo> getNamespaces() {
+    public Dictionary<String, NamespaceInfo> getNamespaces() {
         return namespaces;
     }
 }

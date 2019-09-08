@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:simpleContent element.
@@ -27,7 +27,7 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
      */
     private ReferenceBase extension;
 
-    private XsdSimpleContent(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdSimpleContent(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -42,18 +42,18 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdExtension getXsdExtension() {
         return extension instanceof ConcreteElement ? (XsdExtension) extension.getElement() : null;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdRestriction getXsdRestriction(){
         return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdSimpleContent(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdSimpleContent(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public void setRestriction(ReferenceBase restriction) {

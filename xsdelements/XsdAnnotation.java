@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:annotation element.
@@ -19,18 +19,18 @@ public class XsdAnnotation extends XsdIdentifierElements {
     /**
      * The list of {@link XsdAppInfo} children.
      */
-    private List<XsdAppInfo> appInfoList = new ArrayList<>();
+    private List<XsdAppInfo> appInfoList = new List<XsdAppInfo>();
 
     /**
      * The list of {@link XsdDocumentation} children.
      */
-    private List<XsdDocumentation> documentations = new ArrayList<>();
+    private List<XsdDocumentation> documentations = new List<XsdDocumentation>();
 
-    private XsdAnnotation(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdAnnotation( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
-    @Override
+ //   @Override
     public XsdAnnotationVisitor getVisitor() {
         return visitor;
     }
@@ -50,14 +50,14 @@ public class XsdAnnotation extends XsdIdentifierElements {
     }
 
     public void add(XsdAppInfo appInfo){
-        appInfoList.add(appInfo);
+        appInfoList.Add(appInfo);
     }
 
     public void add(XsdDocumentation documentation){
-        documentations.add(documentation);
+        documentations.Add(documentation);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdAnnotation(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse( XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdAnnotation(parser, convertNodeMap(node.get_Attributes())));
     }
 }

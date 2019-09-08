@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:documentation element. This class extends from {@link XsdAnnotationChildren} since it
@@ -17,7 +17,7 @@ public class XsdDocumentation extends XsdAnnotationChildren {
      */
     private String xmlLang;
 
-    private XsdDocumentation(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdDocumentation(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
         this.xmlLang = attributesMap.getOrDefault(XML_LANG_TAG, xmlLang);
     }
@@ -28,7 +28,7 @@ public class XsdDocumentation extends XsdAnnotationChildren {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdAnnotationChildrenParse(node, new XsdDocumentation(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdAnnotationChildrenParse(node, new XsdDocumentation(parser, convertNodeMap(node.get_Attributes())));
     }
 }

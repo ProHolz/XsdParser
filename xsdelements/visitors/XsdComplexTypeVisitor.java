@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * Represents the restrictions of the {@link XsdComplexType} element, which can contain the following children:
  *      * {@link XsdAll}, {@link XsdSequence}, {@link XsdChoice} (represented by {@link XsdMultipleElements});
@@ -21,7 +21,7 @@ public class XsdComplexTypeVisitor extends AttributesVisitor {
         this.owner = owner;
     }
 
-    @Override
+   // @Override
     public XsdComplexType getOwner() {
         return owner;
     }

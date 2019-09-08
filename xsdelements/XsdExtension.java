@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:extension element.
@@ -31,18 +31,18 @@ public class XsdExtension extends XsdAnnotatedElements {
      */
     private ReferenceBase base;
 
-    private XsdExtension(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdExtension(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
         if (baseValue != null){
-            if (XsdParserCore.getXsdTypesToJava().containsKey(baseValue)){
-                HashMap<String, String> attributes = new HashMap<>();
+            if (XsdParserCore.getXsdTypesToJava().ContainsKey(baseValue)){
+                Dictionary<String, String> attributes = new Dictionary<>();
                 attributes.put(NAME_TAG, baseValue);
                 this.base = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
             } else {
-                this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>()));
+                this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new Dictionary<>()));
                 parser.addUnsolvedReference((UnsolvedReference) this.base);
             }
         }
@@ -127,7 +127,7 @@ public class XsdExtension extends XsdAnnotatedElements {
      * @return The {@link XsdSimpleType} from which this extension extends or null if the {@link XsdParserCore} wasn't
      * able to replace the {@link UnsolvedReference} created by the base attribute value.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdSimpleType getBaseAsSimpleType() {
         if (base instanceof NamedConcreteElement){
             XsdAbstractElement baseType = base.getElement();
@@ -140,21 +140,21 @@ public class XsdExtension extends XsdAnnotatedElements {
         return null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.get_Attributes())));
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttribute> getXsdAttributes() {
         return visitor.getXsdAttributes();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
         return visitor.getXsdAttributeGroup();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdAbstractElement getXsdChildElement(){
         if (childElement == null) {
             return null;
@@ -170,7 +170,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     /**
      * @return The childElement as a {@link XsdGroup} object or null if childElement isn't a {@link XsdGroup} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdGroup getChildAsGroup() {
         return childElement.getElement() instanceof XsdGroup ? (XsdGroup) childElement.getElement() : null;
     }
@@ -178,7 +178,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     /**
      * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdAll getChildAsAll() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsdAll((XsdMultipleElements) childElement.getElement()) : null;
     }
@@ -186,7 +186,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     /**
      * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdChoice getChildAsChoice() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsChoice((XsdMultipleElements) childElement.getElement()) : null;
     }
@@ -194,7 +194,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     /**
      * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdSequence getChildAsSequence() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsSequence((XsdMultipleElements) childElement.getElement()) : null;
     }

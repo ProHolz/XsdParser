@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 public class XsdSchemaVisitor extends AttributesVisitor {
 
     private XsdSchema owner;
@@ -8,7 +8,7 @@ public class XsdSchemaVisitor extends AttributesVisitor {
         this.owner = owner;
     }
 
-    @Override
+//    @Override
     public XsdSchema getOwner() {
         return owner;
     }

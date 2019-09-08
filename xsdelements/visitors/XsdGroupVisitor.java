@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * Represents the restrictions of the {@link XsdGroup} element, which can contain {@link XsdAll}, {@link XsdSequence},
  * {@link XsdChoice} (represented by {@link XsdMultipleElements}) as children. Can also have {@link XsdAnnotation} as
@@ -17,7 +17,7 @@ public class XsdGroupVisitor extends XsdAnnotatedElementsVisitor {
         this.owner = owner;
     }
 
-    @Override
+//    @Override
     public XsdGroup getOwner() {
         return owner;
     }

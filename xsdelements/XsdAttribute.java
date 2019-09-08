@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:attribute element. It can have a ref attribute and therefore extends from
@@ -54,7 +54,7 @@ public class XsdAttribute extends XsdNamedElements {
      */
     private UsageEnum use;
 
-    private XsdAttribute(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdAttribute( XsdParserCore! parser,  Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         String formDefaultValue = getFormDefaultValue(parent);
@@ -65,13 +65,13 @@ public class XsdAttribute extends XsdNamedElements {
         this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefaultValue));
         this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
-        if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
-            this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>()));
+        if (type != null && !XsdParser.getXsdTypesToJava().ContainsKey(type)){
+            this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new Dictionary<>()));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
     }
 
-    private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdAttribute(XsdAbstractElement parent,  XsdParserCore! parser,  Dictionary<String, String>! attributesMap) {
         this(parser, attributesMap);
         setParent(parent);
     }
@@ -106,7 +106,7 @@ public class XsdAttribute extends XsdNamedElements {
      * Throws an exception in that case.
      */
     private void rule3() {
-        if (attributesMap.containsKey(REF_TAG) && (simpleType != null || form != null || type != null)){
+        if (attributesMap.ContainsKey(REF_TAG) && (simpleType != null || form != null || type != null)){
             throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, simpleType element, form attribute and type attribute cannot be present at the same time.");
         }
     }
@@ -127,7 +127,7 @@ public class XsdAttribute extends XsdNamedElements {
         visitorParam.visit(this);
     }
 
-    @Override
+  //  @Override
     public XsdAttributeVisitor getVisitor() {
         return visitor;
     }
@@ -139,10 +139,10 @@ public class XsdAttribute extends XsdNamedElements {
      * @return A copy of the object from which is called upon.
      */
     @Override
-    public XsdAttribute clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(attributesMap);
-        placeHolderAttributes.remove(TYPE_TAG);
-        placeHolderAttributes.remove(REF_TAG);
+    public XsdAttribute clone( Dictionary<String, String>! placeHolderAttributes) {
+        placeHolderAttributes.Add(attributesMap);
+        placeHolderAttributes.Remove(TYPE_TAG);
+        placeHolderAttributes.Remove(REF_TAG);
 
         XsdAttribute copy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes);
 
@@ -185,18 +185,18 @@ public class XsdAttribute extends XsdNamedElements {
     }
 
     public String getUse() {
-        return use.getValue();
+        return use.ToString();
     }
 
     public String getForm() {
-        return form.getValue();
+        return form.ToString();
     }
 
     public String getFixed() {
         return fixed;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public List<XsdRestriction> getAllRestrictions(){
         XsdSimpleType simpleTypeObj = getXsdSimpleType();
 
@@ -204,11 +204,11 @@ public class XsdAttribute extends XsdNamedElements {
             return simpleTypeObj.getAllRestrictions();
         }
 
-        return Collections.emptyList();
+        return new List<XsdRestriction>();//Collections.emptyList();
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse( XsdParserCore! parser, XmlElement node) {
+        return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.get_Attributes())));
     }
 
 }

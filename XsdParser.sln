@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# RemObjects Fire
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.(Shared)", "XsdParser.(Shared).elements", "{D95BD0E7-D60E-48C4-9264-59E54613F980}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.Net", "XsdParser.Net.elements", "{3797CA06-8938-4E70-AB43-9DF94B7D2308}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Release|AnyCPU.Build.0 = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

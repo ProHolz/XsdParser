@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * This class serves as a base to concrete {@link XsdAbstractElement} classes that can have a name attribute. This is
@@ -11,7 +11,7 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      */
     String name;
 
-    XsdNamedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    XsdNamedElements(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.name = attributesMap.getOrDefault(NAME_TAG, name);
@@ -23,7 +23,7 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      * @param placeHolderAttributes The additional attributes to add to the clone.
      * @return A copy of the object from which is called upon.
      */
-    public abstract XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes);
+    public abstract XsdNamedElements clone(Dictionary<String, String>! placeHolderAttributes);
 
     /**
      * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
@@ -38,7 +38,7 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      * if they are both present.
      */
     private void rule1() {
-        if (name != null && attributesMap.containsKey(REF_TAG)){
+        if (name != null && attributesMap.ContainsKey(REF_TAG)){
             throw new ParsingException(NAME_TAG + " and " + REF_TAG + " attributes cannot both be present at the same time.");
         }
     }

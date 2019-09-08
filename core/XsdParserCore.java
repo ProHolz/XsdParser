@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 public abstract class XsdParserCore {
@@ -8,38 +8,38 @@ public abstract class XsdParserCore {
      * type supported by this mapper, this way based on the concrete {@link XsdAbstractElement} tag the according parse
      * method can be invoked.
      */
-    static Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> parseMappers;
+    static Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>> parseMappers;
 
     /**
      * A {@link Map} object that contains the all the XSD types and their respective types in the Java
      * language.
      */
-    private static Map<String, String> xsdTypesToJava;
+    private static Dictionary<String, String> xsdTypesToJava;
 
     /**
      * A {@link List} which contains all the top elements parsed by this class.
      */
-    private Map<String, List<ReferenceBase>> parseElements = new HashMap<>();
+    private Dictionary<String, List<ReferenceBase>> parseElements = new Dictionary<String, List<ReferenceBase>>();
 
     /**
      * A {@link List} of {@link UnsolvedReference} elements that weren't solved. This list is consulted after all the
      * elements are parsed in order to find if there is any suitable parsed element to replace the unsolved element.
      */
-    private Map<String, List<UnsolvedReference>> unsolvedElements = new HashMap<>();
+    private Dictionary<String, List<UnsolvedReference>> unsolvedElements = new Dictionary<String, List<UnsolvedReference>>();
 
     /**
      * A {@link List} containing all the elements that even after parsing all the elements on the file, don't have a
      * suitable object to replace the reference. This list can be consulted after the parsing process to assert if there
      * is any missing information in the XSD file.
      */
-    private List<UnsolvedReferenceItem> parserUnsolvedElementsMap = new ArrayList<>();
+    private List<UnsolvedReferenceItem> parserUnsolvedElementsMap = new List<UnsolvedReferenceItem>();
 
     /**
      * A {@link List} containing the paths of files that were present in either {@link XsdInclude} or {@link XsdImport}
      * objects that are present in the original or subsequent files. These paths are stored to be parsed as well, the
      * parsing process only ends when all the files present in this {@link List} are parsed.
      */
-    List<String> schemaLocations = new ArrayList<>();
+    List<String> schemaLocations = new List<String>();
 
     String currentFile;
 
@@ -51,11 +51,11 @@ public abstract class XsdParserCore {
     }
 
     /**
-     * Verifies if a given {@link Node} object, i.e. {@code node} is a xsd:schema node.
+     * Verifies if a given {@link XmlElement} object, i.e. {@code node} is a xsd:schema node.
      * @param node The node to verify.
      * @return True if the node is a xsd:schema or xs:schema. False otherwise.
      */
-    boolean isXsdSchema(Node node){
+    boolean isXsdSchema(XmlElement node){
         String schemaNodeName = node.getNodeName();
 
         return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG);
@@ -78,37 +78,37 @@ public abstract class XsdParserCore {
     private void resolveOtherNamespaceRefs() {
         parseElements
                 .keySet()
-                .forEach(fileName -> {
+                .ForEach(fileName -> {
                     XsdSchema xsdSchema =
                             parseElements.get(fileName)
                                     .stream()
                                     .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdSchema)
-                                    .map(referenceBase -> (((XsdSchema) referenceBase.getElement())))
+                                    .Select(referenceBase -> (((XsdSchema) referenceBase.getElement())))
                                     .findFirst()
                                     .get();
 
-                    Map<String, NamespaceInfo> ns = xsdSchema.getNamespaces();
+                    Dictionary<String, NamespaceInfo> ns = xsdSchema.getNamespaces();
 
                     unsolvedElements
-                            .getOrDefault(fileName, new ArrayList<>())
+                            .getOrDefault(fileName, new List<String>())
                             .stream()
-                            .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
-                            .forEach(unsolvedElement -> {
-                                String unsolvedElementNamespace = unsolvedElement.getRef().substring(0, unsolvedElement.getRef().indexOf(":"));
+                            .filter(unsolvedElement -> unsolvedElement.getRef().Contains(":"))
+                            .ForEach(unsolvedElement -> {
+                                String unsolvedElementNamespace = unsolvedElement.getRef().Substring(0, unsolvedElement.getRef().indexOf(":"));
 
                                 Optional<String> foundNamespaceId = ns.keySet().stream().filter(namespaceId -> namespaceId.equals(unsolvedElementNamespace)).findFirst();
 
                                 if (foundNamespaceId.isPresent()){
                                     String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
 
-                                    String importedFileName = importedFileLocation.substring(importedFileLocation.lastIndexOf("/")+1);
+                                    String importedFileName = importedFileLocation.Substring(importedFileLocation.LastIndexOf("/")+1);
 
                                     List<ReferenceBase> importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(importedFileName)).findFirst().get()));
 
-                                    Map<String, List<NamedConcreteElement>> concreteElementsMap =
+                                    Dictionary<String, List<NamedConcreteElement>> concreteElementsMap =
                                             importedElements.stream()
                                                     .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                                    .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                                                    .Select(concreteElement -> (NamedConcreteElement) concreteElement)
                                                     .collect(groupingBy(NamedConcreteElement::getName));
 
                                     replaceUnsolvedImportedReference(concreteElementsMap, unsolvedElement);
@@ -117,11 +117,11 @@ public abstract class XsdParserCore {
                 });
     }
 
-    private void replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
-        List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
+    private void replaceUnsolvedImportedReference(Dictionary<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
+        List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().Substring(unsolvedReference.getRef().IndexOf(":") + 1));
 
         if (concreteElements != null){
-            Map<String, String> oldElementAttributes = unsolvedReference.getElement().getAttributesMap();
+            Dictionary<String, String> oldElementAttributes = unsolvedReference.getElement().getAttributesMap();
 
             for (NamedConcreteElement concreteElement : concreteElements) {
                 NamedConcreteElement substitutionElementWrapper;
@@ -144,32 +144,32 @@ public abstract class XsdParserCore {
     private void resolveInnerRefs() {
         parseElements
             .keySet()
-            .forEach(fileName -> {
+            .ForEach(fileName -> {
                 List<String> includedFiles =
                         parseElements.get(fileName)
                                     .stream()
                                     .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
-                                    .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
+                                    .Select(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
                                     .collect(Collectors.toList());
 
-                List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
+                                    List<ReferenceBase> includedElements = new List<ReferenceBase>(parseElements.get(fileName));
 
-                includedFiles.forEach(includedFile ->{
-                    String includedFilename = includedFile.substring(includedFile.lastIndexOf("/")+1);
+                includedFiles.ForEach(includedFile ->{
+                    String includedFilename = includedFile.Substring(includedFile.LastIndexOf("/")+1);
 
-                    includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
+                    includedElements.Add(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
                 });
 
-                Map<String, List<NamedConcreteElement>> concreteElementsMap =
+                Dictionary<String, List<NamedConcreteElement>> concreteElementsMap =
                         includedElements.stream()
                                 .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                                .Select(concreteElement -> (NamedConcreteElement) concreteElement)
                                 .collect(groupingBy(NamedConcreteElement::getName));
 
-                unsolvedElements.getOrDefault(fileName, new ArrayList<>())
+                                unsolvedElements.getOrDefault(fileName, new List<ReferenceBase>())
                         .stream()
-                        .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
-                        .forEach(unsolvedElement -> replaceUnsolvedReference(concreteElementsMap, unsolvedElement));
+                        .filter(unsolvedElement -> !unsolvedElement.getRef().Contains(":"))
+                        .ForEach(unsolvedElement -> replaceUnsolvedReference(concreteElementsMap, unsolvedElement));
             });
     }
 
@@ -180,11 +180,11 @@ public abstract class XsdParserCore {
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference The unsolved reference to solve.
      */
-    private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
+    private void replaceUnsolvedReference(Dictionary<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
         if (concreteElements != null){
-            Map<String, String> oldElementAttributes = unsolvedReference.getElement().getAttributesMap();
+            Dictionary<String, String> oldElementAttributes = unsolvedReference.getElement().getAttributesMap();
 
             for (NamedConcreteElement concreteElement : concreteElements) {
                 NamedConcreteElement substitutionElementWrapper;
@@ -212,7 +212,7 @@ public abstract class XsdParserCore {
      */
     private void storeUnsolvedItem(UnsolvedReference unsolvedReference) {
         if (parserUnsolvedElementsMap.isEmpty()){
-            parserUnsolvedElementsMap.add(new UnsolvedReferenceItem(unsolvedReference));
+            parserUnsolvedElementsMap.Add(new UnsolvedReferenceItem(unsolvedReference));
         } else {
             Optional<UnsolvedReferenceItem> innerEntry =
                     parserUnsolvedElementsMap.stream()
@@ -223,9 +223,9 @@ public abstract class XsdParserCore {
                             .findFirst();
 
             if (innerEntry.isPresent()){
-                innerEntry.ifPresent(entry -> entry.getParents().add(unsolvedReference.getParent()));
+                innerEntry.ifPresent(entry -> entry.getParents().Add(unsolvedReference.getParent()));
             } else {
-                parserUnsolvedElementsMap.add(new UnsolvedReferenceItem(unsolvedReference));
+                parserUnsolvedElementsMap.Add(new UnsolvedReferenceItem(unsolvedReference));
             }
         }
     }
@@ -243,9 +243,9 @@ public abstract class XsdParserCore {
      * from xsd:elements. To access the whole element tree use {@link XsdParser#getResultXsdSchemas()}
      */
     public Stream<XsdElement> getResultXsdElements(){
-        List<XsdElement> elements = new ArrayList<>();
+        List<XsdElement> elements = new List<XsdElement>();
 
-        getResultXsdSchemas().forEach(schema -> schema.getChildrenElements().forEach(elements::add));
+        getResultXsdSchemas().ForEach(schema -> schema.getChildrenElements().ForEach(elements::add));
 
         return elements.stream();
     }
@@ -258,9 +258,10 @@ public abstract class XsdParserCore {
         return parseElements
                 .values()
                 .stream()
-                .flatMap(List::stream)
+              //  #todo : check
+                .flatmap()//(List::stream)
                 .filter(element -> element.getElement() instanceof XsdSchema)
-                .map(element -> (XsdSchema) element.getElement());
+                .Select(element -> (XsdSchema) element.getElement());
     }
 
     /**
@@ -272,12 +273,12 @@ public abstract class XsdParserCore {
         List<UnsolvedReference> unsolved = unsolvedElements.get(currentFile);
 
         if (unsolved == null){
-            unsolved = new ArrayList<>();
+            unsolved = new List<UnsolvedReference>();
 
             unsolvedElements.put(currentFile, unsolved);
         }
 
-        unsolved.add(unsolvedReference);
+        unsolved.Add(unsolvedReference);
     }
 
     /**
@@ -286,18 +287,18 @@ public abstract class XsdParserCore {
      * @param schemaLocation A new file path of another XSD file to parse.
      */
     public void addFileToParse(String schemaLocation) {
-        String fileName = schemaLocation.substring(schemaLocation.lastIndexOf("/")+1);
+        String fileName = schemaLocation.Substring(schemaLocation.LastIndexOf("/")+1);
 
-        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName))){
-            schemaLocations.add(schemaLocation);
+        if (!schemaLocations.Contains(schemaLocation) && schemaLocation.EndsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName))){
+            schemaLocations.Add(schemaLocation);
         }
     }
 
-    public static Map<String, String> getXsdTypesToJava() {
+    public static Dictionary<String, String> getXsdTypesToJava() {
         return xsdTypesToJava;
     }
 
-    public static Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> getParseMappers() {
+    public static Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>> getParseMappers() {
         return parseMappers;
     }
 
@@ -305,12 +306,12 @@ public abstract class XsdParserCore {
         List<ReferenceBase> elements = parseElements.get(currentFile);
 
         if (elements == null){
-            elements = new ArrayList<>();
+            elements = new List<ReferenceBase>();
 
             parseElements.put(currentFile, elements);
         }
 
-        elements.add(wrappedElement);
+        elements.Add(wrappedElement);
     }
 
     void updateConfig(ParserConfig config) {

@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:include element.
@@ -22,7 +22,7 @@ public class XsdInclude extends XsdAnnotatedElements {
      */
     private String schemaLocation;
 
-    private XsdInclude(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdInclude(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.schemaLocation = attributesMap.getOrDefault(SCHEMA_LOCATION, schemaLocation);
@@ -32,8 +32,8 @@ public class XsdInclude extends XsdAnnotatedElements {
         }
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdInclude(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdInclude(parser, convertNodeMap(node.get_Attributes())));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class XsdInclude extends XsdAnnotatedElements {
         return visitor;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getSchemaLocation() {
         return schemaLocation;
     }

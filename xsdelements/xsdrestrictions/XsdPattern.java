@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * States a pattern that a given attribute must match in order to be considered valid. The value is defined as a
@@ -9,7 +9,7 @@ public class XsdPattern extends XsdStringRestrictions {
     public static final String XSD_TAG = "xsd:pattern";
     public static final String XS_TAG = "xs:pattern";
 
-    private XsdPattern(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdPattern(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -19,7 +19,7 @@ public class XsdPattern extends XsdStringRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return ReferenceBase.createFromXsd(new XsdPattern(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return ReferenceBase.createFromXsd(new XsdPattern(parser, convertNodeMap(node.get_Attributes())));
     }
 }

@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
@@ -35,7 +35,7 @@ public class XsdParserJar extends XsdParserCore {
 
         int index = 0;
 
-        while (schemaLocations.size() > index){
+        while (schemaLocations.Size() > index){
             String schemaLocation = schemaLocations.get(index);
             parseJarFile(schemaLocation);
             ++index;
@@ -54,7 +54,7 @@ public class XsdParserJar extends XsdParserCore {
         InputStream inputStream = classLoader.getResourceAsStream(filePath);
 
         try {
-            Node schemaNode = getSchemaNode(inputStream);
+            XmlElement schemaNode = getSchemaNode(inputStream);
 
             if (isXsdSchema(schemaNode)){
                 XsdSchema.parse(this, schemaNode);
@@ -66,7 +66,7 @@ public class XsdParserJar extends XsdParserCore {
         }
     }
 
-    private Node getSchemaNode(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
+    private XmlElement getSchemaNode(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream);
 
         doc.getDocumentElement().normalize();
@@ -80,11 +80,11 @@ public class XsdParserJar extends XsdParserCore {
      * @param jarPath The path of the jar file.
      */
     private void setClassLoader(String jarPath) {
-        if (!jarPath.endsWith(".jar")){
+        if (!jarPath.EndsWith(".jar")){
             throw new ParsingException("The jarPath received doesn't represent a jar file.");
         }
 
-        ClassLoader originalCl = Thread.currentThread().getContextClassLoader();
+        ClassLoader originalCl = Thread.CurrentThread().getContextClassLoader();
 
         URL url = originalCl.getResource(jarPath);
 
@@ -100,7 +100,7 @@ public class XsdParserJar extends XsdParserCore {
         // Use prevCl as parent to maintain current visibility
         ClassLoader urlCl = URLClassLoader.newInstance(new URL[]{url}, originalCl);
 
-        Thread.currentThread().setContextClassLoader(urlCl);
+        Thread.CurrentThread().setContextClassLoader(urlCl);
 
         classLoader = urlCl;
     }

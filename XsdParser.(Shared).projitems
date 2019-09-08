@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{D95BD0E7-D60E-48C4-9264-59E54613F980}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>XsdParser.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\DefaultParserConfig.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\NamespaceInfo.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\ParserConfig.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\UnsolvedReferenceItem.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParser.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserCore.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserJar.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ConcreteElement.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\NamedConcreteElement.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ReferenceBase.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\UnsolvedReference.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\BlockDefaultEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\BlockEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\ComplexTypeBlockEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\FinalDefaultEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\FinalEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\FormEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\SimpleTypeFinalEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\UsageEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\WhiteSpaceEnum.java" />
+    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\XsdEnum.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\ParsingException.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\VisitorNotFoundException.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\AttributesVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAbstractElementVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAllVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotatedElementsVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotationVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAttributeGroupVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAttributeVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdChoiceVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdComplexContentVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdComplexTypeVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdElementVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdExtensionVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdGroupVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdListVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdRestrictionsVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSchemaVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSequenceVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSimpleContentVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSimpleTypeVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdUnionVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdDoubleRestrictions.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdEnumeration.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdFractionDigits.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdIntegerRestrictions.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdLength.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdMaxExclusive.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdMaxInclusive.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdMaxLength.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdMinExclusive.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdMinInclusive.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdMinLength.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdPattern.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdStringRestrictions.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdTotalDigits.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdWhiteSpace.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAll.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAnnotatedElements.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAnnotation.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAnnotationChildren.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAppInfo.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAttribute.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAttributeGroup.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdChoice.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdComplexContent.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdComplexType.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdDocumentation.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdElement.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdExtension.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdGroup.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdIdentifierElements.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdImport.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdInclude.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdList.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdMultipleElements.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdNamedElements.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdRestriction.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdSchema.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdSequence.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdSimpleContent.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdSimpleType.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdUnion.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAbstractElement.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\HelperExtensions.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\enums\Enums.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations_.pas" />
+  </ItemGroup>
+</Project>

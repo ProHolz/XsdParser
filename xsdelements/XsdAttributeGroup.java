@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class is representing xsd:attributeGroup elements. It can have a ref attribute and therefore extends from
@@ -24,18 +24,18 @@ public class XsdAttributeGroup extends XsdNamedElements {
     //This list is populated by the replaceUnsolvedElements and never directly (such as a Visitor method like all else).
     //The UnsolvedReference is placed in the XsdParser queue by the default implementation of the Visitor#visit(XsdAttributeGroup element)
     //The reference solving process then sends the XsdAttributeGroup to this class.
-    private List<XsdAttributeGroup> attributeGroups = new ArrayList<>();
+    private List<XsdAttributeGroup> attributeGroups = new List<XsdAttributeGroup>();
 
     /**
      * A list of {@link XsdAttribute} children instances.
      */
-    private List<ReferenceBase> attributes = new ArrayList<>();
+    private List<ReferenceBase> attributes = new List<ReferenceBase>();
 
-    private XsdAttributeGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdAttributeGroup(XsdParserCore! parser, Dictionary<String, String>!! attributesMap) {
         super(parser, attributesMap);
     }
 
-    private XsdAttributeGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdAttributeGroup(XsdAbstractElement parent, XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
         setParent(parent);
     }
@@ -58,11 +58,11 @@ public class XsdAttributeGroup extends XsdNamedElements {
      */
     @Override
     public List<ReferenceBase> getElements() {
-        List<ReferenceBase> allAttributes = new ArrayList<>();
+        List<ReferenceBase> allAttributes = new List<ReferenceBase>();
 
-        attributeGroups.forEach(attributeGroup -> allAttributes.addAll(attributeGroup.getElements()));
+        attributeGroups.ForEach(attributeGroup -> allAttributes.Add(attributeGroup.getElements()));
 
-        allAttributes.addAll(attributes);
+        allAttributes.Add(attributes);
 
         return allAttributes;
     }
@@ -74,14 +74,14 @@ public class XsdAttributeGroup extends XsdNamedElements {
      * @return A copy of the object from which is called upon.
      */
     @Override
-    public XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(attributesMap);
-        placeHolderAttributes.remove(REF_TAG);
+    public XsdNamedElements clone(Dictionary<String, String>! placeHolderAttributes) {
+        placeHolderAttributes.Add(attributesMap);
+        placeHolderAttributes.Remove(REF_TAG);
 
         XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes);
 
-        elementCopy.attributes.addAll(this.attributes);
-        elementCopy.attributeGroups.addAll(this.attributeGroups);
+        elementCopy.attributes.Add(this.attributes);
+        elementCopy.attributeGroups.Add(this.attributeGroups);
 
         return elementCopy;
     }
@@ -91,13 +91,13 @@ public class XsdAttributeGroup extends XsdNamedElements {
         if (element.getElement() instanceof  XsdAttributeGroup){
             XsdAttributeGroup attributeGroup = (XsdAttributeGroup) element.getElement();
 
-            attributeGroup.attributes.forEach(attribute -> attribute.getElement().setParent(attributeGroup));
+            attributeGroup.attributes.ForEach(attribute -> attribute.getElement().setParent(attributeGroup));
 
-            this.attributeGroups.add(attributeGroup);
+            this.attributeGroups.Add(attributeGroup);
         }
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public List<XsdAttributeGroup> getAttributeGroups() {
         return attributeGroups;
     }
@@ -105,30 +105,30 @@ public class XsdAttributeGroup extends XsdNamedElements {
     /**
      * @return All the attributes of this attributeGroup and other attributeGroups contained within.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttribute> getAllAttributes(){
         return getElements()
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdAttribute)
-                .map(element -> (XsdAttribute) element.getElement());
+                .Select(element -> (XsdAttribute) element.getElement());
     }
 
     /**
      * @return The attributes directly defined in this attributeGroup.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public Stream<XsdAttribute> getDirectAttributes(){
         return attributes
                     .stream()
                     .filter(element -> element.getElement() instanceof XsdAttribute)
-                    .map(element -> (XsdAttribute) element.getElement());
+                    .Select(element -> (XsdAttribute) element.getElement());
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node) {
+        return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public void addAttribute(ReferenceBase attribute) {
-        attributes.add(attribute);
+        attributes.Add(attribute);
     }
 }

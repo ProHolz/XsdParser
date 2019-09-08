@@ -1,6 +1,6 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
-public class AttributeValidations {
+public __partial class AttributeValidations {
 
     private AttributeValidations(){ }
 
@@ -11,6 +11,7 @@ public class AttributeValidations {
      * @param <T> The concrete type of the {@link Enum} type.
      * @return The instance of the concrete {@link Enum} type that represents {@code value} in the respective {@link Enum}.
      */
+   /*
     public static <T extends XsdEnum> T belongsToEnum(final XsdEnum<T> instance, final String value){
         if (value == null){
             return null;
@@ -23,17 +24,17 @@ public class AttributeValidations {
         } else {
             StringBuilder possibleValues = new StringBuilder();
 
-            instance.getSupportedValues().forEach(supportedValue -> possibleValues.append(supportedValue).append(", "));
+            instance.getSupportedValues().ForEach(supportedValue -> possibleValues.append(supportedValue).append(", "));
 
             String values = possibleValues.toString();
-            values = values.substring(0, values.length() - 2);
+            values = values.Substring(0, values.length() - 2);
 
             throw new ParsingException("The attribute " + instance.getVariableName() + " doesn't support the value \"" + value + "\".\n" +
                     "The possible values for the " + instance.getVariableName() + " attribute are:\n" +
                     values);
         }
     }
-
+*/
     /**
      * Checks if the maxOccurs attribute is unbounded or an {@link Integer} value.
      * @param value The possible maxOccurs value.
@@ -45,7 +46,7 @@ public class AttributeValidations {
             return value;
         }
 
-        validateNonNegativeInteger(elementName, MAX_OCCURS_TAG, value);
+        validateNonNegativeInteger(elementName, XsdAbstractElement.MAX_OCCURS_TAG, value);
 
         return value;
     }
@@ -60,14 +61,14 @@ public class AttributeValidations {
      */
     static Integer validateNonNegativeInteger(String elementName, String attributeName, String value){
         try {
-            int intValue = Integer.parseInt(value);
+            int intValue = Integer.Parse(value);
 
             if (intValue < 0){
                 throw new ParsingException("The " + elementName + " " + attributeName + " attribute should be a non negative integer. (greater or equal than 0)");
             }
 
             return intValue;
-        } catch (NumberFormatException e){
+        } catch (Exception e){
             throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a non negative integer.");
         }
     }
@@ -96,14 +97,14 @@ public class AttributeValidations {
      */
     private static Integer validatePositiveInteger(String elementName, String attributeName, String value){
         try {
-            int intValue = Integer.parseInt(value);
+            int intValue = Integer.Parse(value);
 
             if (intValue <= 0){
                 throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a positive integer. (greater than 0)");
             }
 
             return intValue;
-        } catch (NumberFormatException e){
+        } catch (Exception e){
             throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a positive integer.");
         }
     }
@@ -123,7 +124,7 @@ public class AttributeValidations {
     }
 
     public static Boolean validateBoolean(String value){
-         return Boolean.parseBoolean(value);
+         return Boolean.Parse(value);
     }
 
     /**
@@ -136,8 +137,8 @@ public class AttributeValidations {
      */
     private static Double validateDouble(String elementName, String attributeName, String value){
         try {
-            return Double.parseDouble(value);
-        } catch (NumberFormatException e){
+            return Double.Parse(value);
+        } catch (Exception e){
             throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a numeric value.");
         }
     }

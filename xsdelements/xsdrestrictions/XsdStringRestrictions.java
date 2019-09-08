@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as an {@link String}.
@@ -15,7 +15,7 @@ public class XsdStringRestrictions extends XsdAnnotatedElements{
      */
     private String value;
 
-    XsdStringRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    XsdStringRestrictions(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
 
         value = attributesMap.getOrDefault(VALUE_TAG, value);

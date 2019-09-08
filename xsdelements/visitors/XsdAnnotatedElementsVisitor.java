@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * Represents the restrictions of all the XSD elements that can have an {@link XsdAnnotation} as children.
  */
@@ -21,7 +21,7 @@ public class XsdAnnotatedElementsVisitor implements XsdAbstractElementVisitor {
         owner.setAnnotation(element);
     }
 
-    @Override
+  //  @Override
     public XsdAnnotatedElements getOwner() {
         return owner;
     }

@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * Represents the restrictions of the {@link XsdExtension} element, which can contain the following children:
  *      * {@link XsdAll}, {@link XsdSequence} , {@link XsdChoice} (represented by {@link XsdMultipleElements});
@@ -19,7 +19,7 @@ public class XsdExtensionVisitor extends AttributesVisitor {
         this.owner = owner;
     }
 
-    @Override
+ //   @Override
     public XsdExtension getOwner() {
         return owner;
     }

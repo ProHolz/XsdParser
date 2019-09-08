@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as a
@@ -20,7 +20,7 @@ public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
      */
     private double value;
 
-    XsdDoubleRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName) {
+    XsdDoubleRestrictions(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam, String restrictionName) {
         super(parser, elementFieldsMapParam);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));

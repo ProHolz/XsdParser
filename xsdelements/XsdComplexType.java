@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * A class representing the xsd:complexType element. Extends {@link XsdNamedElements} because it's one of the
  * {@link XsdAbstractElement} concrete classes that can have a name attribute.
@@ -64,7 +64,7 @@ public class XsdComplexType extends XsdNamedElements {
      */
     private XsdSimpleContent simpleContent;
 
-    XsdComplexType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    XsdComplexType(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
@@ -76,7 +76,7 @@ public class XsdComplexType extends XsdNamedElements {
         this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
-    XsdComplexType(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    XsdComplexType(XsdAbstractElement parent, XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         this(parser, elementFieldsMapParam);
         setParent(parent);
     }
@@ -96,7 +96,7 @@ public class XsdComplexType extends XsdNamedElements {
      * an exception in that case.
      */
     private void rule2() {
-        if (simpleContent != null && attributesMap.containsKey(MIXED_TAG)){
+        if (simpleContent != null && attributesMap.ContainsKey(MIXED_TAG)){
             throw new ParsingException(XSD_TAG + " element: The simpleContent element and the " + MIXED_TAG  + " attribute are not allowed at the same time.");
         }
     }
@@ -127,14 +127,14 @@ public class XsdComplexType extends XsdNamedElements {
      * @return A copy of the object from which is called upon.
      */
     @Override
-    public XsdComplexType clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(attributesMap);
-        placeHolderAttributes.remove(REF_TAG);
+    public XsdComplexType clone(Dictionary<String, String>! placeHolderAttributes) {
+        placeHolderAttributes.Add(attributesMap);
+        placeHolderAttributes.Remove(REF_TAG);
 
         XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes);
 
         elementCopy.childElement = this.childElement;
-        elementCopy.visitor.setAttributes(this.visitor.getAttributes());
+        elementCopy.visitor.setAttributes(this.visitor.get_Attributes());
         elementCopy.visitor.setAttributeGroups(this.visitor.getAttributeGroups());
 
         elementCopy.complexContent = this.complexContent;
@@ -164,7 +164,7 @@ public class XsdComplexType extends XsdNamedElements {
     }
 
     List<ReferenceBase> getAttributes() {
-        return visitor.getAttributes();
+        return visitor.get_Attributes();
     }
 
     public Stream<XsdAttribute> getXsdAttributes() {
@@ -175,7 +175,7 @@ public class XsdComplexType extends XsdNamedElements {
         return visitor.getXsdAttributeGroup();
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdSimpleContent getSimpleContent() {
         return simpleContent;
     }
@@ -184,18 +184,18 @@ public class XsdComplexType extends XsdNamedElements {
         return complexContent;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public boolean isMixed() {
         return mixed;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public boolean isElementAbstract() {
         return elementAbstract;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdComplexType(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdComplexType(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public void setChildElement(ReferenceBase childElement) {
@@ -210,7 +210,7 @@ public class XsdComplexType extends XsdNamedElements {
         this.simpleContent = simpleContent;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getBlock() {
         return block.getValue();
     }
@@ -218,7 +218,7 @@ public class XsdComplexType extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdGroup} object or null if childElement isn't a {@link XsdGroup} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdGroup getChildAsGroup() {
         return childElement.getElement() instanceof XsdGroup ? (XsdGroup) childElement.getElement() : null;
     }
@@ -226,7 +226,7 @@ public class XsdComplexType extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdAll getChildAsAll() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsdAll((XsdMultipleElements) childElement.getElement()) : null;
     }
@@ -234,7 +234,7 @@ public class XsdComplexType extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdChoice getChildAsChoice() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsChoice((XsdMultipleElements) childElement.getElement()) : null;
     }
@@ -242,7 +242,7 @@ public class XsdComplexType extends XsdNamedElements {
     /**
      * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public XsdSequence getChildAsSequence() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsSequence((XsdMultipleElements) childElement.getElement()) : null;
     }

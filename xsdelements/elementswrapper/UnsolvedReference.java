@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
@@ -34,7 +34,7 @@ public class UnsolvedReference extends ReferenceBase {
         return element.getParent();
     }
 
-    @Override
+   // @Override
     public XsdNamedElements getElement() {
         return (XsdNamedElements) element;
     }

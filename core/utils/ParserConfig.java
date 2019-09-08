@@ -1,11 +1,11 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
 public interface ParserConfig {
 
-    Map<String, String> getXsdTypesToJava();
+    Dictionary<String, String> getXsdTypesToJava();
 
-    Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> getParseMappers();
+    Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>> getParseMappers();
 
 }

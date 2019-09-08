@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class that serves as a base class to three classes that share similarities, {@link XsdAll}, {@link XsdChoice} and
@@ -12,9 +12,9 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     /**
      * A list of elements that are contained in the concrete implementation of the {@link XsdMultipleElements} instance.
      */
-    private List<ReferenceBase> elements = new ArrayList<>();
+    private List<ReferenceBase> elements = new List<ReferenceBase>();
 
-    XsdMultipleElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    XsdMultipleElements(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -32,7 +32,7 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
         }
 
         if (elementWrapper.getElement() instanceof XsdGroup){
-            elements.add(elementWrapper);
+            elements.Add(elementWrapper);
 
             this.elements.removeIf(element ->
                element instanceof UnsolvedReference && compareReference(elementWrapper, (UnsolvedReference) element)
@@ -55,18 +55,18 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     public Stream<XsdAbstractElement> getXsdElements() {
         return elements.stream()
                 .filter(element -> element instanceof ConcreteElement)
-                .map(ReferenceBase::getElement);
+                .Select(ReferenceBase::getElement);
     }
 
     public void addElement(XsdAbstractElement element){
-        this.elements.add(ReferenceBase.createFromXsd(element));
+        this.elements.Add(ReferenceBase.createFromXsd(element));
     }
 
     /**
      * @param element The element containing the child to return.
      * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public static XsdAll getChildAsdAll(XsdMultipleElements element) {
         return element instanceof XsdAll ? (XsdAll) element : null;
     }
@@ -75,7 +75,7 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
      * @param element The element containing the child to return.
      * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public static XsdChoice getChildAsChoice(XsdMultipleElements element) {
         return element instanceof XsdChoice ? (XsdChoice) element : null;
     }
@@ -84,7 +84,7 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
      * @param element The element containing the child to return.
      * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public static XsdSequence getChildAsSequence(XsdMultipleElements element) {
         return element instanceof XsdSequence ? (XsdSequence) element : null;
     }

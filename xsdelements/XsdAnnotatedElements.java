@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * Serves as a base to every {@link XsdAbstractElement} concrete type which can have xsd:annotation as children. Extends
  * from {@link XsdIdentifierElements} because every concrete type that can contain xsd:annotation has children can also
@@ -11,7 +11,7 @@ public abstract class XsdAnnotatedElements extends XsdIdentifierElements {
      */
     private XsdAnnotation annotation;
 
-    protected XsdAnnotatedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    protected XsdAnnotatedElements( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 

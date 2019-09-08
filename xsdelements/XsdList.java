@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * A class representing the xsd:list element.
  *
@@ -27,7 +27,7 @@ public class XsdList extends XsdAnnotatedElements {
      */
     private String itemType;
 
-    private XsdList(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdList(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         this.itemType = attributesMap.getOrDefault(ITEM_TYPE_TAG, itemType);
@@ -44,8 +44,8 @@ public class XsdList extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdList(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdList(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public XsdSimpleType getXsdSimpleType() {

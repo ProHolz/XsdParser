@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 /**
@@ -18,7 +18,7 @@ public class NamedConcreteElement extends ConcreteElement{
         return name;
     }
 
-    @Override
+   // @Override
     public XsdNamedElements getElement() {
         return (XsdNamedElements) element;
     }

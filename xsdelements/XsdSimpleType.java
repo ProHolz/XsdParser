@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A class representing the xsd:simpleType element.
@@ -37,7 +37,7 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     private SimpleTypeFinalEnum finalObj;
 
-    private XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+    private XsdSimpleType(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
         super(parser, attributesMap);
 
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
@@ -45,7 +45,7 @@ public class XsdSimpleType extends XsdNamedElements {
         this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
-    private XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, Dictionary<String, String>! elementFieldsMapParam) {
         this(parser, elementFieldsMapParam);
         setParent(parent);
     }
@@ -99,8 +99,8 @@ public class XsdSimpleType extends XsdNamedElements {
      * @return A copy of the object from which is called upon.
      */
     @Override
-    public XsdSimpleType clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(attributesMap);
+    public XsdSimpleType clone(Dictionary<String, String>! placeHolderAttributes) {
+        placeHolderAttributes.Add(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
         XsdSimpleType copy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes);
@@ -112,8 +112,8 @@ public class XsdSimpleType extends XsdNamedElements {
         return copy;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+        return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.get_Attributes())));
     }
 
     public XsdRestriction getRestriction() {
@@ -143,15 +143,15 @@ public class XsdSimpleType extends XsdNamedElements {
      * @return A list of restrictions.
      */
     public List<XsdRestriction> getAllRestrictions() {
-        Map<String, XsdRestriction> restrictions = new HashMap<>();
-        Map<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToJava();
+        Dictionary<String, XsdRestriction> restrictions = new Dictionary<>();
+        Dictionary<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToJava();
 
         if (restriction != null){
             restrictions.put(xsdBuiltinTypes.get(restriction.getBase()), restriction);
         }
 
         if (union != null){
-            union.getUnionElements().forEach(unionMember -> {
+            union.getUnionElements().ForEach(unionMember -> {
                 XsdRestriction unionMemberRestriction = unionMember.getRestriction();
 
                 if (unionMemberRestriction != null){
@@ -170,7 +170,7 @@ public class XsdSimpleType extends XsdNamedElements {
             });
         }
 
-        return new ArrayList<>(restrictions.values());
+        return new List<XsdRestriction>(restrictions.values());
     }
 
     /**
@@ -254,7 +254,7 @@ public class XsdSimpleType extends XsdNamedElements {
             if (newRestrictionEnumeration != null){
                 for (XsdEnumeration enumerationElem : newRestrictionEnumeration){
                     if (existingEnumeration.stream().noneMatch(existingEnumerationElem -> existingEnumerationElem.getValue().equals(enumerationElem.getValue()))){
-                        existingEnumeration.add(enumerationElem);
+                        existingEnumeration.Add(enumerationElem);
                     }
                 }
             }
@@ -293,8 +293,8 @@ public class XsdSimpleType extends XsdNamedElements {
         this.restriction = restriction;
     }
 
-    @SuppressWarnings("unused")
+    //@SuppressWarnings("unused")
     public String getFinalObj() {
-        return finalObj.getValue();
+        return finalObj.ToString();
     }
 }

@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * Represents the restrictions of the all elements that can contain {@link XsdAttribute} and {@link XsdAttributeGroup}.
@@ -13,12 +13,12 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
     /**
      * The list of {@link XsdAttributeGroup} instances received by this visitor, wrapped in a {@link ReferenceBase} object.
      */
-    private List<ReferenceBase> attributeGroups = new ArrayList<>();
+    private List<ReferenceBase> attributeGroups = new List<ReferenceBase>();
 
     /**
      * The list of {@link XsdAttribute} instances received by this visitor, wrapped in a {@link ReferenceBase} object.
      */
-    private List<ReferenceBase> attributes = new ArrayList<>();
+    private List<ReferenceBase> attributes = new List<ReferenceBase>();
 
     AttributesVisitor(XsdAnnotatedElements owner){
         super(owner);
@@ -28,14 +28,14 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
     public void visit(XsdAttribute attribute) {
         super.visit(attribute);
 
-        attributes.add(ReferenceBase.createFromXsd(attribute));
+        attributes.Add(ReferenceBase.createFromXsd(attribute));
     }
 
     @Override
     public void visit(XsdAttributeGroup attributeGroup) {
         super.visit(attributeGroup);
 
-        attributeGroups.add(ReferenceBase.createFromXsd(attributeGroup));
+        attributeGroups.Add(ReferenceBase.createFromXsd(attributeGroup));
     }
 
     public void setAttributes(List<ReferenceBase> attributes) {
@@ -68,7 +68,7 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
         return attributes.stream()
                 .filter(attribute -> attribute instanceof ConcreteElement)
                 .filter(attribute -> attribute.getElement() instanceof  XsdAttribute)
-                .map(attribute -> (XsdAttribute)attribute.getElement());
+                .Select(attribute -> (XsdAttribute)attribute.getElement());
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
         return attributeGroups.stream()
                 .filter(attributeGroup -> attributeGroup instanceof ConcreteElement)
-                .map(attributeGroup -> (XsdAttributeGroup) attributeGroup.getElement());
+                .Select(attributeGroup -> (XsdAttributeGroup) attributeGroup.getElement());
     }
 
     /**
@@ -93,9 +93,9 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
             attributeGroups.stream()
                     .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attributeGroup))
                     .findFirst().ifPresent(referenceBase -> {
-                attributeGroups.remove(referenceBase);
-                attributeGroups.add(element);
-                attributes.addAll(element.getElement().getElements());
+                attributeGroups.Remove(referenceBase);
+                attributeGroups.Add(element);
+                attributes.Add(element.getElement().getElements());
 
                 element.getElement().setParent(getOwner());
             });
@@ -105,8 +105,8 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
             attributes.stream()
                     .filter(attribute -> attribute instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attribute))
                     .findFirst().ifPresent(referenceBase -> {
-                attributes.remove(referenceBase);
-                attributes.add(element);
+                attributes.Remove(referenceBase);
+                attributes.Add(element);
                 element.getElement().setParent(getOwner());
             });
         }
