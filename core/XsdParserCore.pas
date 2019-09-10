@@ -99,7 +99,7 @@ type
 
 
   public
-    class method getXsdTypesToJava: Dictionary<String,String>;
+    class method getXsdTypesToCodeGen: Dictionary<String,String>;
     class method getParseMappers: Dictionary<String,BiFunction<XsdParserCore, XmlElement,ReferenceBase>>;
     method addParsedElement(wrappedElement: ReferenceBase);
      // *
@@ -142,12 +142,12 @@ class constructor XsdParserCore;
 begin
   var config := new DefaultParserConfig();
   parseMappers := config.getParseMappers();
-  xsdTypesToJava := config.getXsdTypesToJava();
+  xsdTypesToJava := config.getXsdTypesToCodeGen();
 end;
 
 method XsdParserCore.updateConfig(config: ParserConfig);
 begin
-  xsdTypesToJava := config.getXsdTypesToJava();
+  xsdTypesToJava := config.getXsdTypesToCodeGen();
   parseMappers := config.getParseMappers();
 end;
 
@@ -167,7 +167,7 @@ begin
   exit parseMappers;
 end;
 
-class method XsdParserCore.getXsdTypesToJava: Dictionary<String,String>;
+class method XsdParserCore.getXsdTypesToCodeGen: Dictionary<String,String>;
 begin
   exit xsdTypesToJava;
 end;

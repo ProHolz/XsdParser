@@ -37,7 +37,7 @@ public class XsdExtension extends XsdAnnotatedElements {
 		String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
 		if (baseValue != null){
-			if (XsdParserCore.getXsdTypesToJava().ContainsKey(baseValue)){
+			if (XsdParserCore.getXsdTypesToCodeGen().ContainsKey(baseValue)){
 				Dictionary<String, String> attributes = new Dictionary<String, String>();
 				attributes.Add(NAME_TAG, baseValue);
 				this.base = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));

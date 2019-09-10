@@ -4,7 +4,7 @@
 
 public interface ParserConfig {
 
-	Dictionary<String, String> getXsdTypesToJava();
+	Dictionary<String, String> getXsdTypesToCodeGen();
 
 	Dictionary<String, BiFunction<XsdParserCore, XmlElement, ReferenceBase>> getParseMappers();
 

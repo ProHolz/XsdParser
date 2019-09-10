@@ -106,7 +106,7 @@ public class XsdElement extends XsdNamedElements {
 		String typeString = attributesMap.Item[TYPE_TAG];
 
 		if (typeString != null){
-			if (XsdParserCore.getXsdTypesToJava().ContainsKey(typeString)){
+			if (XsdParserCore.getXsdTypesToCodeGen().ContainsKey(typeString)){
 				Dictionary<String, String> attributes = new Dictionary<String, String>();
 				attributes.Add(NAME_TAG, typeString);
 				this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));

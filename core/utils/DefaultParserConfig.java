@@ -4,7 +4,7 @@
 
 public class DefaultParserConfig implements ParserConfig {
 	@Override
-	public Dictionary<String, String> getXsdTypesToJava() {
+	public Dictionary<String, String> getXsdTypesToCodeGen() {
 		Dictionary<String, String> xsdTypesToJava = new Dictionary<String, String>();
 
 		String string = "String";

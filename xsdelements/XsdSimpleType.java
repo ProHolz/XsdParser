@@ -144,7 +144,7 @@ public class XsdSimpleType extends XsdNamedElements {
 	 */
 	public List<XsdRestriction> getAllRestrictions() {
 		Dictionary<String, XsdRestriction> restrictions = new Dictionary<String, XsdRestriction>();
-		Dictionary<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToJava();
+		Dictionary<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToCodeGen();
 
 		if (restriction != null){
 			restrictions.Add(xsdBuiltinTypes.Item[restriction.getBase()], restriction);
