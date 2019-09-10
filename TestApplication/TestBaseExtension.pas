@@ -8,13 +8,12 @@ uses
 
 type
   TestBaseExtension = public class(TestBaseClass)
-  private
 
-  protected
   protected
     method Setup; override; public;
     begin
-      var xsd := gettestParser('testBase');
+      //var xsd :=
+      gettestParser('testBase');
     end;
   public
     method testExtensionBase;
@@ -70,14 +69,14 @@ begin
   Assert.IsNotNil(fchild);
   Assert.isTrue(fchild is XsdSequence, $'Expected XsdSequence got: {fchild.ToString}');
 
-    var &sequence := &extension.getChildAsSequence();
-   Assert.IsNotNil(&sequence);
+  var &sequence := &extension.getChildAsSequence();
+  Assert.IsNotNil(&sequence);
 
-    var element  := &sequence.getChildrenElements().First();
+  var element  := &sequence.getChildrenElements().First();
 
-    Assert.IsTrue(element <> nil);
+  Assert.IsTrue(element <> nil);
 
-    Assert.AreEqual('additionElement', element.getName());
+  Assert.AreEqual('additionElement', element.getName());
 
 end;
 

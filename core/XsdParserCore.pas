@@ -178,13 +178,10 @@ method XsdParserCore.addFileToParse(schemaLocation: String);
 begin
   // Should use Path functions?
   var fileName: String := schemaLocation.substring(schemaLocation.lastIndexOf('/') + 1);
-  if not schemaLocations.Contains(schemaLocation)
+  if not schemaLocations.Contains(fileName)
     and schemaLocation.endsWith('.xsd')
     and schemaLocations
-    //.stream()
-    //.noneMatch((sl) -> sl.endsWith(fileName)) then begin
     .Any((sl) -> not sl.endsWith(fileName)) then begin
-  //  schemaLocations.add(schemaLocation);
     schemaLocations.add(fileName);
   end;
 

@@ -14,7 +14,12 @@ type
      *)
     method getSchemaNode(filePath : String) : XmlElement ;
     begin
-      var doc := XmlDocument.TryFromFile(filePath);
+      var doc := XmlDocument.TryFromFile(filePath, true);
+      if assigned(doc.ErrorInfo) then
+      begin
+        // ToDo log the Error
+      end;
+
       var node := doc.Root;//.Elements;
       if (isXsdSchema(node)) then exit node;
       raise new ParsingException("The top level element of a XSD file should be the xsd:schema node.");

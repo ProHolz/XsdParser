@@ -80,11 +80,11 @@
     <Content Include="resources\test.xsd" />
     <None Include="resources\vstst.xsd" />
     <None Include="resources\wpfe.xsd" />
-    <None Include="restrictionTest.pas" />
+    <Compile Include="restrictionTest.pas" />
     <Compile Include="Assert+Extension.pas" />
-    <None Include="TestBaseExtension.pas" />
+    <Compile Include="TestBaseExtension.pas" />
     <None Include="resources\testBase.xsd" />
-    <Compile Include="HtmlTest.pas" />
+    <None Include="HtmlTest.pas" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
