@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <!-- Extension base example -->
+
+    <xsd:element name="root" type="extendedType" />
+    <xsd:complexType name="baseType">
+        <xsd:attribute name="attributeOne" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="extendedType">
+        <xsd:complexContent>
+            <xsd:extension base="baseType">
+                <xsd:sequence>
+                    <xsd:element name="additionElement" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+</xsd:schema>
