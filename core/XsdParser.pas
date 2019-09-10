@@ -54,7 +54,10 @@ type
         XsdSchema.parse(self, getSchemaNode(filePath));
       except
         on e : Exception do
+         begin
           writeLn(e.Message);
+       raise e;
+       end;
       end;
     end;
 

@@ -202,6 +202,7 @@ public class XsdExtension extends XsdAnnotatedElements {
 	}
 
 	private boolean childrenIsMultipleElement(){
+	   // Boolean res = childElement.getElement() instanceof XsdMultipleElements;
 		return childElement.getElement() instanceof XsdMultipleElements;
 	}
 }

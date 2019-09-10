@@ -32,4 +32,13 @@ public class XsdExtensionVisitor extends AttributesVisitor {
 
 		owner.setChildElement(ReferenceBase.createFromXsd(element));
 	}
+
+	 @Override
+	public void visit(XsdSequence element) {
+		super.visit(element);
+		ReferenceBase ref = ReferenceBase.createFromXsd(element);
+
+		owner.setChildElement(ref);
+	}
+
 }

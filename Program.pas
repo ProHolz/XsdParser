@@ -29,12 +29,23 @@ type
       writeLn('solved : ');
 
       for each item in Xsd.getResultXsdSchemas do  begin
-       writeLn(item.getTargetNamespace);
+       writeLn($" File: {item.getfilename()} Target: {item.getTargetNamespace}");
        for each name in item.getNamespaces() do
          writeLn(name.Key);
+        for each ele in item.getElements do begin
+          case ele.getElement.GetType of
+            typeOf(XsdElement) : writeLn($' {XsdElement(ele.getElement).getName} XSD Element');
+            typeOf(XsdSimpleType) : writeLn($'   {XsdSimpleType(ele.getElement).getName} XSD Simple');
+            typeOf(XsdComplexType) : writeLn($'   {XsdComplexType(ele.getElement).getName} XSD Complex');
+          end;
 
-       for each ele in item.getChildrenComplexTypes do begin
-         writeLn(ele.getRawName);
+        //  writeLn(ele.getElement.ToString);
+       end;
+        if item.getChildrenComplexTypes.Any and false then begin
+       writeLn('Complextypes');
+       for each child in item.getChildrenComplexTypes do begin
+        writeLn($"    {child.getRawName}");
+       end;
        end;
 
 

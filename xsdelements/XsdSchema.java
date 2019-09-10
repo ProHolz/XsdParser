@@ -54,6 +54,8 @@ public class XsdSchema extends XsdAnnotatedElements {
 	 */
 	private String xmlns;
 
+	private String filename;
+
 	private Dictionary<String, NamespaceInfo> namespaces = new Dictionary<String, NamespaceInfo>();
 
 	/**
@@ -71,7 +73,7 @@ public class XsdSchema extends XsdAnnotatedElements {
 		this.targetNamespace = attributesMap.getOrDefault(TARGET_NAMESPACE, targetNamespace);
 		this.version = attributesMap.getOrDefault(VERSION, version);
 		this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
-
+		this.filename = parser.getCurrentFile();
 		for (String key : attributesMap.Keys){
 			if (key.StartsWith(XMLNS) && !attributesMap.Item[key].Contains("http")){
 				String namespaceId = key.Replace(XMLNS + ":", "");
@@ -286,5 +288,9 @@ public class XsdSchema extends XsdAnnotatedElements {
 
 	public Dictionary<String, NamespaceInfo> getNamespaces() {
 		return namespaces;
+	}
+
+	public String getFilename(){
+		return filename;
 	}
 }

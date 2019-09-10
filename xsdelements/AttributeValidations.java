@@ -106,7 +106,7 @@ public __partial class AttributeValidations {
 	 */
 	private static Double validateDouble(String elementName, String attributeName, String value){
 		try {
-			return Double.Parse(value);
+			return  Convert.ToDoubleInvariant(value);
 		} catch (Exception e){
 			throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a numeric value.");
 		}

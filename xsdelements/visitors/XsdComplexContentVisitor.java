@@ -33,4 +33,7 @@ public class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 		owner.setExtension(ReferenceBase.createFromXsd(element));
 	}
+
+
+
 }

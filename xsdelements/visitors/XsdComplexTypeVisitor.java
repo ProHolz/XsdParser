@@ -50,4 +50,7 @@ public class XsdComplexTypeVisitor extends AttributesVisitor {
 
 		owner.setSimpleContent(element);
 	}
+
+
+
 }

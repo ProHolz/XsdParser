@@ -134,6 +134,8 @@ type
 
     method  getResultXsdSchemas() : List<XsdSchema>;
 
+    method getCurrentFile : String;
+
 
   end;
 implementation
@@ -295,12 +297,16 @@ begin
 
     includedFiles
      .ForEach(item -> begin
-       var includedFilename := item.substring(item.lastIndexOf("/")+1);
-       var temp := parseElements[includedFilename];
+       var temp := parseElements[item];
+       if temp = nil then
+       begin
+         var includedFilename := item.substring(item.lastIndexOf("/")+1);
+         temp := parseElements[includedFilename];
+       end;
        if assigned(temp) then
          includedElements.Add(temp);
 
-     end);
+   end);
     var concreteElementsMap :=
     includedElements
     .Where(item -> item is NamedConcreteElement)
@@ -330,7 +336,7 @@ begin
       if not unsolvedReference.isTypeRef() then begin
         if  (concreteElement.getElement() is  XsdNamedElements) then begin
           var substitutionElement := XsdNamedElements(concreteElement.getElement()).clone(oldElementAttributes);
-        substitutionElementWrapper := NamedConcreteElement(ReferenceBase.createFromXsd(substitutionElement));
+          substitutionElementWrapper := NamedConcreteElement(ReferenceBase.createFromXsd(substitutionElement));
         end;
       end
       else begin
@@ -347,54 +353,81 @@ end;
 
 method XsdParserCore.resolveOtherNamespaceRefs;
 begin
-    (*
-     parseElements
-              .keySet()
-              .forEach(fileName -> {
-                  XsdSchema xsdSchema =
-                          parseElements.get(fileName)
-                                  .stream()
-                                  .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdSchema)
-                                  .map(referenceBase -> (((XsdSchema) referenceBase.getElement())))
-                                  .findFirst()
-                                  .get();
 
-                  Map<String, NamespaceInfo> ns = xsdSchema.getNamespaces();
+  parseElements
+           .Keys
+           .ForEach(fileName -> begin
+             var lxsdSchema : XsdSchema  :=
+                       parseElements[fileName]
+                               //.stream()
+                               .Where(ref -> begin
+                                 exit (ref is ConcreteElement) and (ref.getElement() is XsdSchema);
+                               end)
+                 .Select(ref -> (ref.getElement() as XsdSchema))
+                 .FirstorDefault();
 
-                  unsolvedElements
-                          .getOrDefault(fileName, new ArrayList<>())
-                          .stream()
-                          .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
-                          .forEach(unsolvedElement -> {
-                              String unsolvedElementNamespace = unsolvedElement.getRef().substring(0, unsolvedElement.getRef().indexOf(":"));
 
-                              Optional<String> foundNamespaceId = ns.keySet().stream().filter(namespaceId -> namespaceId.equals(unsolvedElementNamespace)).findFirst();
+             var ns := lxsdSchema.getNamespaces();
 
-                              if (foundNamespaceId.isPresent()){
-                                  String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
+             unsolvedElements
+                     .getOrDefault(fileName, new List<UnsolvedReference>())
+                     //.stream()
+                     .Where(unsolvedElement -> unsolvedElement.getRef().contains(":"))
+                     .ToList()
+                     .ForEach(unsolvedElement -> begin
+                       var unsolvedElementNamespace := unsolvedElement.getRef().substring(0, unsolvedElement.getRef().indexOf(":"));
 
-                                  String importedFileName = importedFileLocation.substring(importedFileLocation.lastIndexOf("/")+1);
+                       var foundNamespaceId :=
+                                ns.Keys
+                              // .stream()
+                               .Where(namespaceId -> namespaceId.equals(unsolvedElementNamespace)).FirstOrDefault;
 
-                                  List<ReferenceBase> importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(importedFileName)).findFirst().get()));
+                       if assigned(foundNamespaceId) then begin
+                         var importedFileLocation := ns[foundNamespaceId].getFile();
 
-                                  Map<String, List<NamedConcreteElement>> concreteElementsMap =
-                                          importedElements.stream()
-                                                  .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                                  .map(concreteElement -> (NamedConcreteElement) concreteElement)
-                                                  .collect(groupingBy(NamedConcreteElement::getName));
+                         var importedFileName := importedFileLocation.substring(importedFileLocation.lastIndexOf("/")+1);
 
-                                  replaceUnsolvedImportedReference(concreteElementsMap, unsolvedElement);
-                              }
-                          });
-              });
+                         var importedElements  :=
+                           parseElements[importedFileLocation];
 
-    *)
+                         if importedElements = nil then
+                         begin
+                           var lTemp := parseElements.Keys
+                                         .FirstOrDefault(k -> k.endsWith(importedFileName));
+
+                           if assigned(lTemp) then
+                             importedElements  :=
+                             parseElements[lTemp];
+
+                         end;
+
+                         if assigned(importedElements) then begin
+                           var concreteElementsMap :=
+                                   importedElements
+                                           .Where(concreteEle -> concreteEle is NamedConcreteElement)
+                                           .Select(concreteEle ->  concreteEle as NamedConcreteElement)
+                                           .groupBy(Named -> Named.getName)
+                                           .ToDictionary(item -> item.Key, item -> item.ToList());;
+
+                           replaceUnsolvedImportedReference(concreteElementsMap, unsolvedElement);
+
+                         end;
+                       end;
+                     end);
+           end);
+
+
 end;
 
 method XsdParserCore.isXsdSchema(node: XmlElement): Boolean;
 begin
   var schemaNodeName: String := node.FullName;
   exit schemaNodeName.equals(XsdSchema.XSD_TAG) or schemaNodeName.equals(XsdSchema.XS_TAG);
+end;
+
+method XsdParserCore.getCurrentFile: String;
+begin
+  exit currentFile;
 end;
 
 

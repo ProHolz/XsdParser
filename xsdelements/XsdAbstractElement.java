@@ -220,6 +220,10 @@ public abstract class XsdAbstractElement {
 		static String xsdRawContentParse(XmlElement node) {
 		  //  XmlElement child = node.Elements.First();
 			StringBuilder stringBuilder = new StringBuilder();
+			//if (node.NodeType == XmlNodeType.Text || node.NodeType == XmlNodeType.CData){
+				stringBuilder.Append(node.Value.Trim());
+			  //}
+		   //  #todo : Check if Child parse is necessary
 			for (XmlElement child : node.Elements) {
 		   // while (child != null) {
 				if (child.NodeType == XmlNodeType.Text || child.NodeType == XmlNodeType.CData) {

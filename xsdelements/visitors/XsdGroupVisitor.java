@@ -25,4 +25,13 @@ public class XsdGroupVisitor extends XsdAnnotatedElementsVisitor {
 
 		owner.setChildElement(element);
 	}
+
+   // method visit(element: XsdAll); virtual; empty;
+	@Override
+	public void visit(XsdAll element) {
+		super.visit(element);
+
+		owner.setChildElement(element);
+	}
+
 }
