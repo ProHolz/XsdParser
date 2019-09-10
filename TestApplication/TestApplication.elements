@@ -84,7 +84,6 @@
     <Compile Include="Assert+Extension.pas" />
     <Compile Include="TestBaseExtension.pas" />
     <None Include="resources\testBase.xsd" />
-    <None Include="HtmlTest.pas" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
