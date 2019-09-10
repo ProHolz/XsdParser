@@ -2,212 +2,181 @@
 
 public __partial class AttributeValidations {
 
-    private AttributeValidations(){ }
+	private AttributeValidations(){ }
 
-    /**
-     * Verifies if a given value is present in a given {@link Enum} type.
-     * @param instance An instance of the concrete {@link Enum} type that is expected to contain the {@code value} received.
-     * @param value The value that is expected to be present in the received {@link Enum} type.
-     * @param <T> The concrete type of the {@link Enum} type.
-     * @return The instance of the concrete {@link Enum} type that represents {@code value} in the respective {@link Enum}.
-     */
-   /*
-    public static <T extends XsdEnum> T belongsToEnum(final XsdEnum<T> instance, final String value){
-        if (value == null){
-            return null;
-        }
+	/**
+	 * Checks if the maxOccurs attribute is unbounded or an {@link Integer} value.
+	 * @param value The possible maxOccurs value.
+	 * @param elementName The name of the element containing the maxOccurs attribute.
+	 * @return The validated maxOccurs value.
+	 */
+	static String maxOccursValidation(String elementName, String value){
+		if (value.Equals("unbounded")){
+			return value;
+		}
 
-        Optional<T> enumValue = Arrays.stream(instance.getValues()).filter(enumField -> enumField.getValue().equals(value)).findFirst();
+		validateNonNegativeInteger(elementName, XsdAbstractElement.MAX_OCCURS_TAG, value);
 
-        if (enumValue.isPresent()){
-            return enumValue.get();
-        } else {
-            StringBuilder possibleValues = new StringBuilder();
+		return value;
+	}
 
-            instance.getSupportedValues().ForEach(supportedValue -> possibleValues.append(supportedValue).append(", "));
+	/**
+	 * Validates if a given String is a non negative {@link Integer}. Throws an exception if the {@link String} isn't a non
+	 * negative {@link Integer}.
+	 * @param elementName The element name containing the field with the {@link Integer} value.
+	 * @param attributeName The name of the attribute with the {@link Integer}.
+	 * @param value The value to be parsed to a {@link Integer} object.
+	 * @return The parsed {@link Integer} value.
+	 */
+	static Integer validateNonNegativeInteger(String elementName, String attributeName, String value){
+		try {
+			int intValue = Integer.Parse(value);
 
-            String values = possibleValues.toString();
-            values = values.Substring(0, values.length() - 2);
+			if (intValue < 0){
+				throw new ParsingException("The " + elementName + " " + attributeName + " attribute should be a non negative integer. (greater or equal than 0)");
+			}
 
-            throw new ParsingException("The attribute " + instance.getVariableName() + " doesn't support the value \"" + value + "\".\n" +
-                    "The possible values for the " + instance.getVariableName() + " attribute are:\n" +
-                    values);
-        }
-    }
-*/
-    /**
-     * Checks if the maxOccurs attribute is unbounded or an {@link Integer} value.
-     * @param value The possible maxOccurs value.
-     * @param elementName The name of the element containing the maxOccurs attribute.
-     * @return The validated maxOccurs value.
-     */
-    static String maxOccursValidation(String elementName, String value){
-        if (value.equals("unbounded")){
-            return value;
-        }
+			return intValue;
+		} catch (Exception e){
+			throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a non negative integer.");
+		}
+	}
 
-        validateNonNegativeInteger(elementName, XsdAbstractElement.MAX_OCCURS_TAG, value);
+	/**
+	 * Validates if a given String is a non negative {@link Integer}. Throws an exception if the {@link String} isn't a
+	 * non negative {@link Integer}.
+	 * @param elementName The element name containing the field with the {@link Integer} value.
+	 * @param attributeName The name of the attribute with the {@link Integer}.
+	 * @param value The value to be parsed to a {@link Integer} object.
+	 * @return The parsed {@link Integer} value.
+	 */
+	public static Integer validateRequiredNonNegativeInteger(String elementName, String attributeName, String value){
+		if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
 
-        return value;
-    }
+		return validateNonNegativeInteger(elementName, attributeName, value);
+	}
 
-    /**
-     * Validates if a given String is a non negative {@link Integer}. Throws an exception if the {@link String} isn't a non
-     * negative {@link Integer}.
-     * @param elementName The element name containing the field with the {@link Integer} value.
-     * @param attributeName The name of the attribute with the {@link Integer}.
-     * @param value The value to be parsed to a {@link Integer} object.
-     * @return The parsed {@link Integer} value.
-     */
-    static Integer validateNonNegativeInteger(String elementName, String attributeName, String value){
-        try {
-            int intValue = Integer.Parse(value);
+	/**
+	 * Validates if a given String is a positive {@link Integer}. Throws an exception if the {@link String} isn't a
+	 * positive {@link Integer}.
+	 * @param elementName The element name containing the field with the {@link Integer} value.
+	 * @param attributeName The name of the attribute with the {@link Integer} type.
+	 * @param value The value to be parsed to a {@link Integer} object.
+	 * @return The parsed {@link Integer} value.
+	 */
+	private static Integer validatePositiveInteger(String elementName, String attributeName, String value){
+		try {
+			int intValue = Integer.Parse(value);
 
-            if (intValue < 0){
-                throw new ParsingException("The " + elementName + " " + attributeName + " attribute should be a non negative integer. (greater or equal than 0)");
-            }
+			if (intValue <= 0){
+				throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a positive integer. (greater than 0)");
+			}
 
-            return intValue;
-        } catch (Exception e){
-            throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a non negative integer.");
-        }
-    }
+			return intValue;
+		} catch (Exception e){
+			throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a positive integer.");
+		}
+	}
 
-    /**
-     * Validates if a given String is a non negative {@link Integer}. Throws an exception if the {@link String} isn't a
-     * non negative {@link Integer}.
-     * @param elementName The element name containing the field with the {@link Integer} value.
-     * @param attributeName The name of the attribute with the {@link Integer}.
-     * @param value The value to be parsed to a {@link Integer} object.
-     * @return The parsed {@link Integer} value.
-     */
-    public static Integer validateRequiredNonNegativeInteger(String elementName, String attributeName, String value){
-        if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
+	/**
+	 * Validates if a given String is a positive {@link Integer}. Throws an exception if the {@link String} isn't a
+	 * positive {@link Integer}.
+	 * @param elementName The element name containing the field with the {@link Integer} value.
+	 * @param attributeName The name of the attribute with the {@link Integer} type.
+	 * @param value The value to be parsed to a {@link Integer} object.
+	 * @return The parsed {@link Integer} value.
+	 */
+	public static Integer validateRequiredPositiveInteger(String elementName, String attributeName, String value){
+		if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
 
-        return validateNonNegativeInteger(elementName, attributeName, value);
-    }
+		return validatePositiveInteger(elementName, attributeName, value);
+	}
 
-    /**
-     * Validates if a given String is a positive {@link Integer}. Throws an exception if the {@link String} isn't a
-     * positive {@link Integer}.
-     * @param elementName The element name containing the field with the {@link Integer} value.
-     * @param attributeName The name of the attribute with the {@link Integer} type.
-     * @param value The value to be parsed to a {@link Integer} object.
-     * @return The parsed {@link Integer} value.
-     */
-    private static Integer validatePositiveInteger(String elementName, String attributeName, String value){
-        try {
-            int intValue = Integer.Parse(value);
+	public static Boolean validateBoolean(String value){
+		 return Boolean.Parse(value);
+	}
 
-            if (intValue <= 0){
-                throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a positive integer. (greater than 0)");
-            }
+	/**
+	 * Validates if a given {@link String} is a {@link Double}. Throws an exception if the {@link String} isn't a
+	 * {@link Double}.
+	 * @param elementName The element name containing the field with the {@link Double} value.
+	 * @param attributeName The name of the attribute with the type {@link Double}.
+	 * @param value The value to be parsed to a {@link Double} object.
+	 * @return The parsed {@link Double} value.
+	 */
+	private static Double validateDouble(String elementName, String attributeName, String value){
+		try {
+			return Double.Parse(value);
+		} catch (Exception e){
+			throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a numeric value.");
+		}
+	}
 
-            return intValue;
-        } catch (Exception e){
-            throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a positive integer.");
-        }
-    }
+	/**
+	 * Validates if a given {@link String} is a {@link Double}. Throws an exception if the {@link String} isn't a {@link Double}.
+	 * @param elementName The element name containing the field with the {@link Double} value.
+	 * @param attributeName The name of the attribute with the type {@link Double}.
+	 * @param value The value to be parsed to a {@link Double} object.
+	 * @return The parsed {@link Double} value.
+	 */
+	public static Double validateRequiredDouble(String elementName, String attributeName, String value){
+		if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
 
-    /**
-     * Validates if a given String is a positive {@link Integer}. Throws an exception if the {@link String} isn't a
-     * positive {@link Integer}.
-     * @param elementName The element name containing the field with the {@link Integer} value.
-     * @param attributeName The name of the attribute with the {@link Integer} type.
-     * @param value The value to be parsed to a {@link Integer} object.
-     * @return The parsed {@link Integer} value.
-     */
-    public static Integer validateRequiredPositiveInteger(String elementName, String attributeName, String value){
-        if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
+		return validateDouble(elementName, attributeName, value);
+	}
 
-        return validatePositiveInteger(elementName, attributeName, value);
-    }
+	/**
+	 * Obtains the default value of the {@link XsdSchema#attributeFormDefault} attribute by iterating in the  element tree
+	 * by going from {@link XsdAbstractElement#parent} to {@link XsdAbstractElement#parent} until reaching the top level
+	 * element.
+	 * @param parent The parent of the element requesting the default form value.
+	 * @return The default value for the form attribute.
+	 */
+	static String getFormDefaultValue(XsdAbstractElement parent) {
+		if (parent == null) return null;
 
-    public static Boolean validateBoolean(String value){
-         return Boolean.Parse(value);
-    }
+		if (parent instanceof XsdSchema){
+			return ((XsdSchema)parent).getElementFormDefault();
+		}
 
-    /**
-     * Validates if a given {@link String} is a {@link Double}. Throws an exception if the {@link String} isn't a
-     * {@link Double}.
-     * @param elementName The element name containing the field with the {@link Double} value.
-     * @param attributeName The name of the attribute with the type {@link Double}.
-     * @param value The value to be parsed to a {@link Double} object.
-     * @return The parsed {@link Double} value.
-     */
-    private static Double validateDouble(String elementName, String attributeName, String value){
-        try {
-            return Double.Parse(value);
-        } catch (Exception e){
-            throw new ParsingException("The " + elementName + " " + attributeName + "  attribute should be a numeric value.");
-        }
-    }
+		return getFormDefaultValue(parent.getParent());
+	}
 
-    /**
-     * Validates if a given {@link String} is a {@link Double}. Throws an exception if the {@link String} isn't a {@link Double}.
-     * @param elementName The element name containing the field with the {@link Double} value.
-     * @param attributeName The name of the attribute with the type {@link Double}.
-     * @param value The value to be parsed to a {@link Double} object.
-     * @return The parsed {@link Double} value.
-     */
-    public static Double validateRequiredDouble(String elementName, String attributeName, String value){
-        if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
+	/**
+	 * Obtains the default value of the {@link XsdSchema#finalDefault} attribute by iterating in the element tree by
+	 * going from {@link XsdAbstractElement#parent} to {@link XsdAbstractElement#parent} until reaching the top level
+	 * element.
+	 * @param parent The parent of the element requesting the default final value.
+	 * @return The default value for the final attribute.
+	 */
+	static String getFinalDefaultValue(XsdAbstractElement parent) {
+		if (parent == null) return null;
 
-        return validateDouble(elementName, attributeName, value);
-    }
+		if (parent instanceof XsdSchema){
+			return ((XsdSchema)parent).getFinalDefault();
+		}
 
-    /**
-     * Obtains the default value of the {@link XsdSchema#attributeFormDefault} attribute by iterating in the  element tree
-     * by going from {@link XsdAbstractElement#parent} to {@link XsdAbstractElement#parent} until reaching the top level
-     * element.
-     * @param parent The parent of the element requesting the default form value.
-     * @return The default value for the form attribute.
-     */
-    static String getFormDefaultValue(XsdAbstractElement parent) {
-        if (parent == null) return null;
+		return getFinalDefaultValue(parent.getParent());
+	}
 
-        if (parent instanceof XsdSchema){
-            return ((XsdSchema)parent).getElementFormDefault();
-        }
+	/**
+	 * Obtains the default value of the {@link XsdSchema#blockDefault} attribute by iterating in the element tree by
+	 * going from {@link XsdAbstractElement#parent} to {@link XsdAbstractElement#parent} until reaching the top level
+	 * element.
+	 * @param parent The parent of the element requesting the default block value.
+	 * @return The default value for the block attribute.
+	 */
+	static String getBlockDefaultValue(XsdAbstractElement parent) {
+		if (parent == null) return null;
 
-        return getFormDefaultValue(parent.getParent());
-    }
+		if (parent instanceof XsdSchema){
+			return ((XsdSchema)parent).getBlockDefault();
+		}
 
-    /**
-     * Obtains the default value of the {@link XsdSchema#finalDefault} attribute by iterating in the element tree by
-     * going from {@link XsdAbstractElement#parent} to {@link XsdAbstractElement#parent} until reaching the top level
-     * element.
-     * @param parent The parent of the element requesting the default final value.
-     * @return The default value for the final attribute.
-     */
-    static String getFinalDefaultValue(XsdAbstractElement parent) {
-        if (parent == null) return null;
+		return getBlockDefaultValue(parent.getParent());
+	}
 
-        if (parent instanceof XsdSchema){
-            return ((XsdSchema)parent).getFinalDefault();
-        }
-
-        return getFinalDefaultValue(parent.getParent());
-    }
-
-    /**
-     * Obtains the default value of the {@link XsdSchema#blockDefault} attribute by iterating in the element tree by
-     * going from {@link XsdAbstractElement#parent} to {@link XsdAbstractElement#parent} until reaching the top level
-     * element.
-     * @param parent The parent of the element requesting the default block value.
-     * @return The default value for the block attribute.
-     */
-    static String getBlockDefaultValue(XsdAbstractElement parent) {
-        if (parent == null) return null;
-
-        if (parent instanceof XsdSchema){
-            return ((XsdSchema)parent).getBlockDefault();
-        }
-
-        return getBlockDefaultValue(parent.getParent());
-    }
-
-    private static String attributeMissingMessage(String elementName, String attributeName){
-        return "The " + elementName + " " + attributeName + " is required to have a value attribute.";
-    }
+	private static String attributeMissingMessage(String elementName, String attributeName){
+		return "The " + elementName + " " + attributeName + " is required to have a value attribute.";
+	}
 }

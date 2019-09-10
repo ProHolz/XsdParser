@@ -13,27 +13,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\NamespaceInfo.java" />
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\ParserConfig.java" />
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\UnsolvedReferenceItem.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParser.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserCore.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserJar.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ConcreteElement.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\NamedConcreteElement.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ReferenceBase.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\UnsolvedReference.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\BlockDefaultEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\BlockEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\ComplexTypeBlockEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\FinalDefaultEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\FinalEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\FormEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\SimpleTypeFinalEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\UsageEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\WhiteSpaceEnum.java" />
-    <None Include="$(MSBuildThisFileDirectory)xsdelements\enums\XsdEnum.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\ParsingException.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\VisitorNotFoundException.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\AttributesVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAbstractElementVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAbstractElementVisitor.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAllVisitor.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotatedElementsVisitor.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotationVisitor.java" />
@@ -98,5 +85,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helper\HelperExtensions.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\enums\Enums.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations_.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserCore.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\XsdParser.pas" />
   </ItemGroup>
 </Project>

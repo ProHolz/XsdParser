@@ -7,20 +7,20 @@
  */
 public class XsdMaxInclusive extends XsdDoubleRestrictions {
 
-    public static final String XSD_TAG = "xsd:maxInclusive";
-    public static final String XS_TAG = "xs:maxInclusive";
+	public static final String XSD_TAG = "xsd:maxInclusive";
+	public static final String XS_TAG = "xs:maxInclusive";
 
-    private XsdMaxInclusive(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam, XSD_TAG);
-    }
+	private XsdMaxInclusive(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam, XSD_TAG);
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
-        super.accept(xsdAbstractElementVisitor);
-        xsdAbstractElementVisitor.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
+		super.accept(xsdAbstractElementVisitor);
+		xsdAbstractElementVisitor.visit(this);
+	}
 
-    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-        return ReferenceBase.createFromXsd(new XsdMaxInclusive(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+		return ReferenceBase.createFromXsd(new XsdMaxInclusive(parser, convertNodeMap(node.get_Attributes())));
+	}
 }

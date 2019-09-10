@@ -7,20 +7,20 @@
  */
 public class XsdMinInclusive extends XsdDoubleRestrictions {
 
-    public static final String XSD_TAG = "xsd:minInclusive";
-    public static final String XS_TAG = "xs:minInclusive";
+	public static final String XSD_TAG = "xsd:minInclusive";
+	public static final String XS_TAG = "xs:minInclusive";
 
-    private XsdMinInclusive(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam, XSD_TAG);
-    }
+	private XsdMinInclusive(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam, XSD_TAG);
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
-        super.accept(xsdAbstractElementVisitor);
-        xsdAbstractElementVisitor.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
+		super.accept(xsdAbstractElementVisitor);
+		xsdAbstractElementVisitor.visit(this);
+	}
 
-    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-        return ReferenceBase.createFromXsd(new XsdMinInclusive(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+		return ReferenceBase.createFromXsd(new XsdMinInclusive(parser, convertNodeMap(node.get_Attributes())));
+	}
 }

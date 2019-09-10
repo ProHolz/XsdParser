@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * A shared interface for all the {@link Enum} classes of this solution.
@@ -6,24 +6,24 @@ package proholz.xsdparser;
  */
 public interface XsdEnum<T> {
 
-    /**
-     * @return The name of the attribute that the {@link Enum} represents.
-     */
-    String getVariableName();
+	/**
+	 * @return The name of the attribute that the {@link Enum} represents.
+	 */
+	String getVariableName();
 
-    /**
-     * @return The values that the attribute can have.
-     */
-    List<String> getSupportedValues();
+	/**
+	 * @return The values that the attribute can have.
+	 */
+	List<String> getSupportedValues();
 
-    /**
-     * @return The values that the attribute can have, as members of the {@link Enum} type.
-     */
-    T[] getValues();
+	/**
+	 * @return The values that the attribute can have, as members of the {@link Enum} type.
+	 */
+	T[] getValues();
 
-    /**
-     * @return The concrete value of the current instance.
-     */
-    String getValue();
+	/**
+	 * @return The concrete value of the current instance.
+	 */
+	String getValue();
 
 }

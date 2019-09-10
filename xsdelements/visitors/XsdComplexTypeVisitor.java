@@ -10,47 +10,44 @@
  */
 public class XsdComplexTypeVisitor extends AttributesVisitor {
 
-    /**
-     * The {@link XsdComplexType} instance which owns this {@link XsdComplexTypeVisitor} instance. This way this visitor
-     * instance can perform changes in the {@link XsdComplexType} object.
-     */
-    private final XsdComplexType owner;
+	/**
+	 * The {@link XsdComplexType} instance which owns this {@link XsdComplexTypeVisitor} instance. This way this visitor
+	 * instance can perform changes in the {@link XsdComplexType} object.
+	 */
+	private final XsdComplexType owner;
 
-    public XsdComplexTypeVisitor(XsdComplexType owner) {
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdComplexTypeVisitor(XsdComplexType owner) {
+		super(owner);
+		this.owner = owner;
+	}
 
-   // @Override
-    public XsdComplexType getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdMultipleElements element) {
-        super.visit(element);
 
-        owner.setChildElement(ReferenceBase.createFromXsd(element));
-    }
+	@Override
+	public void visit(XsdMultipleElements element) {
+		super.visit(element);
 
-    @Override
-    public void visit(XsdGroup element) {
-        super.visit(element);
+		owner.setChildElement(ReferenceBase.createFromXsd(element));
+	}
 
-        owner.setChildElement(ReferenceBase.createFromXsd(element));
-    }
+	@Override
+	public void visit(XsdGroup element) {
+		super.visit(element);
 
-    @Override
-    public void visit(XsdComplexContent element) {
-        super.visit(element);
+		owner.setChildElement(ReferenceBase.createFromXsd(element));
+	}
 
-        owner.setComplexContent(element);
-    }
+	@Override
+	public void visit(XsdComplexContent element) {
+		super.visit(element);
 
-    @Override
-    public void visit(XsdSimpleContent element) {
-        super.visit(element);
+		owner.setComplexContent(element);
+	}
 
-        owner.setSimpleContent(element);
-    }
+	@Override
+	public void visit(XsdSimpleContent element) {
+		super.visit(element);
+
+		owner.setSimpleContent(element);
+	}
 }

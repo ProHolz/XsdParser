@@ -6,53 +6,53 @@
  */
 public class XsdStringRestrictions extends XsdAnnotatedElements{
 
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
+	private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
-    /**
-     * The value of associated with a given restriction. This field has different meanings depending on the concrete
-     * restriction, e.g. if the concrete class is {@link XsdEnumeration} this field means that the attribute which
-     * has the restriction can only have the value that is specified in this field.
-     */
-    private String value;
+	/**
+	 * The value of associated with a given restriction. This field has different meanings depending on the concrete
+	 * restriction, e.g. if the concrete class is {@link XsdEnumeration} this field means that the attribute which
+	 * has the restriction can only have the value that is specified in this field.
+	 */
+	private String value;
 
-    XsdStringRestrictions(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+	XsdStringRestrictions(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam);
 
-        value = attributesMap.getOrDefault(VALUE_TAG, value);
-    }
+		value = attributesMap.getOrDefault(VALUE_TAG, value);
+	}
 
-    @Override
-    public XsdAnnotatedElementsVisitor getVisitor() {
-        return visitor;
-    }
+	@Override
+	public XsdAbstractElementVisitor getVisitor() {
+		return visitor;
+	}
 
-    /**
-     * Compares two different objects of this type.
-     * @param o1 The first object.
-     * @param o2 The object to compare.
-     * @return True if the value of both classes is different, False if the value is equal.
-     */
-    public static boolean hasDifferentValue(XsdStringRestrictions o1, XsdStringRestrictions o2) {
-        if (o1 == null && o2 == null) {
-            return false;
-        }
+	/**
+	 * Compares two different objects of this type.
+	 * @param o1 The first object.
+	 * @param o2 The object to compare.
+	 * @return True if the value of both classes is different, False if the value is equal.
+	 */
+	public static boolean hasDifferentValue(XsdStringRestrictions o1, XsdStringRestrictions o2) {
+		if (o1 == null && o2 == null) {
+			return false;
+		}
 
-        String o1Value = null;
-        String o2Value;
+		String o1Value = null;
+		String o2Value;
 
-        if (o1 != null) {
-            o1Value = o1.getValue();
-        }
+		if (o1 != null) {
+			o1Value = o1.getValue();
+		}
 
-        if (o2 != null) {
-            o2Value = o2.getValue();
-            return o2Value.equals(o1Value);
-        }
+		if (o2 != null) {
+			o2Value = o2.getValue();
+			return o2Value.Equals(o1Value);
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public String getValue() {
+		return value;
+	}
 }

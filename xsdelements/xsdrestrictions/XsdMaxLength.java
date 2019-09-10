@@ -8,22 +8,22 @@
  */
 public class XsdMaxLength extends XsdIntegerRestrictions {
 
-    public static final String XSD_TAG = "xsd:maxLength";
-    public static final String XS_TAG = "xs:maxLength";
+	public static final String XSD_TAG = "xsd:maxLength";
+	public static final String XS_TAG = "xs:maxLength";
 
-    private XsdMaxLength(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+	private XsdMaxLength(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam);
 
-        value = AttributeValidations.validateRequiredNonNegativeInteger(XSD_TAG, VALUE_TAG, attributesMap.get(VALUE_TAG));
-    }
+		value = AttributeValidations.validateRequiredNonNegativeInteger(XSD_TAG, VALUE_TAG, attributesMap.Item[VALUE_TAG]);
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
-        super.accept(xsdAbstractElementVisitor);
-        xsdAbstractElementVisitor.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
+		super.accept(xsdAbstractElementVisitor);
+		xsdAbstractElementVisitor.visit(this);
+	}
 
-    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-        return ReferenceBase.createFromXsd(new XsdMaxLength(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+		return ReferenceBase.createFromXsd(new XsdMaxLength(parser, convertNodeMap(node.get_Attributes())));
+	}
 }

@@ -7,33 +7,30 @@
  */
 public class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
-    /**
-     * The {@link XsdComplexContent} instance which owns this {@link XsdComplexContentVisitor} instance. This way this
-     * visitor instance can perform changes in the {@link XsdComplexContent} object.
-     */
-    private final XsdComplexContent owner;
+	/**
+	 * The {@link XsdComplexContent} instance which owns this {@link XsdComplexContentVisitor} instance. This way this
+	 * visitor instance can perform changes in the {@link XsdComplexContent} object.
+	 */
+	private final XsdComplexContent owner;
 
-    public XsdComplexContentVisitor(XsdComplexContent owner) {
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdComplexContentVisitor(XsdComplexContent owner) {
+		super(owner);
+		this.owner = owner;
+	}
 
- //   @Override
-    public XsdComplexContent getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdRestriction element) {
-        super.visit(element);
 
-        owner.setRestriction(ReferenceBase.createFromXsd(element));
-    }
+	@Override
+	public void visit(XsdRestriction element) {
+		super.visit(element);
 
-    @Override
-    public void visit(XsdExtension element) {
-        super.visit(element);
+		owner.setRestriction(ReferenceBase.createFromXsd(element));
+	}
 
-        owner.setExtension(ReferenceBase.createFromXsd(element));
-    }
+	@Override
+	public void visit(XsdExtension element) {
+		super.visit(element);
+
+		owner.setExtension(ReferenceBase.createFromXsd(element));
+	}
 }

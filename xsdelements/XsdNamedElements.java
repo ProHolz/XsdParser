@@ -6,56 +6,57 @@
  */
 public abstract class XsdNamedElements extends XsdAnnotatedElements {
 
-    /**
-     * The name of the element.
-     */
-    String name;
+	/**
+	 * The name of the element.
+	 */
+	String name;
 
-    XsdNamedElements(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
-        super(parser, attributesMap);
+	XsdNamedElements(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
+		super(parser, attributesMap);
 
-        this.name = attributesMap.getOrDefault(NAME_TAG, name);
-    }
+		this.name = attributesMap.getOrDefault(NAME_TAG, name);
+	}
 
-    /**
-     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
-     * {@link UnsolvedReference} objects in the reference solving process.
-     * @param placeHolderAttributes The additional attributes to add to the clone.
-     * @return A copy of the object from which is called upon.
-     */
-    public abstract XsdNamedElements clone(Dictionary<String, String>! placeHolderAttributes);
+	/**
+	 * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+	 * {@link UnsolvedReference} objects in the reference solving process.
+	 * @param placeHolderAttributes The additional attributes to add to the clone.
+	 * @return A copy of the object from which is called upon.
+	 */
+	public  XsdNamedElements clone(Dictionary<String, String>! placeHolderAttributes){
+	};
 
-    /**
-     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
-     */
-    @Override
-    public void validateSchemaRules() {
-        rule1();
-    }
+	/**
+	 * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+	 */
+	@Override
+	public void validateSchemaRules() {
+		rule1();
+	}
 
-    /**
-     * Asserts that the current element doesn't have both ref and name attributes at the same time. Throws an exception
-     * if they are both present.
-     */
-    private void rule1() {
-        if (name != null && attributesMap.ContainsKey(REF_TAG)){
-            throw new ParsingException(NAME_TAG + " and " + REF_TAG + " attributes cannot both be present at the same time.");
-        }
-    }
+	/**
+	 * Asserts that the current element doesn't have both ref and name attributes at the same time. Throws an exception
+	 * if they are both present.
+	 */
+	private void rule1() {
+		if (name != null && attributesMap.ContainsKey(REF_TAG)){
+			throw new ParsingException(NAME_TAG + " and " + REF_TAG + " attributes cannot both be present at the same time.");
+		}
+	}
 
-    /**
-     * @return The name of the element, with all the special characters replaced with the '_' char.
-     */
-    public String getName() {
-        return name == null ? null : name.replaceAll("[^a-zA-Z0-9]", "_");
-    }
+	/**
+	 * @return The name of the element, with all the special characters replaced with the '_' char.
+	 */
+	public String getName() {
+		return name == null ? null : name;//.replaceAll("[^a-zA-Z0-9]", "_");
+	}
 
-    @SuppressWarnings("WeakerAccess")
-    public String getRawName() {
-        return name;
-    }
+  //  @SuppressWarnings("WeakerAccess")
+	public String getRawName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }

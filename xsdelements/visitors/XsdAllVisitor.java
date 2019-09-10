@@ -5,26 +5,23 @@
  */
 public class XsdAllVisitor extends XsdAnnotatedElementsVisitor {
 
-    /**
-     * The {@link XsdAll} instance which owns this {@link XsdAllVisitor} instance. This way this visitor instance can
-     * perform changes in the {@link XsdAll} object.
-     */
-    private final XsdAll owner;
+	/**
+	 * The {@link XsdAll} instance which owns this {@link XsdAllVisitor} instance. This way this visitor instance can
+	 * perform changes in the {@link XsdAll} object.
+	 */
+	private final XsdAll owner;
 
-    public XsdAllVisitor(XsdAll owner){
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdAllVisitor(XsdAll owner){
+		super(owner);
+		this.owner = owner;
+	}
 
-  //  @Override
-    public XsdAll getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdElement element) {
-        super.visit(element);
 
-        owner.addElement(element);
-    }
+	@Override
+	public void visit(XsdElement element) {
+		super.visit(element);
+
+		owner.addElement(element);
+	}
 }

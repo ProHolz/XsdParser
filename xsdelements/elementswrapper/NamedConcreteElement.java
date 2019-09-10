@@ -7,19 +7,19 @@
  */
 public class NamedConcreteElement extends ConcreteElement{
 
-    private String name;
+	private String name;
 
-    NamedConcreteElement(XsdNamedElements element, String name){
-        super(element);
-        this.name = name;
-    }
+	NamedConcreteElement(XsdNamedElements element, String name){
+		super(element);
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-   // @Override
-    public XsdNamedElements getElement() {
-        return (XsdNamedElements) element;
-    }
+	@Override
+	public XsdAbstractElement getElement() {
+		return  element;
+	}
 }

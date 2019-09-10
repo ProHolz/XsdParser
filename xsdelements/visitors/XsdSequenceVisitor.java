@@ -6,47 +6,43 @@
  */
 public class XsdSequenceVisitor extends XsdAnnotatedElementsVisitor {
 
-    /**
-     * The {@link XsdSequence} instance which owns this {@link XsdSequenceVisitor} instance. This way this visitor instance
-     * can perform changes in the {@link XsdSequence} object.
-     */
-    private final XsdSequence owner;
+	/**
+	 * The {@link XsdSequence} instance which owns this {@link XsdSequenceVisitor} instance. This way this visitor instance
+	 * can perform changes in the {@link XsdSequence} object.
+	 */
+	private final XsdSequence owner;
 
-    public XsdSequenceVisitor(XsdSequence owner) {
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdSequenceVisitor(XsdSequence owner) {
+		super(owner);
+		this.owner = owner;
+	}
 
- //   @Override
-    public XsdSequence getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdElement element) {
-        super.visit(element);
+	@Override
+	public void visit(XsdElement element) {
+		super.visit(element);
 
-        owner.addElement(element);
-    }
+		owner.addElement(element);
+	}
 
-    @Override
-    public void visit(XsdGroup element) {
-        super.visit(element);
+	@Override
+	public void visit(XsdGroup element) {
+		super.visit(element);
 
-        owner.addElement(element);
-    }
+		owner.addElement(element);
+	}
 
-    @Override
-    public void visit(XsdChoice element) {
-        super.visit(element);
+	@Override
+	public void visit(XsdChoice element) {
+		super.visit(element);
 
-        owner.addElement(element);
-    }
+		owner.addElement(element);
+	}
 
-    @Override
-    public void visit(XsdSequence element) {
-        super.visit(element);
+	@Override
+	public void visit(XsdSequence element) {
+		super.visit(element);
 
-        owner.addElement(element);
-    }
+		owner.addElement(element);
+	}
 }

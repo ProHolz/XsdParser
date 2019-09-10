@@ -103,15 +103,15 @@ public class XsdElement extends XsdNamedElements {
 	public XsdElement(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
 		super(parser, attributesMap);
 
-		String typeString = attributesMap.get(TYPE_TAG);
+		String typeString = attributesMap.Item[TYPE_TAG];
 
 		if (typeString != null){
 			if (XsdParserCore.getXsdTypesToJava().ContainsKey(typeString)){
-				Dictionary<String, String> attributes = new Dictionary<>();
-				attributes.put(NAME_TAG, typeString);
+				Dictionary<String, String> attributes = new Dictionary<String, String>();
+				attributes.Add(NAME_TAG, typeString);
 				this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
 			} else {
-				this.type = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new Dictionary<>()));
+				this.type = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new Dictionary<String, String>()));
 				parser.addUnsolvedReference((UnsolvedReference) this.type);
 			}
 		}
@@ -122,17 +122,17 @@ public class XsdElement extends XsdNamedElements {
 		String substitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, null);
 
 		if (substitutionGroup != null){
-			this.substitutionGroup = new UnsolvedReference(substitutionGroup, new XsdElement(this, this.parser, new Dictionary<>()));
+			this.substitutionGroup = new UnsolvedReference(substitutionGroup, new XsdElement(this, this.parser, new Dictionary<String, String>()));
 			parser.addUnsolvedReference((UnsolvedReference) this.substitutionGroup);
 		}
 
 		this.defaultObj = attributesMap.getOrDefault(DEFAULT_TAG, defaultObj);
 		this.fixed = attributesMap.getOrDefault(FIXED_TAG, fixed);
-		this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefault));
+		this.form = AttributeValidations.belongsToEnum(FormEnum.qualified, attributesMap.getOrDefault(FORM_TAG, formDefault));
 		this.nillable = AttributeValidations.validateBoolean(attributesMap.getOrDefault(NILLABLE_TAG, "false"));
 		this.abstractObj = AttributeValidations.validateBoolean(attributesMap.getOrDefault(ABSTRACT_TAG, "false"));
-		this.block = AttributeValidations.belongsToEnum(BlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
-		this.finalObj = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+		this.block = AttributeValidations.belongsToEnum(BlockEnum.all, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
+		this.finalObj = AttributeValidations.belongsToEnum(FinalEnum.all, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
 		this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
 		this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
 	}
@@ -214,7 +214,7 @@ public class XsdElement extends XsdNamedElements {
 	}
 
 	@Override
-	public XsdElementVisitor getVisitor() {
+	public XsdAbstractElementVisitor getVisitor() {
 		return visitor;
 	}
 
@@ -225,7 +225,7 @@ public class XsdElement extends XsdNamedElements {
 	 * @return A copy of the object from which is called upon.
 	 */
 	@Override
-	public XsdElement clone(Dictionary<String, String>! placeHolderAttributes) {
+	public XsdNamedElements clone(Dictionary<String, String>! placeHolderAttributes) {
 		placeHolderAttributes.Add(attributesMap);
 		placeHolderAttributes.Remove(TYPE_TAG);
 		placeHolderAttributes.Remove(REF_TAG);
@@ -250,7 +250,7 @@ public class XsdElement extends XsdNamedElements {
 	public void replaceUnsolvedElements(NamedConcreteElement element) {
 		super.replaceUnsolvedElements(element);
 
-		XsdNamedElements elem = element.getElement();
+		XsdNamedElements elem = (XsdNamedElements) element.getElement();
 
 		boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
@@ -270,7 +270,7 @@ public class XsdElement extends XsdNamedElements {
 	}
 
 	public XsdSimpleType getXsdSimpleType(){
-		return simpleType instanceof ConcreteElement ? (XsdSimpleType) simpleType.getElement() : null;
+		return (simpleType instanceof ConcreteElement) ? (XsdSimpleType) simpleType.getElement() : null;
 	}
 
 	private XsdComplexType getXsdType(){
@@ -286,7 +286,7 @@ public class XsdElement extends XsdNamedElements {
 	}
 
 	public String getFinal() {
-		return finalObj.getValue();
+		return finalObj.ToString();
 	}
 
 	//@SuppressWarnings("unused")
@@ -319,12 +319,12 @@ public class XsdElement extends XsdNamedElements {
 
 	//@SuppressWarnings("unused")
 	public String getBlock() {
-		return block.getValue();
+		return block.ToString();
 	}
 
 	//@SuppressWarnings("unused")
 	public String getForm() {
-		return form.getValue();
+		return form.ToString();
 	}
 
 	public String getType(){
@@ -340,6 +340,6 @@ public class XsdElement extends XsdNamedElements {
 	}
 
 	public XsdElement getXsdSubstitutionGroup() {
-		return substitutionGroup instanceof ConcreteElement ? (XsdElement) substitutionGroup.getElement() : null;
+		return (substitutionGroup instanceof ConcreteElement) ? (XsdElement) substitutionGroup.getElement() : null;
 	}
 }

@@ -6,26 +6,23 @@
  */
 public class XsdGroupVisitor extends XsdAnnotatedElementsVisitor {
 
-    /**
-     * The {@link XsdGroup} instance which owns this {@link XsdGroupVisitor} instance. This way this visitor instance
-     * can perform changes in the {@link XsdGroup} object.
-     */
-    private final XsdGroup owner;
+	/**
+	 * The {@link XsdGroup} instance which owns this {@link XsdGroupVisitor} instance. This way this visitor instance
+	 * can perform changes in the {@link XsdGroup} object.
+	 */
+	private final XsdGroup owner;
 
-    public XsdGroupVisitor(XsdGroup owner) {
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdGroupVisitor(XsdGroup owner) {
+		super(owner);
+		this.owner = owner;
+	}
 
-//    @Override
-    public XsdGroup getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdMultipleElements element) {
-        super.visit(element);
 
-        owner.setChildElement(element);
-    }
+	@Override
+	public void visit(XsdMultipleElements element) {
+		super.visit(element);
+
+		owner.setChildElement(element);
+	}
 }

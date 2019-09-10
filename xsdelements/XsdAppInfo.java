@@ -8,20 +8,20 @@
  */
 public class XsdAppInfo extends XsdAnnotationChildren {
 
-    public static final String XSD_TAG = "xsd:appinfo";
-    public static final String XS_TAG = "xs:appinfo";
+	public static final String XSD_TAG = "xsd:appinfo";
+	public static final String XS_TAG = "xs:appinfo";
 
-    private XsdAppInfo( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+	private XsdAppInfo( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam);
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor visitorParam) {
-        super.accept(visitorParam);
-        visitorParam.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor visitorParam) {
+		super.accept(visitorParam);
+		visitorParam.visit(this);
+	}
 
-    public static ReferenceBase parse( XsdParserCore! parser, XmlElement node){
-        return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse( XsdParserCore! parser, XmlElement node){
+		return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.get_Attributes())));
+	}
 }

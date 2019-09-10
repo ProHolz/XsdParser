@@ -9,26 +9,26 @@
  */
 public class XsdDocumentation extends XsdAnnotationChildren {
 
-    public static final String XSD_TAG = "xsd:documentation";
-    public static final String XS_TAG = "xs:documentation";
+	public static final String XSD_TAG = "xsd:documentation";
+	public static final String XS_TAG = "xs:documentation";
 
-    /**
-     * Specifies the language used in the {@link XsdAnnotationChildren#content}
-     */
-    private String xmlLang;
+	/**
+	 * Specifies the language used in the {@link XsdAnnotationChildren#content}
+	 */
+	private String xmlLang;
 
-    private XsdDocumentation(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
-        super(parser, attributesMap);
-        this.xmlLang = attributesMap.getOrDefault(XML_LANG_TAG, xmlLang);
-    }
+	private XsdDocumentation(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
+		super(parser, attributesMap);
+		this.xmlLang = attributesMap.getOrDefault(XML_LANG_TAG, xmlLang);
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
-        super.accept(xsdAbstractElementVisitor);
-        xsdAbstractElementVisitor.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
+		super.accept(xsdAbstractElementVisitor);
+		xsdAbstractElementVisitor.visit(this);
+	}
 
-    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-        return xsdAnnotationChildrenParse(node, new XsdDocumentation(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+		return xsdAnnotationChildrenParse(node, new XsdDocumentation(parser, convertNodeMap(node.get_Attributes())));
+	}
 }

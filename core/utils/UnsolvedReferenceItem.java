@@ -10,30 +10,30 @@
  */
 public class UnsolvedReferenceItem {
 
-    /**
-     * A {@link UnsolvedReference} object that wasn't solved in the parsing process. This happened because its referred
-     * element isn't present in the files that were parsed.
-     */
-    private UnsolvedReference unsolvedReference;
+	/**
+	 * A {@link UnsolvedReference} object that wasn't solved in the parsing process. This happened because its referred
+	 * element isn't present in the files that were parsed.
+	 */
+	private UnsolvedReference unsolvedReference;
 
-    /**
-     * A list of parents which indicate all the places where the {@link UnsolvedReference} object was used, which cause
-     * every element present in this list to not be fully correct.
-     */
-    private List<XsdAbstractElement> parents;
+	/**
+	 * A list of parents which indicate all the places where the {@link UnsolvedReference} object was used, which cause
+	 * every element present in this list to not be fully correct.
+	 */
+	private List<XsdAbstractElement> parents;
 
-    public UnsolvedReferenceItem(UnsolvedReference unsolvedReference){
-        this.unsolvedReference = unsolvedReference;
-        this.parents = new List<XsdAbstractElement>();
+	public UnsolvedReferenceItem(UnsolvedReference unsolvedReference){
+		this.unsolvedReference = unsolvedReference;
+		this.parents = new List<XsdAbstractElement>();
 
-        this.parents.Add(unsolvedReference.getParent());
-    }
+		this.parents.Add(unsolvedReference.getParent());
+	}
 
-    public UnsolvedReference getUnsolvedReference() {
-        return unsolvedReference;
-    }
+	public UnsolvedReference getUnsolvedReference() {
+		return unsolvedReference;
+	}
 
-    public List<XsdAbstractElement> getParents() {
-        return parents;
-    }
+	public List<XsdAbstractElement> getParents() {
+		return parents;
+	}
 }

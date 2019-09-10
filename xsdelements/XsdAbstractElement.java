@@ -5,222 +5,230 @@
  */
 public abstract class XsdAbstractElement {
 
-    /**
-     * A {@link Map} object containing the keys/values of the attributes that belong to the concrete element instance.
-     */
-    protected Dictionary<String, String> attributesMap = new Dictionary<String, String>();
+	/**
+	 * A {@link Map} object containing the keys/values of the attributes that belong to the concrete element instance.
+	 */
+	protected Dictionary<String, String> attributesMap = new Dictionary<String, String>();
 
 
-    static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
-    static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
-    static final String BLOCK_DEFAULT = "blockDefault";
-    static final String FINAL_DEFAULT = "finalDefault";
-    static final String TARGET_NAMESPACE = "targetNamespace";
-    static final String VERSION = "version";
-    static final String XMLNS = "xmlns";
+	static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
+	static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
+	static final String BLOCK_DEFAULT = "blockDefault";
+	static final String FINAL_DEFAULT = "finalDefault";
+	static final String TARGET_NAMESPACE = "targetNamespace";
+	static final String VERSION = "version";
+	static final String XMLNS = "xmlns";
 
-    static final String ID_TAG = "id";
-    public static final String NAME_TAG = "name";
-    static final String ABSTRACT_TAG = "abstract";
-    static final String DEFAULT_ELEMENT_TAG = "defaultElement";
-    protected static final String FIXED_TAG = "fixed";
-    static final String TYPE_TAG = "type";
-    static final String MIXED_TAG = "mixed";
-    static final String BLOCK_TAG = "block";
-    static final String FINAL_TAG = "final";
-    static final String USE_TAG = "use";
-    static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
-    static final String DEFAULT_TAG = "default";
-    static final String FORM_TAG = "form";
-    static final String NILLABLE_TAG = "nillable";
-    static final String MIN_OCCURS_TAG = "minOccurs";
-    public static final String MAX_OCCURS_TAG = "maxOccurs";
-    static final String ITEM_TYPE_TAG = "itemType";
-    static final String BASE_TAG = "base";
-    static final String SOURCE_TAG = "source";
-    static final String XML_LANG_TAG = "xml:lang";
-    static final String MEMBER_TYPES_TAG = "memberTypes";
-    static final String SCHEMA_LOCATION = "schemaLocation";
-    static final String NAMESPACE = "namespace";
-    public static final String REF_TAG = "ref";
-    protected static final String VALUE_TAG = "value";
+	static final String ID_TAG = "id";
+	public static final String NAME_TAG = "name";
+	static final String ABSTRACT_TAG = "abstract";
+	static final String DEFAULT_ELEMENT_TAG = "defaultElement";
+	protected static final String FIXED_TAG = "fixed";
+	static final String TYPE_TAG = "type";
+	static final String MIXED_TAG = "mixed";
+	static final String BLOCK_TAG = "block";
+	static final String FINAL_TAG = "final";
+	static final String USE_TAG = "use";
+	static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
+	static final String DEFAULT_TAG = "default";
+	static final String FORM_TAG = "form";
+	static final String NILLABLE_TAG = "nillable";
+	static final String MIN_OCCURS_TAG = "minOccurs";
+	public static final String MAX_OCCURS_TAG = "maxOccurs";
+	static final String ITEM_TYPE_TAG = "itemType";
+	static final String BASE_TAG = "base";
+	static final String SOURCE_TAG = "source";
+	static final String XML_LANG_TAG = "xml:lang";
+	static final String MEMBER_TYPES_TAG = "memberTypes";
+	static final String SCHEMA_LOCATION = "schemaLocation";
+	static final String NAMESPACE = "namespace";
+	public static final String REF_TAG = "ref";
+	protected static final String VALUE_TAG = "value";
 
-    /**
-     * The instance which contains the present element.
-     */
-    XsdAbstractElement parent;
+	/**
+	 * The instance which contains the present element.
+	 */
+	XsdAbstractElement parent;
 
-    /**
-     * The {@link XsdParserCore} instance that parsed this element.
-     */
-    XsdParserCore parser;
+	/**
+	 * The {@link XsdParserCore} instance that parsed this element.
+	 */
+	XsdParserCore parser;
 
-    protected XsdAbstractElement(XsdParserCore! parser,  Dictionary<String, String>! attributesMap){
-        this.parser = parser;
-        this.attributesMap = attributesMap;
-    }
+	protected XsdAbstractElement(XsdParserCore! parser,  Dictionary<String, String>! attributesMap){
+		this.parser = parser;
+		this.attributesMap = attributesMap;
+	}
 
-    public Dictionary<String, String> getAttributesMap() {
-        return attributesMap;
-    }
+	public Dictionary<String, String> getAttributesMap() {
+		return attributesMap;
+	}
 
-    /**
-     * Obtains the visitor of a concrete {@link XsdAbstractElement} instance.
-     * @return The concrete visitor instance.
-     */
-    public abstract XsdAbstractElementVisitor getVisitor();
+	/**
+	 * Obtains the visitor of a concrete {@link XsdAbstractElement} instance.
+	 * @return The concrete visitor instance.
+	 */
+	public  XsdAbstractElementVisitor getVisitor(){
+	  return null;
+	};
 
-    /**
-     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
-     */
-    public void validateSchemaRules(){ }
+	/**
+	 * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+	 */
+	public void validateSchemaRules(){ }
 
-    /**
-     * Base method for all accept methods. It serves as a way to guarantee that every accept call assigns the parent
-     * field.
-     * @param xsdAbstractElementVisitor The visitor that is visiting the current instance.
-     */
-    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor){
-        this.setParent(xsdAbstractElementVisitor.getOwner());
-    }
+	/**
+	 * Base method for all accept methods. It serves as a way to guarantee that every accept call assigns the parent
+	 * field.
+	 * @param xsdAbstractElementVisitor The visitor that is visiting the current instance.
+	 */
+	public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor){
+		this.setParent(xsdAbstractElementVisitor.getOwner());
+	}
 
-    public List<ReferenceBase> getElements(){
-        return new List<ReferenceBase>();//Collections.emptyList();
-    }
+	public List<ReferenceBase> getElements(){
+		return new List<ReferenceBase>();//Collections.emptyList();
+	}
 
-    /**
-     * @return All the {@link ConcreteElement} objects present in the concrete implementation of the
-     * {@link XsdAbstractElement} class. It doesn't return the {@link UnsolvedReference} objects.
-     */
-    public Stream<XsdAbstractElement> getXsdElements(){
-        List<ReferenceBase> elements = getElements();
+	/**
+	 * @return All the {@link ConcreteElement} objects present in the concrete implementation of the
+	 * {@link XsdAbstractElement} class. It doesn't return the {@link UnsolvedReference} objects.
+	 */
+	public ISequence<XsdAbstractElement> getXsdElements(){
+		List<ReferenceBase> elements = getElements();
 
-        if (elements == null){
-            return new List<XsdAbstractElement>().stream();
-        }
+		if (elements == null){
+			return new List<XsdAbstractElement>();
+		}
 
-        return elements.stream().filter(element -> element instanceof ConcreteElement).Select(ReferenceBase::getElement);
-    }
+		return elements.Where(element -> element instanceof ConcreteElement).Select(Ref -> Ref.getElement());
+	}
 
-    /**
-     * The base code for parsing any {@link XsdAbstractElement}. All the concrete implementations of this class should
-     * call this method in order to parse its children.
-     * @param node The node from where the element will be parsed.
-     * @param element The concrete element that will be populated and returned.
-     * @return A wrapper object that contains the parsed XSD object.
-     */
-    static ReferenceBase xsdParseSkeleton(XmlElement node, XsdAbstractElement element){
-        XsdParserCore parser = element.getParser();
-        XmlElement child = node.getFirstChild();
+	/**
+	 * The base code for parsing any {@link XsdAbstractElement}. All the concrete implementations of this class should
+	 * call this method in order to parse its children.
+	 * @param node The node from where the element will be parsed.
+	 * @param element The concrete element that will be populated and returned.
+	 * @return A wrapper object that contains the parsed XSD object.
+	 */
+	static ReferenceBase xsdParseSkeleton(XmlElement node, XsdAbstractElement element){
+		XsdParserCore parser = element.getParser();
+		//XmlElement child = node.getFirstChild();
 
-        while (child != null) {
-            if (child.get_NodeType() == XmlElement.ELEMENT_NODE) {
-                String nodeName = child.getNodeName();
+	   // while (child != null) {
+		for (XmlElement child : node.Elements) {
+			if (child.get_NodeType() == XmlNodeType.Element) {
+				String nodeName = child.FullName;
 
-                BiFunction<XsdParserCore, XmlElement, ReferenceBase> parserFunction = XsdParserCore.getParseMappers().get(nodeName);
+				BiFunction<XsdParserCore, XmlElement, ReferenceBase> parserFunction = XsdParserCore.getParseMappers().Item[nodeName];
 
-                if (parserFunction != null){
-                    XsdAbstractElement childElement = parserFunction.apply(parser, child).getElement();
+				if (parserFunction != null){
+					XsdAbstractElement childElement = parserFunction(parser, child).getElement();
 
-                    childElement.accept(element.getVisitor());
+					childElement.accept(element.getVisitor());
 
-                    childElement.validateSchemaRules();
-                }
-            }
+					childElement.validateSchemaRules();
+				}
+			}
 
-            child = child.getNextSibling();
-        }
+	   //     child = child.getNextSibling();
+		}
 
-        ReferenceBase wrappedElement = ReferenceBase.createFromXsd(element);
+		ReferenceBase wrappedElement = ReferenceBase.createFromXsd(element);
 
-        parser.addParsedElement(wrappedElement);
+		parser.addParsedElement(wrappedElement);
 
-        return wrappedElement;
-    }
+		return wrappedElement;
+	}
 
-    public XsdParserCore getParser() {
-        return parser;
-    }
+	public XsdParserCore getParser() {
+		return parser;
+	}
 
-    /**
-     * Converts a {@link NamedNodeMap} to a {@link Map} object. This is meant to simplify the manipulation of the
-     * information.
-     * @param nodeMap The {@link NamedNodeMap} to convert to a {@link Map} object.
-     * @return The {@link Map} object that was generated by the conversion.
-     */
-    protected static Dictionary<String, String> convertNodeMap(NamedNodeMap nodeMap){
-        Dictionary<String, String> attributesMapped = new Dictionary<String, String>();
+	/**
+	 * Converts a {@link NamedNodeMap} to a {@link Map} object. This is meant to simplify the manipulation of the
+	 * information.
+	 * @param nodeMap The {@link NamedNodeMap} to convert to a {@link Map} object.
+	 * @return The {@link Map} object that was generated by the conversion.
+	 */
+	protected static Dictionary<String, String> convertNodeMap(NamedNodeMap nodeMap){
+		Dictionary<String, String> attributesMapped = new Dictionary<String, String>();
 
-        for (int i = 0; i < nodeMap.getLength(); i++) {
-            XmlElement node = nodeMap.item(i);
-            attributesMapped.put(node.getNodeName(), node.getNodeValue());
-        }
 
-        return attributesMapped;
-    }
+		for (int i = 0; i < nodeMap.Count(); i++) {
+			XmlAttribute node = nodeMap.ElementAt(i);
+			attributesMapped.Add(node.LocalName, node.Value);
+		}
 
-    /**
-     * This method iterates on the current element children and replaces any {@link UnsolvedReference} object that has a
-     * ref attribute that matches the receiving {@link NamedConcreteElement} name attribute.
-     * @param element A fully parsed element with a name that will replace an {@link UnsolvedReference} object, if a
-     *                match between the {@link NamedConcreteElement} name attribute and the {@link UnsolvedReference}
-     *                ref attribute.
-     */
-    public void replaceUnsolvedElements(NamedConcreteElement element){
-        List<ReferenceBase> elements = this.getElements();
+		return attributesMapped;
+	}
 
-        if (elements != null){
-            elements.stream()
-                .filter(referenceBase -> referenceBase instanceof UnsolvedReference)
-                .Select(referenceBase -> (UnsolvedReference) referenceBase)
-                .filter(unsolvedReference -> compareReference(element, unsolvedReference))
-                .findFirst()
-                .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), element));
-        }
-    }
+	/**
+	 * This method iterates on the current element children and replaces any {@link UnsolvedReference} object that has a
+	 * ref attribute that matches the receiving {@link NamedConcreteElement} name attribute.
+	 * @param element A fully parsed element with a name that will replace an {@link UnsolvedReference} object, if a
+	 *                match between the {@link NamedConcreteElement} name attribute and the {@link UnsolvedReference}
+	 *                ref attribute.
+	 */
+	public void replaceUnsolvedElements(NamedConcreteElement element){
+		List<ReferenceBase> elements = this.getElements();
 
-    public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
-        return compareReference(element, reference.getRef());
-    }
+		if (elements != null){
+			ReferenceBase oldElement =
+			elements
+				.Where(referenceBase -> referenceBase instanceof UnsolvedReference)
+				.Select(referenceBase -> (UnsolvedReference) referenceBase)
+				.Where(unsolvedReference -> compareReference(element, unsolvedReference))
+				.FirstOrDefault();
 
-    static boolean compareReference(NamedConcreteElement element, String unsolvedRef){
-        if (unsolvedRef.Contains(":")){
-            unsolvedRef = unsolvedRef.Substring(unsolvedRef.IndexOf(":") + 1);
-        }
+				if (oldElement != null){
+					elements.Item[elements.IndexOf(oldElement)] = element;
+				}
+			}
+	}
 
-        return element.getName().equals(unsolvedRef);
-    }
+		public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
+			return compareReference(element, reference.getRef());
+		}
 
-    /**
-     * @return The parent of the current {@link XsdAbstractElement} object.
-     */
-    public XsdAbstractElement getParent() {
-        return parent;
-    }
+		static boolean compareReference(NamedConcreteElement element, String unsolvedRef){
+			if (unsolvedRef.Contains(":")){
+				unsolvedRef = unsolvedRef.Substring(unsolvedRef.IndexOf(":") + 1);
+			}
 
-    public void setParent(XsdAbstractElement parent) {
-        this.parent = parent;
-    }
+			return element.getName().Equals(unsolvedRef);
+		}
 
-    /**
-     * In special cases such as {@link XsdAppInfo} and {@link XsdDocumentation} the contents are a simple text node,
-     * in which case this function is more suited than using the {@link XsdAbstractElement#xsdParseSkeleton} since
-     * those types of elements can't have children nodes.
-     * @param node The {@link XmlElement} containing either a {@link XsdAppInfo} or {@link XsdDocumentation}.
-     * @return The textual value contained in the {@link XmlElement} parameter.
-     */
-    static String xsdRawContentParse(XmlElement node) {
-        XmlElement child = node.Nodes.First();
-        StringBuilder stringBuilder = new StringBuilder();
+		/**
+		 * @return The parent of the current {@link XsdAbstractElement} object.
+		 */
+		public XsdAbstractElement getParent() {
+			return parent;
+		}
 
-        while (child != null) {
-            if (child.getNodeType() == XmlElement.TEXT_NODE || child.getNodeType() == XmlElement.CDATA_SECTION_NODE) {
-                stringBuilder.Append(child.Value.Trim());
-            }
+		public void setParent(XsdAbstractElement parent) {
+			this.parent = parent;
+		}
 
-            child = child.getNextSibling();
-        }
+		/**
+		 * In special cases such as {@link XsdAppInfo} and {@link XsdDocumentation} the contents are a simple text node,
+		 * in which case this function is more suited than using the {@link XsdAbstractElement#xsdParseSkeleton} since
+		 * those types of elements can't have children nodes.
+		 * @param node The {@link XmlElement} containing either a {@link XsdAppInfo} or {@link XsdDocumentation}.
+		 * @return The textual value contained in the {@link XmlElement} parameter.
+		 */
+		static String xsdRawContentParse(XmlElement node) {
+		  //  XmlElement child = node.Elements.First();
+			StringBuilder stringBuilder = new StringBuilder();
+			for (XmlElement child : node.Elements) {
+		   // while (child != null) {
+				if (child.NodeType == XmlNodeType.Text || child.NodeType == XmlNodeType.CData) {
+					stringBuilder.Append(child.Value.Trim());
+				}
 
-        return stringBuilder.ToString();
-    }
-}
+			   // child = child.getNextSibling();
+			}
+
+			return stringBuilder.ToString();
+		}
+	}

@@ -8,33 +8,28 @@
  */
 public class XsdExtensionVisitor extends AttributesVisitor {
 
-    /**
-     * The {@link XsdExtension} instance which owns this {@link XsdExtensionVisitor} instance. This way this visitor
-     * instance can perform changes in the {@link XsdExtension} object.
-     */
-    private final XsdExtension owner;
+	/**
+	 * The {@link XsdExtension} instance which owns this {@link XsdExtensionVisitor} instance. This way this visitor
+	 * instance can perform changes in the {@link XsdExtension} object.
+	 */
+	private final XsdExtension owner;
 
-    public XsdExtensionVisitor(XsdExtension owner) {
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdExtensionVisitor(XsdExtension owner) {
+		super(owner);
+		this.owner = owner;
+	}
 
- //   @Override
-    public XsdExtension getOwner() {
-        return owner;
-    }
+	@Override
+	public void visit(XsdMultipleElements element) {
+		super.visit(element);
 
-    @Override
-    public void visit(XsdMultipleElements element) {
-        super.visit(element);
+		owner.setChildElement(ReferenceBase.createFromXsd(element));
+	}
 
-        owner.setChildElement(ReferenceBase.createFromXsd(element));
-    }
+	@Override
+	public void visit(XsdGroup element) {
+		super.visit(element);
 
-    @Override
-    public void visit(XsdGroup element) {
-        super.visit(element);
-
-        owner.setChildElement(ReferenceBase.createFromXsd(element));
-    }
+		owner.setChildElement(ReferenceBase.createFromXsd(element));
+	}
 }

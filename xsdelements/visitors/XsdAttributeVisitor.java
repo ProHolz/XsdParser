@@ -5,26 +5,23 @@
  */
 public class XsdAttributeVisitor extends XsdAnnotatedElementsVisitor {
 
-    /**
-     * The {@link XsdAttribute} instance which owns this {@link XsdAttributeVisitor} instance. This way this visitor
-     * instance can perform changes in the {@link XsdAttribute} object.
-     */
-    private final XsdAttribute owner;
+	/**
+	 * The {@link XsdAttribute} instance which owns this {@link XsdAttributeVisitor} instance. This way this visitor
+	 * instance can perform changes in the {@link XsdAttribute} object.
+	 */
+	private final XsdAttribute owner;
 
-    public XsdAttributeVisitor(XsdAttribute owner){
-        super(owner);
-        this.owner = owner;
-    }
+	public XsdAttributeVisitor(XsdAttribute owner){
+		super(owner);
+		this.owner = owner;
+	}
 
-//    @Override
-    public XsdAttribute getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdSimpleType element) {
-        super.visit(element);
 
-        owner.setSimpleType(ReferenceBase.createFromXsd(element));
-    }
+	@Override
+	public void visit(XsdSimpleType element) {
+		super.visit(element);
+
+		owner.setSimpleType(ReferenceBase.createFromXsd(element));
+	}
 }

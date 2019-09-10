@@ -1,4 +1,4 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 
 
@@ -7,8 +7,8 @@ package proholz.xsdparser;
  */
 public class ConcreteElement extends ReferenceBase {
 
-    ConcreteElement(XsdAbstractElement element){
-        super(element);
-    }
+	ConcreteElement(XsdAbstractElement element){
+		super(element);
+	}
 
 }

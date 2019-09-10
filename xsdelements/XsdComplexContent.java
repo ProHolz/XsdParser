@@ -6,72 +6,72 @@
  */
 public class XsdComplexContent extends XsdAnnotatedElements {
 
-    public static final String XSD_TAG = "xsd:complexContent";
-    public static final String XS_TAG = "xs:complexContent";
+	public static final String XSD_TAG = "xsd:complexContent";
+	public static final String XS_TAG = "xs:complexContent";
 
-    /**
-     * {@link XsdComplexContentVisitor} instance which restricts its children to {@link XsdExtension} and
-     * {@link XsdRestriction}.
-     * Can also have {@link XsdAnnotation} as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     * elements.
-     */
-    private XsdComplexContentVisitor visitor = new XsdComplexContentVisitor(this);
+	/**
+	 * {@link XsdComplexContentVisitor} instance which restricts its children to {@link XsdExtension} and
+	 * {@link XsdRestriction}.
+	 * Can also have {@link XsdAnnotation} as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
+	 * elements.
+	 */
+	private XsdComplexContentVisitor visitor = new XsdComplexContentVisitor(this);
 
-    /**
-     * A {@link XsdRestriction} object wrapped in a {@link ReferenceBase} object.
-     */
-    private ReferenceBase restriction;
+	/**
+	 * A {@link XsdRestriction} object wrapped in a {@link ReferenceBase} object.
+	 */
+	private ReferenceBase restriction;
 
-    /**
-     * A {@link XsdExtension} object wrapped in a {@link ReferenceBase} object.
-     */
-    private ReferenceBase extension;
+	/**
+	 * A {@link XsdExtension} object wrapped in a {@link ReferenceBase} object.
+	 */
+	private ReferenceBase extension;
 
-    /**
-     * Specifies whether character data is allowed to appear between the child elements of this element.
-     */
-    private boolean mixed;
+	/**
+	 * Specifies whether character data is allowed to appear between the child elements of this element.
+	 */
+	private boolean mixed;
 
-    private XsdComplexContent(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
-        super(parser, attributesMap);
+	private XsdComplexContent(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
+		super(parser, attributesMap);
 
-        this.mixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(MIXED_TAG, "false"));
-    }
+		this.mixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(MIXED_TAG, "false"));
+	}
 
-    @Override
-    public XsdComplexContentVisitor getVisitor() {
-        return visitor;
-    }
+	@Override
+	public XsdAbstractElementVisitor getVisitor() {
+		return visitor;
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor visitorParam) {
-        super.accept(visitorParam);
-        visitorParam.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor visitorParam) {
+		super.accept(visitorParam);
+		visitorParam.visit(this);
+	}
 
-    //@SuppressWarnings("unused")
-    public boolean isMixed() {
-        return mixed;
-    }
+	//@SuppressWarnings("unused")
+	public boolean isMixed() {
+		return mixed;
+	}
 
-    public XsdExtension getXsdExtension() {
-        return extension instanceof ConcreteElement ? (XsdExtension) extension.getElement() : null;
-    }
+	public XsdExtension getXsdExtension() {
+		return (extension instanceof ConcreteElement) ? (XsdExtension) extension.getElement() : null;
+	}
 
-    //@SuppressWarnings("unused")
-    public XsdRestriction getXsdRestriction(){
-        return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
-    }
+	//@SuppressWarnings("unused")
+	public XsdRestriction getXsdRestriction(){
+		return (restriction instanceof ConcreteElement) ? (XsdRestriction) restriction.getElement() : null;
+	}
 
-    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-        return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+		return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.get_Attributes())));
+	}
 
-    public void setExtension(ReferenceBase extension) {
-        this.extension = extension;
-    }
+	public void setExtension(ReferenceBase extension) {
+		this.extension = extension;
+	}
 
-    public void setRestriction(ReferenceBase restriction) {
-        this.restriction = restriction;
-    }
+	public void setRestriction(ReferenceBase restriction) {
+		this.restriction = restriction;
+	}
 }

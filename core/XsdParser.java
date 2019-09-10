@@ -38,8 +38,8 @@ public class XsdParser extends XsdParserCore{
         schemaLocations.Add(filePath);
         int index = 0;
 
-        while (schemaLocations.Size() > index){
-            String schemaLocation = schemaLocations.get(index);
+        while (schemaLocations.Count > index){
+            String schemaLocation = schemaLocations.Item[index];
             parseFile(schemaLocation);
             ++index;
         }
@@ -64,7 +64,7 @@ public class XsdParser extends XsdParserCore{
 
             XsdSchema.parse(this, getSchemaNode(filePath));
         } catch (SAXException | IOException | ParserConfigurationException e) {
-            Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
+          //  Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
         }
     }
 
@@ -72,24 +72,24 @@ public class XsdParser extends XsdParserCore{
      * This function uses DOM to obtain a list of nodes from a XSD file.
      * @param filePath The path to the XSD file.
      * @throws IOException If the file parsing throws {@link IOException}.
-     * @throws SAXException if the file parsing throws {@link SAXException}.
+
      * @throws ParserConfigurationException If the {@link DocumentBuilderFactory#newDocumentBuilder()} throws
      *      {@link ParserConfigurationException}.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
      */
-    private XmlElement getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(filePath);
+    private XmlElement getSchemaNode(String filePath) throws IOException,  ParserConfigurationException {
 
-        doc.getDocumentElement().normalize();
+        var doc = XmlDocument.TryFromFile(filePath);
 
-        NodeList nodes = doc.getChildNodes();
+        //ImmutableList<XmlElement>
+        var node = doc.Root;//.Elements;
 
-        for (int i = 0; i < nodes.getLength(); i++) {
-            XmlElement node = nodes.item(i);
+       // for (int i = 0; i < nodes.Count(); i++) {
+         //   var node = nodes.ElementAt(i);
             if (isXsdSchema(node)){
                 return node;
             }
-        }
+       // }
 
         throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
     }

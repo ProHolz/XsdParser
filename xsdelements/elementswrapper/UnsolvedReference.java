@@ -7,35 +7,32 @@
  */
 public class UnsolvedReference extends ReferenceBase {
 
-    private String ref;
-    private boolean isTypeRef;
+	private String ref;
+	private boolean isTypeRef;
 
-    UnsolvedReference(XsdNamedElements element){
-        super(element);
-        this.ref = getRef(element);
-        this.isTypeRef = false;
-    }
+	UnsolvedReference(XsdNamedElements element){
+		super(element);
+		this.ref = getRef(element);
+		this.isTypeRef = false;
+	}
 
-    public UnsolvedReference(String refType, XsdNamedElements element){
-        super(element);
-        this.ref = refType;
-        this.isTypeRef = true;
-    }
+	public UnsolvedReference(String refType, XsdNamedElements element){
+		super(element);
+		this.ref = refType;
+		this.isTypeRef = true;
+	}
 
-    public String getRef() {
-        return ref;
-    }
+	public String getRef() {
+		return ref;
+	}
 
-    public boolean isTypeRef() {
-        return isTypeRef;
-    }
+	public boolean isTypeRef() {
+		return isTypeRef;
+	}
 
-    public XsdAbstractElement getParent() {
-        return element.getParent();
-    }
+	public XsdAbstractElement getParent() {
+		return element.getParent();
+	}
 
-   // @Override
-    public XsdNamedElements getElement() {
-        return (XsdNamedElements) element;
-    }
+
 }

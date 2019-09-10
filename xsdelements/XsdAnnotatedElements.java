@@ -6,21 +6,21 @@
  */
 public abstract class XsdAnnotatedElements extends XsdIdentifierElements {
 
-    /**
-     * The {@link XsdAnnotation} that is annotating the concrete instances of this class.
-     */
-    private XsdAnnotation annotation;
+	/**
+	 * The {@link XsdAnnotation} that is annotating the concrete instances of this class.
+	 */
+	private XsdAnnotation annotation;
 
-    protected XsdAnnotatedElements( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+	protected XsdAnnotatedElements( XsdParserCore! parser,  Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam);
+	}
 
-    public void setAnnotation(XsdAnnotation annotation){
-        this.annotation = annotation;
-    }
+	public void setAnnotation(XsdAnnotation annotation){
+		this.annotation = annotation;
+	}
 
-    public XsdAnnotation getAnnotation() {
-        return annotation;
-    }
+	public XsdAnnotation getAnnotation() {
+		return annotation;
+	}
 
 }

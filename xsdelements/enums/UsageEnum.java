@@ -1,38 +1,38 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 
 /**
  * An {@link Enum} with all the possible values for the usage attribute.
  */
 public enum UsageEnum implements XsdEnum<UsageEnum> {
 
-    REQUIRED ("required"),
-    PROHIBITED ("prohibited"),
-    OPTIONAL ("optional");
+	REQUIRED ("required"),
+	PROHIBITED ("prohibited"),
+	OPTIONAL ("optional");
 
-    private final String value;
+	private final String value;
 
-    UsageEnum(String value) {
-        this.value = value;
-    }
+	UsageEnum(String value) {
+		this.value = value;
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public String getValue() {
+		return value;
+	}
 
-    @Override
-    public String getVariableName() {
-        return "use";
-    }
+	@Override
+	public String getVariableName() {
+		return "use";
+	}
 
-    @Override
-    public UsageEnum[] getValues() {
-        return UsageEnum.values();
-    }
+	@Override
+	public UsageEnum[] getValues() {
+		return UsageEnum.values();
+	}
 
-    @Override
-    public List<String> getSupportedValues() {
-        return Arrays.asList(REQUIRED.getValue(),
-                             PROHIBITED.getValue(),
-                             OPTIONAL.getValue());
-    }
+	@Override
+	public List<String> getSupportedValues() {
+		return Arrays.asList(REQUIRED.getValue(),
+							 PROHIBITED.getValue(),
+							 OPTIONAL.getValue());
+	}
 }

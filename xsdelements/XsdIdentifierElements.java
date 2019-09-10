@@ -4,17 +4,17 @@
  */
 public abstract class XsdIdentifierElements extends XsdAbstractElement {
 
-    /**
-     * Specifies a unique ID for the element.
-     */
-    private String id;
+	/**
+	 * Specifies a unique ID for the element.
+	 */
+	private String id;
 
-    XsdIdentifierElements(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
-        super(parser, attributesMap);
-        this.id = attributesMap.getOrDefault(ID_TAG, id);
-    }
+	XsdIdentifierElements(XsdParserCore! parser, Dictionary<String, String>! attributesMap) {
+		super(parser, attributesMap);
+		this.id = attributesMap.getOrDefault(ID_TAG, id);
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 }

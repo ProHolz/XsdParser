@@ -6,20 +6,20 @@
  */
 public class XsdPattern extends XsdStringRestrictions {
 
-    public static final String XSD_TAG = "xsd:pattern";
-    public static final String XS_TAG = "xs:pattern";
+	public static final String XSD_TAG = "xsd:pattern";
+	public static final String XS_TAG = "xs:pattern";
 
-    private XsdPattern(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+	private XsdPattern(XsdParserCore! parser, Dictionary<String, String>! elementFieldsMapParam) {
+		super(parser, elementFieldsMapParam);
+	}
 
-    @Override
-    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
-        super.accept(xsdAbstractElementVisitor);
-        xsdAbstractElementVisitor.visit(this);
-    }
+	@Override
+	public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor) {
+		super.accept(xsdAbstractElementVisitor);
+		xsdAbstractElementVisitor.visit(this);
+	}
 
-    public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-        return ReferenceBase.createFromXsd(new XsdPattern(parser, convertNodeMap(node.get_Attributes())));
-    }
+	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
+		return ReferenceBase.createFromXsd(new XsdPattern(parser, convertNodeMap(node.get_Attributes())));
+	}
 }

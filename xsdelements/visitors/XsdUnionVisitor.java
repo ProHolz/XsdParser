@@ -6,27 +6,23 @@
  */
 public class XsdUnionVisitor extends XsdAnnotatedElementsVisitor {
 
-    /**
-     * The {@link XsdUnion} instance which owns this {@link XsdUnionVisitor} instance. This way this visitor instance
-     * can perform changes in the {@link XsdUnion} object.
-     */
-    private final XsdUnion owner;
+	/**
+	 * The {@link XsdUnion} instance which owns this {@link XsdUnionVisitor} instance. This way this visitor instance
+	 * can perform changes in the {@link XsdUnion} object.
+	 */
+	private final XsdUnion owner;
 
-    public XsdUnionVisitor(XsdUnion owner) {
-        super(owner);
+	public XsdUnionVisitor(XsdUnion owner) {
+		super(owner);
 
-        this.owner = owner;
-    }
+		this.owner = owner;
+	}
 
- //   @Override
-    public XsdUnion getOwner() {
-        return owner;
-    }
 
-    @Override
-    public void visit(XsdSimpleType element) {
-        super.visit(element);
+	@Override
+	public void visit(XsdSimpleType element) {
+		super.visit(element);
 
-        owner.add(element);
-    }
+		owner.add(element);
+	}
 }

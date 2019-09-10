@@ -1,37 +1,37 @@
-package proholz.xsdparser;
+﻿package proholz.xsdparser;
 /**
  * An {@link Enum} with all the possible values for the whiteSpace attribute.
  */
 public enum WhiteSpaceEnum implements XsdEnum<WhiteSpaceEnum> {
 
-    PRESERVE ("preserve"),
-    COLLAPSE ("collapse"),
-    REPLACE ("replace");
+	PRESERVE ("preserve"),
+	COLLAPSE ("collapse"),
+	REPLACE ("replace");
 
-    private final String value;
+	private final String value;
 
-    WhiteSpaceEnum(String value) {
-        this.value = value;
-    }
+	WhiteSpaceEnum(String value) {
+		this.value = value;
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public String getValue() {
+		return value;
+	}
 
-    @Override
-    public String getVariableName() {
-        return "whitespace";
-    }
+	@Override
+	public String getVariableName() {
+		return "whitespace";
+	}
 
-    @Override
-    public WhiteSpaceEnum[] getValues() {
-        return WhiteSpaceEnum.values();
-    }
+	@Override
+	public WhiteSpaceEnum[] getValues() {
+		return WhiteSpaceEnum.values();
+	}
 
-    @Override
-    public List<String> getSupportedValues() {
-        return Arrays.asList(PRESERVE.getValue(),
-                            COLLAPSE.getValue(),
-                            REPLACE.getValue());
-    }
+	@Override
+	public List<String> getSupportedValues() {
+		return Arrays.asList(PRESERVE.getValue(),
+							COLLAPSE.getValue(),
+							REPLACE.getValue());
+	}
 }
