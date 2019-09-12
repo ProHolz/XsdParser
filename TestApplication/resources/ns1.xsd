@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Studio 2019 (https://www.liquid-technologies.com) -->
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         xmlns:el="EL_Namespace"
         xmlns:sp="SP_Namespace">
-    <xs:include schemaLocation="./src/test/resources/ns1_part2.xsd"/>
-    <xs:import namespace="EL_Namespace" schemaLocation="./src/test/resources/ns2.xsd"/>
-    <xs:import namespace="SP_Namespace" schemaLocation="./src/test/resources/ns3.xsd"/>
+    <xs:include schemaLocation="ns1_part2.xsd"/>
+    <xs:import namespace="EL_Namespace" schemaLocation="ns2.xsd"/>
+    <xs:import namespace="SP_Namespace" schemaLocation="ns3.xsd"/>
     <xs:element name="MotherOfBtns">
         <xs:complexType>
             <xs:sequence>

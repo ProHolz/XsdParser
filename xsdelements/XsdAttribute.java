@@ -208,7 +208,7 @@ public class XsdAttribute extends XsdNamedElements {
 	}
 
 	public static ReferenceBase parse( XsdParserCore! parser, XmlElement node) {
-		return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.Attributes)));
 	}
 
 }

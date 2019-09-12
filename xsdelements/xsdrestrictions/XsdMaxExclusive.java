@@ -22,6 +22,6 @@ public class XsdMaxExclusive extends XsdDoubleRestrictions {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return ReferenceBase.createFromXsd(new XsdMaxExclusive(parser, convertNodeMap(node.get_Attributes())));
+		return ReferenceBase.createFromXsd(new XsdMaxExclusive(parser, convertNodeMap(node.Attributes)));
 	}
 }

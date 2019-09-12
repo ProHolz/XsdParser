@@ -53,7 +53,7 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdSimpleContent(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdSimpleContent(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public void setRestriction(ReferenceBase restriction) {

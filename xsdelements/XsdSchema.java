@@ -75,6 +75,7 @@ public class XsdSchema extends XsdAnnotatedElements {
 		this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
 		this.filename = parser.getCurrentFile();
 		for (String key : attributesMap.Keys){
+
 			if (key.StartsWith(XMLNS) && !attributesMap.Item[key].Contains("http")){
 				String namespaceId = key.Replace(XMLNS + ":", "");
 				namespaces.Add(namespaceId, new NamespaceInfo(attributesMap.Item[key]));
@@ -98,7 +99,10 @@ public class XsdSchema extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node) {
-		ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.get_Attributes())));
+	   // Here we need the Attributes and the Namespaces in One place....
+	   // for this i created a mapper method that will do this in
+	   // ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.AllAttributes)));
+		ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertToNodeMapFromNode(node)));
 		XsdSchema xsdSchema = (XsdSchema) xsdSchemaRef.getElement();
 
 		List<XsdImport> importsList = xsdSchema.getChildrenImports().ToList();// collect(Collectors.toList());
@@ -292,5 +296,9 @@ public class XsdSchema extends XsdAnnotatedElements {
 
 	public String getFilename(){
 		return filename;
+	}
+
+	 public String getXmlns(){
+		return xmlns;
 	}
 }

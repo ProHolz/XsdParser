@@ -64,7 +64,7 @@ public class XsdComplexContent extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public void setExtension(ReferenceBase extension) {

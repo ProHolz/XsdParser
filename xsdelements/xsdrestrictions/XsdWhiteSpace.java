@@ -27,7 +27,7 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.get_Attributes())));
+		return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public boolean isFixed() {

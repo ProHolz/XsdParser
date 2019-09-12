@@ -51,7 +51,7 @@ public class XsdSequence extends XsdMultipleElements{
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdSequence(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdSequence(parser, convertNodeMap(node.Attributes)));
 	}
 
 	//@SuppressWarnings("unused")

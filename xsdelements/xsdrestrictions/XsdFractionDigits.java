@@ -20,6 +20,6 @@ public class XsdFractionDigits extends XsdIntegerRestrictions {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return ReferenceBase.createFromXsd(new XsdFractionDigits(parser, convertNodeMap(node.get_Attributes())));
+		return ReferenceBase.createFromXsd(new XsdFractionDigits(parser, convertNodeMap(node.Attributes)));
 	}
 }

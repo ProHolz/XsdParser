@@ -16,7 +16,7 @@ type
       var xsd := gettestParser('test');
     end;
 
- public
+  public
     method testIntRestrictions;
     method testStringRestrictions;
     method testAnnotations;
@@ -379,9 +379,9 @@ begin
 
   var base: XsdComplexType := &extension.getBaseAsComplexType();
 
-  Assert.isNotNil(base);
+  Check.isNotNil(base);
 
-  Assert.AreEqual('annotatedElement', base.getName());
+  Check.AreEqual(base:getName(),'annotatedElement');
 
 end;
 
@@ -399,19 +399,18 @@ begin
 
   var baseTypeExpected: XsdComplexType := baseTypeExpectedOptional;
 
-  var rootOptional:= elements
+  var root:= elements
   //.stream()
   .Where((element) -> element.getName().equals('root'))
   .First();
 
-  Assert.IsTrue(rootOptional <> nil);
+  Assert.IsTrue(root <> nil);
 
-  var root: XsdElement := rootOptional;
 
   var extendedType: XsdComplexType := root.getXsdComplexType();
 
-  Assert.IsNotNil(extendedType);
-  Assert.AreEqual(extendedType.getName, 'extendedType');
+  Check.IsNotNil(extendedType);
+  Check.AreEqual(extendedType:getName, 'extendedType');
 
 
   var complexContent: XsdComplexContent := extendedType.getComplexContent();
@@ -442,9 +441,6 @@ begin
   Assert.IsTrue(element <> nil);
 
   Assert.AreEqual('additionElement', element.getName());
-
-
-
 
 end;
 

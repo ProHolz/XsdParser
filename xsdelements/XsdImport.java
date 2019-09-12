@@ -50,7 +50,7 @@ public class XsdImport extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdImport(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdImport(parser, convertNodeMap(node.Attributes)));
 	}
 
 	//@SuppressWarnings("unused")

@@ -125,7 +125,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node) {
-		return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public void addAttribute(ReferenceBase attribute) {

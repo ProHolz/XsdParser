@@ -17,6 +17,7 @@ type
     end;
   public
     method testExtensionBase;
+
   end;
 
 implementation

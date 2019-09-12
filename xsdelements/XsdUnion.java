@@ -53,7 +53,7 @@ public class XsdUnion extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdUnion(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdUnion(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public void add(XsdSimpleType simpleType) {

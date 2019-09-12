@@ -33,7 +33,7 @@ public class XsdInclude extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdInclude(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdInclude(parser, convertNodeMap(node.Attributes)));
 	}
 
 	@Override
