@@ -84,6 +84,11 @@
     <Compile Include="Assert+Extension.pas" />
     <Compile Include="TestBaseExtension.pas" />
     <None Include="resources\testBase.xsd" />
+    <Compile Include="NamespaceTest.pas" />
+    <None Include="UriTests.pas" />
+    <Compile Include="CommentsTest.pas" />
+    <Compile Include="AndroidParseTest.pas" />
+    <Compile Include="XsdLanguageRestrictionsTest.pas" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -22,6 +22,6 @@ public class XsdAppInfo extends XsdAnnotationChildren {
 	}
 
 	public static ReferenceBase parse( XsdParserCore! parser, XmlElement node){
-		return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.get_Attributes())));
+		return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.Attributes)));
 	}
 }

@@ -18,6 +18,11 @@ type
       if assigned(doc.ErrorInfo) then
       begin
         // ToDo log the Error
+        raise new ParsingException(
+        $"Error in Parsing {filePath}
+          Line:  {doc.ErrorInfo.Row}  Col: {doc.ErrorInfo.Column}
+          {doc.ErrorInfo.Message}
+         ");
       end;
 
       var node := doc.Root;//.Elements;
@@ -33,8 +38,11 @@ type
 
       while (schemaLocations.Count > index) do begin
         var schemaLocation := schemaLocations.Item[index];
-        parseFile(Path.Combine(basePath,  schemaLocation));
         inc(index);
+        var filetoparse := Path.Combine(basePath,  schemaLocation);
+    //    if file.Exists(filetoparse) then
+        parseFile(filetoparse);
+
       end;
 
       resolveRefs();
@@ -53,15 +61,15 @@ type
 
       try
         if not File.Exists(filePath) then
-          raise new FileNotFoundException();
+          raise new FileNotFoundException(filePath);
 
-
-        XsdSchema.parse(self, getSchemaNode(filePath));
+        var nodeToParse := getSchemaNode(filePath);
+        XsdSchema.parse(self, nodeToParse);
       except
-        on e : Exception do
+        on e : ParsingException do
          begin
           writeLn(e.Message);
-       raise e;
+          raise e;
        end;
       end;
     end;

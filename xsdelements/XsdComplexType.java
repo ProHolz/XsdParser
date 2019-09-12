@@ -195,7 +195,7 @@ public class XsdComplexType extends XsdNamedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdComplexType(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdComplexType(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public void setChildElement(ReferenceBase childElement) {
@@ -248,6 +248,6 @@ public class XsdComplexType extends XsdNamedElements {
 	}
 
 	private boolean childrenIsMultipleElement(){
-		return childElement.getElement() instanceof XsdMultipleElements;
+		return childElement?.getElement() instanceof XsdMultipleElements;
 	}
 }

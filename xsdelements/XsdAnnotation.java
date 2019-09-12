@@ -58,6 +58,6 @@ public class XsdAnnotation extends XsdIdentifierElements {
 	}
 
 	public static ReferenceBase parse( XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdAnnotation(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdAnnotation(parser, convertNodeMap(node.Attributes)));
 	}
 }

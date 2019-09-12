@@ -155,10 +155,12 @@ end;
 
 method XsdParserCore.addParsedElement(wrappedElement: ReferenceBase);
 begin
-  var elements := parseElements[currentFile];
+  var parsedfilename := Path.GetFileName(currentFile);
+  var elements := parseElements[parsedfilename];
   if not assigned(elements) then begin
     elements := new List<ReferenceBase>();
-    parseElements.Add(currentFile, elements);
+
+    parseElements.Add(parsedfilename, elements);
   end;
   elements.add(wrappedElement);
 
@@ -189,10 +191,11 @@ end;
 
 method XsdParserCore.addUnsolvedReference(unsolvedReference: UnsolvedReference);
 begin
-  var unsolved:= unsolvedElements[currentFile];
+  var tempname := Path.GetFileName(currentFile);
+  var unsolved:= unsolvedElements[tempname];
   if not assigned(unsolved) then begin
     unsolved := new List<UnsolvedReference>();
-    unsolvedElements.Add(currentFile, unsolved);
+    unsolvedElements.Add(tempname, unsolved);
   end;
   unsolved.add(unsolvedReference);
 end;
@@ -250,15 +253,15 @@ end;
 method XsdParserCore.replaceUnsolvedReference(concreteElementsMap: Dictionary<String,List<NamedConcreteElement>>; unsolvedReference: UnsolvedReference);
 begin
   var concreteElements := concreteElementsMap[unsolvedReference.getRef()];
-  if assigned(concreteElements) then begin
+  if (concreteElements <> nil) then begin
     var oldElementAttributes  := unsolvedReference.getElement().getAttributesMap();
-    for each concreteElement in concreteElements do begin
+    for each matching concreteElement : NamedConcreteElement in concreteElements do begin
       var substitutionElementWrapper: NamedConcreteElement;
       if not unsolvedReference.isTypeRef() then begin
       // Should be save because of NamedConcretElement
       // Maybe we can add a save Property but......
         Var temp := concreteElement.getElement() as XsdNamedElements;
-        var substitutionElement := XsdNamedElements(temp).clone(oldElementAttributes);
+        var substitutionElement := temp.clone(oldElementAttributes);
         substitutionElementWrapper := NamedConcreteElement(ReferenceBase.createFromXsd(substitutionElement));
       end
       else begin
@@ -286,24 +289,22 @@ begin
 
       for each  ele  in LL1 do begin
         if ele.getElement is XsdInclude then begin
-          includedFiles.Add(XsdInclude(ele.getElement()).getSchemaLocation());
+          var temp := XsdInclude(ele.getElement()).getSchemaLocation();
+          includedFiles.Add(temp);
         end;
       end;
     end; // Pa1
     var includedElements := new List<ReferenceBase>(parseElements[filename]);
 
+   // (parseElements[filename]);
+
     includedFiles
      .ForEach(item -> begin
        var temp := parseElements[item];
-       if temp = nil then
-       begin
-         var includedFilename := item.substring(item.lastIndexOf("/")+1);
-         temp := parseElements[includedFilename];
-       end;
        if assigned(temp) then
          includedElements.Add(temp);
 
-   end);
+     end);
     var concreteElementsMap :=
     includedElements
     .Where(item -> item is NamedConcreteElement)
@@ -311,10 +312,24 @@ begin
    .GroupBy(item -> item.getName)
    .ToDictionary(item -> item.Key, item -> item.ToList());
 
-    unsolvedElements.getOrDefault(filename, new List<UnsolvedReference>())
-    .Where(unsolvedElement ->  not unsolvedElement.getRef().contains(":"))
-    .ToList()
-    .ForEach(unsolvedElement -> replaceUnsolvedReference(concreteElementsMap, unsolvedElement));
+    var theunsolvedBase :=
+     unsolvedElements.getOrDefault(filename, new List<UnsolvedReference>());
+    var theunsolved :=
+     theunsolvedBase
+     .Where(unsolvedElement -> begin
+       var theref := unsolvedElement.getRef();
+
+       result := not theref.contains(":")
+     end
+     )
+   .ToList();
+
+    theunsolved
+    .ForEach(unsolvedElement ->
+     begin
+       replaceUnsolvedReference(concreteElementsMap, unsolvedElement)
+      end
+    );
 
   end; // Filename in Scope
 
@@ -353,7 +368,8 @@ begin
 
   parseElements
            .Keys
-           .ForEach(fileName -> begin
+           .ForEach(fileName ->
+           begin
              var lxsdSchema : XsdSchema  :=
                        parseElements[fileName]
                                //.stream()

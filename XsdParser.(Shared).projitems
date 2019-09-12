@@ -87,5 +87,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations_.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserCore.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\XsdParser.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocument.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlParser.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlTokenizer.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\FileNotFound.pas" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <TargetFramework>.NETFramework4.5</TargetFramework>
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
+    <TestProject>TestApplication</TestProject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Optimize>False</Optimize>

@@ -21,6 +21,6 @@ public class XsdTotalDigits extends XsdIntegerRestrictions {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return ReferenceBase.createFromXsd(new XsdTotalDigits(parser, convertNodeMap(node.get_Attributes())));
+		return ReferenceBase.createFromXsd(new XsdTotalDigits(parser, convertNodeMap(node.Attributes)));
 	}
 }

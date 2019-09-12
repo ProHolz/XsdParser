@@ -21,6 +21,6 @@ public class XsdMinInclusive extends XsdDoubleRestrictions {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return ReferenceBase.createFromXsd(new XsdMinInclusive(parser, convertNodeMap(node.get_Attributes())));
+		return ReferenceBase.createFromXsd(new XsdMinInclusive(parser, convertNodeMap(node.Attributes)));
 	}
 }

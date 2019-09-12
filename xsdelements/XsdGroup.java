@@ -161,7 +161,7 @@ public class XsdGroup extends XsdNamedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public Integer getMinOccurs() {

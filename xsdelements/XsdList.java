@@ -45,7 +45,7 @@ public class XsdList extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdList(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdList(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public XsdSimpleType getXsdSimpleType() {

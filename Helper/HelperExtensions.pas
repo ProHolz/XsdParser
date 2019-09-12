@@ -26,6 +26,14 @@ type
 
   IList_Extensions<T> = public extension class (List<T>)
   public
+
+    {$IF ISLAND}
+    method ElementAt(&index : Integer) : T;
+    begin
+      exit self.Item[&index];
+    end;
+    {$ENDIF}
+
     method removeIf(Match: Predicate<T>);
     begin
       for i : Integer := self.Count -1 downto 0 do

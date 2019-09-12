@@ -51,7 +51,7 @@ public class XsdChoice extends XsdMultipleElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdChoice(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdChoice(parser, convertNodeMap(node.Attributes)));
 	}
 
 	//@SuppressWarnings("unused")

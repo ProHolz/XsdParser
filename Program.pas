@@ -11,7 +11,10 @@ type
     begin
       // add your own code here
       writeLn('The magic happens here.');
-      var filename := '/Volumes/HD2/BTL/btlx_11.xsd';
+      var filename :=
+      if Environment.OS = OperatingSystem.Windows then
+      'X:/BTL/btlx_11.xsd'.ToPlatformPathFromUnixPath
+      else '/Volumes/HD2/BTL/btlx_11.xsd'.ToPlatformPathFromUnixPath;
      // var filename := '/Volumes/HD2/BTL/x3d-3.3.xsd';
       var Xsd := new  XsdParser(filename);
 

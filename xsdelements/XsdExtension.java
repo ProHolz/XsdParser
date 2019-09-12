@@ -143,7 +143,7 @@ public class XsdExtension extends XsdAnnotatedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.Attributes)));
 	}
 
 	//@SuppressWarnings("unused")

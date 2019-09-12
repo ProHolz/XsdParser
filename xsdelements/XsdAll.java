@@ -50,7 +50,7 @@ public class XsdAll extends XsdMultipleElements {
 	}
 
 	public static ReferenceBase parse( XsdParserCore! parser, XmlElement node) {
-		return xsdParseSkeleton(node, new XsdAll(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdAll(parser, convertNodeMap(node.Attributes)));
 	}
 
 	//@SuppressWarnings("unused")

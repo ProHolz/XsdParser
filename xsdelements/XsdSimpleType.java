@@ -113,7 +113,7 @@ public class XsdSimpleType extends XsdNamedElements {
 	}
 
 	public static ReferenceBase parse(XsdParserCore! parser, XmlElement node){
-		return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.get_Attributes())));
+		return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.Attributes)));
 	}
 
 	public XsdRestriction getRestriction() {
