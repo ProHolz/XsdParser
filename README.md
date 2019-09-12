@@ -24,21 +24,6 @@ public class XsdAnnotation extends XsdAbstractElement {
     The set of rules followed by this library can be consulted in the following URL: <a href="http://www.datypic.com/sc/xsd/s-xmlschema.xsd.html">XSD Schema</a>
 </div>
 
-## Installation
-
-<div align="justify"> 
-    First, in order to include it to your Maven project, simply add this dependency:
-    <br />
-    <br />
-</div>
-
-```xml
-<dependency>
-    <groupId>com.github.xmlet</groupId>
-    <artifactId>xsdParser</artifactId>
-    <version>1.0.14</version>
-</dependency>
-```
 
 ## Usage example
 
@@ -48,22 +33,21 @@ public class XsdAnnotation extends XsdAbstractElement {
     <br />
 </div>
 
-```java
-public class ParserApp {
-    public static void main(String [] args) {
-        String filePath = "Your file path here.";
-        XsdParser parserInstance1 = new XsdParser(filePath);
-        
-        //or
-        
-        String jarPath = "Your jar path here.";
-        String jarXsdPath = "XSD file path, relative to the jar root.";
-        XsdParserJar parserInstance2 = new XsdParserJar(jarPath, jarXsdPath);
-
-        Stream<XsdElement> elementsStream = parserInstance1.getResultXsdElements(filePath);
-        Stream<XsdSchema> schemasStream = parserInstance1.getResultXsdSchemas(filePath);
-    }
-}
+```pascal
+namespace Simple;
+uses
+  remobjects.Elements.RTL,
+  proholz.xsdparser;
+ 
+method LoadAndParseXsd;
+begin
+  var xsd := new XsdParser('filename');
+  var elements : List<XsdElement> := xsd.getResultXsdElements;
+  var schemas : List<XsdSchema>:= xsd.getResultXsdSchemas;
+  var unresolved: List<UnsolvedReferenceItem> := xsd.getUnsolvedReferences;
+  
+end;
+end.
 ```
 <div align="justify"> 
     After parsing the file like shown above it's possible to start to navigate in the resulting parsed elements. In the 
@@ -302,17 +286,6 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
     navigate to the extended elements.
 </div>
 
-## Code Quality
-
-<div align="justify"> 
-    There are some tests available using the HTML5 schema and the Android layouts schema, you can give a look at that 
-    examples and tweak them in order to gain a better understanding of how the parsing works. The tests also cover most 
-    of the code, if you are interested in verifying the code quality, vulnerabilities and other various metrics, check 
-    the following link:
-    <br />
-    <br />
-    <a href="https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser">Sonarcloud Statistics</a>
-</div>
   
 ## Important remarks
 
@@ -324,70 +297,12 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
-### 1.0.16
+### 1.0
 
 <div align="justify">
     <ul>
         <li>
-            Replaces XsdExtension using XsdElement as value for its base attribute with XsdComplexType and XsdSimpleType types. 
-        </li>
-    </ul>
-</div>
-
-
-### 1.0.15
-
-<div align="justify">
-    <ul>
-        <li>
-            Fixes XsdElement substitutionGroup not being used to replace elements contents.
-        </li>
-    </ul>
-</div>
-
-
-### 1.0.14
-
-<div align="justify">
-    <ul>
-        <li>
-            Adds support for parsing XSD files inside Jar files.
-        </li>
-    </ul>
-</div>
-
-### 1.0.13
-
-<div align="justify">
-    <ul>
-        <li>
-            Project-wide documentation.
-        </li>
-        <li>
-            Minor bug fixes.        
-        </li>
-    </ul>
-</div>
-
-### 1.0.12
-
-<div align="justify">
-    <ul>
-        <li>
-            Adds XSD complex rule validations.
-        </li>
-        <li>
-            Adds exceptions with detailed messages, providing more information to the user.
-        </li>
-    </ul>
-</div>
-
-### 1.0.11
-
-<div align="justify">
-    <ul>
-        <li>
-            Adds attribute type validations and validations of possible values with <i>Enum</> classes.
+           First release. Passes all suplied Tests  
         </li>
     </ul>
 </div>
