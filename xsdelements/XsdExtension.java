@@ -60,7 +60,7 @@ public class XsdExtension extends XsdAnnotatedElements {
 		super.replaceUnsolvedElements(element);
 
 		XsdNamedElements elem = (XsdNamedElements) element.getElement();
-		String elemName = elem.getRawName();
+	   // String elemName = elem.getRawName();
 
 		boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 

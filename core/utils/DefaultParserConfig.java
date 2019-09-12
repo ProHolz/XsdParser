@@ -2,7 +2,7 @@
 
 
 
-public class DefaultParserConfig implements ParserConfig {
+public class DefaultParserConfigJava implements ParserConfig {
 	@Override
 	public Dictionary<String, String> getXsdTypesToCodeGen() {
 		Dictionary<String, String> xsdTypesToJava = new Dictionary<String, String>();

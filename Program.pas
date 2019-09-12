@@ -44,12 +44,12 @@ type
 
         //  writeLn(ele.getElement.ToString);
        end;
-        if item.getChildrenComplexTypes.Any and false then begin
-       writeLn('Complextypes');
-       for each child in item.getChildrenComplexTypes do begin
-        writeLn($"    {child.getRawName}");
-       end;
-       end;
+        //if item.getChildrenComplexTypes.Any and false then begin
+       //writeLn('Complextypes');
+       //for each child in item.getChildrenComplexTypes do begin
+        //writeLn($"    {child.getRawName}");
+       //end;
+       //end;
 
 
       end;

@@ -13,7 +13,7 @@ type
   protected
     method Setup; override; public;
     begin
-      var xsd := gettestParser('test');
+      gettestParser('test');
     end;
 
   public

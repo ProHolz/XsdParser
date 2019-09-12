@@ -9,36 +9,36 @@
     <Import_RootNamespace>XsdParser.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)core\utils\DefaultParserConfig.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)core\utils\NamespaceInfo.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)core\utils\ParserConfig.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)core\utils\UnsolvedReferenceItem.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ConcreteElement.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\NamedConcreteElement.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ReferenceBase.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\UnsolvedReference.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\ParsingException.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\VisitorNotFoundException.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\AttributesVisitor.java" />
+    <None Include="$(MSBuildThisFileDirectory)core\utils\DefaultParserConfig.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\NamespaceInfo.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\ParserConfig.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\UnsolvedReferenceItem.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ConcreteElement.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\NamedConcreteElement.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\ReferenceBase.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\elementswrapper\UnsolvedReference.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\ParsingException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\VisitorNotFoundException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\AttributesVisitor.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAbstractElementVisitor.pas" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAllVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotatedElementsVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotationVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAttributeGroupVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAttributeVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdChoiceVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdComplexContentVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdComplexTypeVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdElementVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdExtensionVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdGroupVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdListVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdRestrictionsVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSchemaVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSequenceVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSimpleContentVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSimpleTypeVisitor.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdUnionVisitor.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAllVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotatedElementsVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAnnotationVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAttributeGroupVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdAttributeVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdChoiceVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdComplexContentVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdComplexTypeVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdElementVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdExtensionVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdGroupVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdListVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdRestrictionsVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSchemaVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSequenceVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSimpleContentVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdSimpleTypeVisitor.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\visitors\XsdUnionVisitor.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdDoubleRestrictions.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdEnumeration.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\xsdrestrictions\XsdFractionDigits.java" />
@@ -80,7 +80,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdSimpleContent.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdSimpleType.java" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdUnion.java" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations.java" />
+    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\XsdAbstractElement.java" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\HelperExtensions.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\enums\Enums.pas" />
@@ -91,6 +91,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlException.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlParser.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlTokenizer.pas" />
-    <Compile Include="$(MSBuildThisFileDirectory)xsdelements\exceptions\FileNotFound.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)core\utils\DefaultParserConfig.pas" />
   </ItemGroup>
 </Project>
