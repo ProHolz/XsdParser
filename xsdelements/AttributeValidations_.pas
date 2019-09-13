@@ -40,6 +40,7 @@ end;
 
 class method AttributeValidations.belongsToEnum(instance: WhiteSpaceEnum; const value: String): WhiteSpaceEnum;
 begin
+  if String.IsNullOrEmpty(value) then exit instance;
   if WhiteSpaceEnum.TryParse(value, out result) then exit;
 //  if String.Compare(value, '#all') = 0 then exit xsdReader.SimpleTypeFinalEnum.all;
   exit instance;
@@ -61,6 +62,7 @@ end;
 
 class method AttributeValidations.belongsToEnum(instance: ComplexTypeBlockEnum; const value: String): ComplexTypeBlockEnum;
 begin
+  if String.IsNullOrEmpty(value) then exit instance;
   if ComplexTypeBlockEnum.TryParse(value, out result) then exit;
   if String.Compare(value, '#all') = 0 then exit ComplexTypeBlockEnum.all;
  exit instance;
@@ -68,6 +70,7 @@ end;
 
 class method AttributeValidations.belongsToEnum(instance: FinalDefaultEnum; const value: String): FinalDefaultEnum;
 begin
+  if String.IsNullOrEmpty(value) then exit instance;
   if FinalDefaultEnum.TryParse(value, out result) then exit;
   if String.Compare(value, '#all') = 0 then exit FinalDefaultEnum.all;
  exit instance;
@@ -75,6 +78,7 @@ end;
 
 class method AttributeValidations.belongsToEnum(instance: FinalEnum; const value: String): FinalEnum;
 begin
+  if String.IsNullOrEmpty(value) then exit instance;
   if FinalEnum.TryParse(value, out result) then exit;
   if String.Compare(value, '#all') = 0 then exit FinalEnum.all;
 exit instance;
@@ -84,17 +88,18 @@ class method AttributeValidations.belongsToEnum(instance: FormEnum; const value:
 begin
   if String.IsNullOrEmpty(value) then exit instance;
   if FormEnum.TryParse(value, out result) then exit;
-  exit instance;
-  //raise new ParsingException(
-            //$"The attribute Form doesn't support the value '{value}'
-              //The possible values for the  form Attribute  are
-              //('qualified', 'unqualified')
-            //");
+ // exit instance;
+  raise new ParsingException(
+            $"The attribute Form doesn't support the value '{value}'
+              The possible values for the  form Attribute  are
+              ('qualified', 'unqualified')
+            ");
 
 end;
 
 class method AttributeValidations.belongsToEnum(instance: UsageEnum; const value: String): UsageEnum;
 begin
+  if String.IsNullOrEmpty(value) then exit instance;
   if UsageEnum.TryParse(value, out result) then exit;
    exit instance;
 end;
