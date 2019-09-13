@@ -11,9 +11,9 @@ type
 
 // Blocks
   BiFunction<T,U,C> =  public block(left : T; right : U):C;
-
-//
-//Map<T,U> = ISequence<KeyValuePair<T,U>>;
+ {$if TOFFEE OR ISLAND}
+  Action<T,U> = public block (Obj: T; Value :U);
+{$endif}
 
 type
   ISequence_Extensions<T> = public extension class (ISequence<T>)
@@ -22,6 +22,16 @@ type
     begin
       exit not self.Any();
     end;
+
+     {$IF ISLAND OR TOFFEE}
+    method ElementAt(&index : Integer) : T;
+    begin
+      for each el in self index i do
+        if i = &index then exit el;
+      raise new RTLException('Index out of Range in ElementAt');
+    end;
+    {$ENDIF}
+
   end;
 
   IList_Extensions<T> = public extension class (List<T>)
@@ -54,13 +64,24 @@ type
         exit aU;
     end;
 
-    method ForEachHelper(Action: Action<T, U>);
+    method ForEachHelper(Action: Action<T,U>);
     begin
       for each temp in self do Action(temp.Key, temp.Value);
     end;
 
   end;
 
+ {$if TOFFEE}
+extension method ISequence<T>.ToDictionary<TKey, TValue>(
+aKeySelector: not nullable block (Item : T): TKey;
+aValueSelector: not nullable block (Item : T): TValue): not nullable Dictionary<TKey, TValue>; public;
+begin
+  result := new Dictionary<TKey, TValue>;
+  for each el in self do
+    result.Add(aKeySelector(el), aValueSelector(el));
+end;
+
+{$endif}
 // Global to remove.....
 
    method hasDifferentValue( o1 , o2 :XsdStringRestrictions) : Boolean;

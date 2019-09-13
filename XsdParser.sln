@@ -1,11 +1,17 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-# RemObjects Water
+# RemObjects Fire
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "TestApplication", "TestApplication\TestApplication.elements", "{50315D51-6249-47FA-BA12-B8C71FEF1650}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.(Shared)", "XsdParser.(Shared).elements", "{D95BD0E7-D60E-48C4-9264-59E54613F980}"
 EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.Mac(Island)", "XsdParser.Mac(Island)\XsdParser.Mac(Island).elements", "{AA5D0954-0984-47ED-B2A7-FBBB7DAC2392}"
+EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.Net", "XsdParser.Net.elements", "{3797CA06-8938-4E70-AB43-9DF94B7D2308}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.Web", "XsdParser.Web\XsdParser.Web.elements", "{2F4A5E49-F2E0-44AD-A7F4-8F4D6C96219A}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "XsdParser.Win", "XsdParser.Win\XsdParser.Win.elements", "{A00F4EC1-9CC3-40BB-9B75-33738DD738CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +23,22 @@ Global
 		{50315D51-6249-47FA-BA12-B8C71FEF1650}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{50315D51-6249-47FA-BA12-B8C71FEF1650}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
 		{50315D51-6249-47FA-BA12-B8C71FEF1650}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{AA5D0954-0984-47ED-B2A7-FBBB7DAC2392}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{AA5D0954-0984-47ED-B2A7-FBBB7DAC2392}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{AA5D0954-0984-47ED-B2A7-FBBB7DAC2392}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{AA5D0954-0984-47ED-B2A7-FBBB7DAC2392}.Release|AnyCPU.Build.0 = Release|AnyCPU
 		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
 		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
 		{3797CA06-8938-4E70-AB43-9DF94B7D2308}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{2F4A5E49-F2E0-44AD-A7F4-8F4D6C96219A}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{2F4A5E49-F2E0-44AD-A7F4-8F4D6C96219A}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{2F4A5E49-F2E0-44AD-A7F4-8F4D6C96219A}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{2F4A5E49-F2E0-44AD-A7F4-8F4D6C96219A}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{A00F4EC1-9CC3-40BB-9B75-33738DD738CF}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{A00F4EC1-9CC3-40BB-9B75-33738DD738CF}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{A00F4EC1-9CC3-40BB-9B75-33738DD738CF}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{A00F4EC1-9CC3-40BB-9B75-33738DD738CF}.Release|AnyCPU.Build.0 = Release|AnyCPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

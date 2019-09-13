@@ -3,10 +3,14 @@
 interface
 
 type
-  ParserConfig = public interface
+
+	ParseMappersDictionary = Dictionary<String, BiFunction<XsdParserCore,XmlElement,ReferenceBase>>;
+
+	ParserConfig = public interface
 	method getXsdTypesToCodeGen: Dictionary<String,String>;
-	method getParseMappers: Dictionary<String,BiFunction<XsdParserCore,XmlElement,ReferenceBase>>;
-  end;
+		method getParseMappers: ParseMappersDictionary;
+
+	end;
 
 implementation
 

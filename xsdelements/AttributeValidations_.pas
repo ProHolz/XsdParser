@@ -27,8 +27,6 @@ type
     class method belongsToEnum(instance: FormEnum; const value: String): FormEnum;
     class method belongsToEnum(instance: UsageEnum; const value: String): UsageEnum;
 
-
-
 end;
 
 implementation
@@ -86,11 +84,12 @@ class method AttributeValidations.belongsToEnum(instance: FormEnum; const value:
 begin
   if String.IsNullOrEmpty(value) then exit instance;
   if FormEnum.TryParse(value, out result) then exit;
-  raise new ParsingException(
-            $"The attribute Form doesn't support the value {value}
-              The possible values for the  form Attribute  are
-              ('qualified', 'unqualified')
-            ");
+  exit instance;
+  //raise new ParsingException(
+            //$"The attribute Form doesn't support the value '{value}'
+              //The possible values for the  form Attribute  are
+              //('qualified', 'unqualified')
+            //");
 
 end;
 

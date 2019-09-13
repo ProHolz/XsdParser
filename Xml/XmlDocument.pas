@@ -128,7 +128,7 @@ type
     method GetAttribute(aName: not nullable String; aNamespace: nullable XmlNamespace): nullable XmlAttribute;
     method GetNodes: ImmutableList<XmlNode>;
     method GetElements: not nullable sequence of XmlElement;
-    method GetNamespace(aUri: Uri): nullable XmlNamespace;
+    method GetNamespaceByUri(aUri: String): nullable XmlNamespace;
     method GetNamespace(aPrefix: String): nullable XmlNamespace;
     method GetNamespaces: not nullable sequence of XmlNamespace;
     method GetDefaultNamespace: XmlNamespace;
@@ -161,7 +161,8 @@ type
     property Attribute[aName: not nullable String; aNamespace: nullable XmlNamespace]: nullable XmlAttribute read GetAttribute;
     property Elements: not nullable sequence of XmlElement read GetElements;
     property Nodes: ImmutableList<XmlNode> read GetNodes;
-    property &Namespace[aUri: Uri]: nullable XmlNamespace read GetNamespace;
+    [Obsolete]property &Namespace[aUri: Uri]: nullable XmlNamespace read &NamespaceByUri[aUri.ToString];
+    property &NamespaceByUri[aUri: String]: nullable XmlNamespace read GetNamespaceByUri;
     property &Namespace[aPrefix: String]: nullable XmlNamespace read GetNamespace;
     property FullName: not nullable String read GetFullName;
     property ChildIndex: Integer read fChildIndex;
@@ -191,7 +192,11 @@ type
     method AddNode(aNode: not nullable XmlNode);
     //method MoveElement(aExistingElement: not nullable XmlElement) toIndex(aIndex: Integer);
     method AddNamespace(aNamespace: not nullable XmlNamespace);
-    method AddNamespace(aPrefix: nullable String; aUri: not nullable Uri): XmlNamespace;
+    method AddNamespace(aPrefix: nullable String; aUri: not nullable String): XmlNamespace;
+    [Obsolete]method AddNamespace(aPrefix: nullable String; aUri: not nullable Uri): XmlNamespace;
+    begin
+      result := AddNamespace(aPrefix, aUri.ToString);
+    end;
     method RemoveNamespace(aNamespace: not nullable XmlNamespace);
     method RemoveNamespace(aPrefix: not nullable String);
     [ToString]
@@ -255,9 +260,13 @@ type
     QuoteChar: Char := '"';
     constructor withParent(aParent: XmlElement := nil);
   public
-    constructor(aPrefix: String; aUri: not nullable Uri);
+    constructor(aPrefix: String; aUri: not nullable String);
+    [Obsolete]constructor(aPrefix: String; aUri: not nullable Uri);
+    begin
+      constructor (aPrefix , aUri.ToString);
+    end;
     property Prefix: String read GetPrefix write SetPrefix;
-    property Uri: Uri;
+    property Uri: String;
     [ToString]
     method ToString(): String; override;
     method ToString(aFormatInsideTags: Boolean; aFormatOptions: XmlFormattingOptions): String;
@@ -1251,7 +1260,7 @@ begin
     else if not assigned(Parent) or not Parent.PreserveSpace then begin
       lPreserveSpaceAttr := new XmlAttribute withParent(self);
       lPreserveSpaceAttr.LocalName := "space";
-      lPreserveSpaceAttr.Namespace := new XmlNamespace("xml", Url.UrlWithstring(XmlConsts.XML_NAMESPACE_URL));
+      lPreserveSpaceAttr.Namespace := new XmlNamespace("xml", XmlConsts.XML_NAMESPACE_URL);
       lPreserveSpaceAttr.Value := "preserve";
       lPreserveSpaceAttr.Document := Document;
       AddAttribute(lPreserveSpaceAttr)
@@ -1279,7 +1288,7 @@ begin
 
       var lNamespace: XmlNamespace;
       if lNamespaceString = "xml" then
-        lNamespace := new XmlNamespace("xml", Url.UrlWithString(XmlConsts.XML_NAMESPACE_URL));
+        lNamespace := new XmlNamespace("xml", XmlConsts.XML_NAMESPACE_URL);
       var lElement := self;
       while (lNamespace = nil) and (lElement <> nil) do begin
         lNamespace:= lElement.&Namespace[lNamespaceString];
@@ -1307,7 +1316,7 @@ begin
   result := fAttributesAndNamespaces.Where(a -> a.NodeType = XmlNodeType.Namespace).Select(x -> x as XmlNamespace) as not nullable;
 end;
 
-method XmlElement.GetNamespace(aUri: Uri): nullable XmlNamespace;
+method XmlElement.GetNamespaceByUri(aUri: String): nullable XmlNamespace;
 begin
   result := DefinedNamespaces.Where(a -> a.Uri = aUri).FirstOrDefault;
 end;
@@ -1329,7 +1338,7 @@ begin
     else  raise new Exception("Duplicate namespace xmlns:"+aNamespace.Prefix);
 end;
 
-method XmlElement.AddNamespace(aPrefix: nullable String; aUri: not nullable Uri): XmlNamespace;
+method XmlElement.AddNamespace(aPrefix: nullable String; aUri: not nullable String): XmlNamespace;
 begin
   result := new XmlNamespace(aPrefix, aUri, fParent := self);
   AddNamespace(result);
@@ -1571,7 +1580,7 @@ begin
   if (lBracePos = 0) then begin
     var lClosingBracePos := aName.IndexOf('}');
     if lClosingBracePos > lBracePos then begin
-      lNamespace := &Namespace[Uri.TryUriWithString(aName.Substring(1, lClosingBracePos-1))];
+      lNamespace := &Namespace[aName.Substring(1, lClosingBracePos-1)];
       if assigned(lNamespace) then
         aName := aName.Substring(lClosingBracePos+1, aName.Length-lClosingBracePos-1)
     end;
@@ -1698,7 +1707,7 @@ begin
   fNodeType := XmlNodeType.Namespace;
 end;
 
-constructor XmlNamespace(aPrefix: String; aUri: not nullable Uri);
+constructor XmlNamespace(aPrefix: String; aUri: not nullable String);
 begin
   inherited constructor;
   Prefix := aPrefix;
@@ -1734,7 +1743,7 @@ begin
   Sb.Append('=');
   if not(aFormatInsideTags) and (innerWSright <> nil) then Sb.Append(innerWSright);
   Sb.Append(QuoteChar);
-  if assigned(Uri) then Sb.Append(Uri.ToString);
+  if assigned(Uri) then Sb.Append(Uri);
   Sb.Append(QuoteChar);
   result := Sb.ToString();
 end;

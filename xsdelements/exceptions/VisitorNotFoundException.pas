@@ -3,16 +3,16 @@
 interface
 
 type
-  VisitorNotFoundException = public class(Exception)
-  public
+	VisitorNotFoundException = public class(RTLException)
+	public
 	constructor(message: String);
-  end;
+	end;
 
 implementation
 
 constructor VisitorNotFoundException(message: String);
 begin
-  inherited constructor(message);
+	 inherited constructor(message);
 end;
 
 end.

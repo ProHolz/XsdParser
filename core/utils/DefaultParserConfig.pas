@@ -101,9 +101,9 @@ type
       exit xsdTypesToJava;
     end;
 
-    method getParseMappers: Dictionary<String,BiFunction<XsdParserCore,XmlElement,ReferenceBase>>;
+    method getParseMappers: ParseMappersDictionary;
     begin
-      var parseMappers: Dictionary<String,BiFunction<XsdParserCore,XmlElement,ReferenceBase>> := new Dictionary<String,BiFunction<XsdParserCore,XmlElement,ReferenceBase>>();
+      var parseMappers: ParseMappersDictionary := new ParseMappersDictionary();
 
       parseMappers.Add(XsdAll.XSD_TAG, @XsdAll.parse);
       parseMappers.Add(XsdAll.XS_TAG, @XsdAll.parse);

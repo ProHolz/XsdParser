@@ -117,7 +117,7 @@ public abstract class XsdAbstractElement {
 
 	   // while (child != null) {
 		for (XmlElement child : node.Elements) {
-			if (child.get_NodeType() == XmlNodeType.Element) {
+			if (child.NodeType == XmlNodeType.Element) {
 				String nodeName = child.FullName;
 
 				BiFunction<XsdParserCore, XmlElement, ReferenceBase> parserFunction = XsdParserCore.getParseMappers().Item[nodeName];
