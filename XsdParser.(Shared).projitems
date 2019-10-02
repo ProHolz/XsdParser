@@ -9,7 +9,6 @@
     <Import_RootNamespace>XsdParser.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)core\utils\DefaultParserConfig.java" />
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\NamespaceInfo.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\ParserConfig.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\UnsolvedReferenceItem.pas" />
@@ -87,10 +86,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)xsdelements\AttributeValidations_.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\XsdParserCore.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\XsdParser.pas" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocument.pas" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlException.pas" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlParser.pas" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlTokenizer.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)core\utils\DefaultParserConfig.pas" />
   </ItemGroup>
 </Project>
