@@ -20,10 +20,10 @@ public abstract class XsdAbstractElement {
 	static final String XMLNS = "xmlns";
 
 	static final String ID_TAG = "id";
-	public static final String NAME_TAG = "name";
+
 	static final String ABSTRACT_TAG = "abstract";
 	static final String DEFAULT_ELEMENT_TAG = "defaultElement";
-	protected static final String FIXED_TAG = "fixed";
+
 	static final String TYPE_TAG = "type";
 	static final String MIXED_TAG = "mixed";
 	static final String BLOCK_TAG = "block";
@@ -34,7 +34,7 @@ public abstract class XsdAbstractElement {
 	static final String FORM_TAG = "form";
 	static final String NILLABLE_TAG = "nillable";
 	static final String MIN_OCCURS_TAG = "minOccurs";
-	public static final String MAX_OCCURS_TAG = "maxOccurs";
+
 	static final String ITEM_TYPE_TAG = "itemType";
 	static final String BASE_TAG = "base";
 	static final String SOURCE_TAG = "source";
@@ -42,9 +42,13 @@ public abstract class XsdAbstractElement {
 	static final String MEMBER_TYPES_TAG = "memberTypes";
 	static final String SCHEMA_LOCATION = "schemaLocation";
 	static final String NAMESPACE = "namespace";
-	public static final String REF_TAG = "ref";
-	protected static final String VALUE_TAG = "value";
 
+	protected static final String VALUE_TAG = "value";
+	protected static final String FIXED_TAG = "fixed";
+
+	public static final String NAME_TAG = "name";
+	public static final String REF_TAG = "ref";
+	public static final String MAX_OCCURS_TAG = "maxOccurs";
 	/**
 	 * The instance which contains the present element.
 	 */
@@ -69,7 +73,7 @@ public abstract class XsdAbstractElement {
 	 * @return The concrete visitor instance.
 	 */
 	public  XsdAbstractElementVisitor getVisitor(){
-	  return null;
+		return null;
 	};
 
 	/**
@@ -210,52 +214,52 @@ public abstract class XsdAbstractElement {
 			}
 	}
 
-		public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
-			return compareReference(element, reference.getRef());
-		}
-
-		static boolean compareReference(NamedConcreteElement element, String unsolvedRef){
-			if (unsolvedRef.Contains(":")){
-				unsolvedRef = unsolvedRef.Substring(unsolvedRef.IndexOf(":") + 1);
-			}
-
-			return element.getName().Equals(unsolvedRef);
-		}
-
-		/**
-		 * @return The parent of the current {@link XsdAbstractElement} object.
-		 */
-		public XsdAbstractElement getParent() {
-			return parent;
-		}
-
-		public void setParent(XsdAbstractElement parent) {
-			this.parent = parent;
-		}
-
-		/**
-		 * In special cases such as {@link XsdAppInfo} and {@link XsdDocumentation} the contents are a simple text node,
-		 * in which case this function is more suited than using the {@link XsdAbstractElement#xsdParseSkeleton} since
-		 * those types of elements can't have children nodes.
-		 * @param node The {@link XmlElement} containing either a {@link XsdAppInfo} or {@link XsdDocumentation}.
-		 * @return The textual value contained in the {@link XmlElement} parameter.
-		 */
-		static String xsdRawContentParse(XmlElement node) {
-		  //  XmlElement child = node.Elements.First();
-			StringBuilder stringBuilder = new StringBuilder();
-			//if (node.NodeType == XmlNodeType.Text || node.NodeType == XmlNodeType.CData){
-				stringBuilder.Append(node.Value.Trim());
-			  //}
-		   //  #todo : Check if Child parse is necessary
-			for (XmlElement child : node.Elements) {
-		   // while (child != null) {
-				if (child.NodeType == XmlNodeType.Text || child.NodeType == XmlNodeType.CData) {
-					stringBuilder.Append(child.Value.Trim());
-				}
-
-			   // child = child.getNextSibling();
-			}
-
-			return stringBuilder.ToString();
-		}
+	public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
+		return compareReference(element, reference.getRef());
 	}
+
+	static boolean compareReference(NamedConcreteElement element, String unsolvedRef){
+		if (unsolvedRef.Contains(":")){
+			unsolvedRef = unsolvedRef.Substring(unsolvedRef.IndexOf(":") + 1);
+		}
+
+		return element.getName().Equals(unsolvedRef);
+	}
+
+	/**
+	 * @return The parent of the current {@link XsdAbstractElement} object.
+	 */
+	public XsdAbstractElement getParent() {
+		return parent;
+	}
+
+	public void setParent(XsdAbstractElement parent) {
+		this.parent = parent;
+	}
+
+	/**
+	 * In special cases such as {@link XsdAppInfo} and {@link XsdDocumentation} the contents are a simple text node,
+	 * in which case this function is more suited than using the {@link XsdAbstractElement#xsdParseSkeleton} since
+	 * those types of elements can't have children nodes.
+	 * @param node The {@link XmlElement} containing either a {@link XsdAppInfo} or {@link XsdDocumentation}.
+	 * @return The textual value contained in the {@link XmlElement} parameter.
+	 */
+	static String xsdRawContentParse(XmlElement node) {
+	  //  XmlElement child = node.Elements.First();
+		StringBuilder stringBuilder = new StringBuilder();
+		//if (node.NodeType == XmlNodeType.Text || node.NodeType == XmlNodeType.CData){
+		stringBuilder.Append(node.Value.Trim());
+	  //}
+   //  #todo : Check if Child parse is necessary
+		for (XmlElement child : node.Elements) {
+	   // while (child != null) {
+			if (child.NodeType == XmlNodeType.Text || child.NodeType == XmlNodeType.CData) {
+				stringBuilder.Append(child.Value.Trim());
+			}
+
+		   // child = child.getNextSibling();
+		}
+
+		return stringBuilder.ToString();
+	}
+}

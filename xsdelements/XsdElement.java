@@ -32,7 +32,7 @@ public class XsdElement extends XsdNamedElements {
 	 * Either specified a built in data type or is a reference to a existent {@link XsdComplexType} or a
 	 * {@link XsdSimpleType} instances.
 	 */
-	private ReferenceBase type;
+	private ReferenceBase reftype;
 
 	/**
 	 * Specifies the name of an element that can be substituted with this element. Only should be present if this
@@ -109,10 +109,10 @@ public class XsdElement extends XsdNamedElements {
 			if (XsdParserCore.getXsdTypesToCodeGen().ContainsKey(typeString)){
 				Dictionary<String, String> attributes = new Dictionary<String, String>();
 				attributes.Add(NAME_TAG, typeString);
-				this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
+				this.reftype = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
 			} else {
-				this.type = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new Dictionary<String, String>()));
-				parser.addUnsolvedReference((UnsolvedReference) this.type);
+				this.reftype = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new Dictionary<String, String>()));
+				parser.addUnsolvedReference((UnsolvedReference) this.reftype);
 			}
 		}
 
@@ -234,7 +234,7 @@ public class XsdElement extends XsdNamedElements {
 
 		elementCopy.simpleType = this.simpleType;
 		elementCopy.complexType = this.complexType;
-		elementCopy.type = this.type;
+		elementCopy.reftype = this.reftype;
 
 		return elementCopy;
 	}
@@ -254,8 +254,8 @@ public class XsdElement extends XsdNamedElements {
 
 		boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
-		if (this.type instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.type)){
-			this.type = element;
+		if (this.reftype instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.reftype)){
+			this.reftype = element;
 			elem.setParent(this);
 		}
 
@@ -274,8 +274,8 @@ public class XsdElement extends XsdNamedElements {
 	}
 
 	private XsdComplexType getXsdType(){
-		if (type instanceof ConcreteElement){
-			return (XsdComplexType) type.getElement();
+		if (reftype instanceof ConcreteElement){
+			return (XsdComplexType) reftype.getElement();
 		}
 
 		return null;
@@ -327,9 +327,9 @@ public class XsdElement extends XsdNamedElements {
 		return form.ToString();
 	}
 
-	public String getType(){
-		if (this.type != null && this.type instanceof NamedConcreteElement){
-			return ((NamedConcreteElement) this.type).getName();
+	public String getXsdTypeName(){
+		if (this.reftype != null && this.reftype instanceof NamedConcreteElement){
+			return ((NamedConcreteElement) this.reftype).getName();
 		}
 
 		return attributesMap.getOrDefault(TYPE_TAG, null);

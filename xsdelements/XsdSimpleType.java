@@ -147,7 +147,13 @@ public class XsdSimpleType extends XsdNamedElements {
 		Dictionary<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToCodeGen();
 
 		if (restriction != null){
-			restrictions.Add(xsdBuiltinTypes.Item[restriction.getBase()], restriction);
+			var ltemp = restriction.getBase();
+			if (xsdBuiltinTypes.ContainsKey(ltemp)){
+				restrictions.Add(xsdBuiltinTypes.Item[ltemp], restriction);
+			}
+			else {
+				restrictions.Add(ltemp, restriction);
+			}
 		}
 
 		if (union != null){

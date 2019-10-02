@@ -17,7 +17,7 @@ type
     //      * language.
     //
     //
-    class var xsdTypesToJava: Dictionary<String,String>;
+    class var xsdTypesToCodeGen: Dictionary<String,String>;
     // *
     //      * A {@link List} which contains all the top elements parsed by this class.
     //
@@ -144,12 +144,12 @@ class constructor XsdParserCore;
 begin
   var config := new DefaultParserConfig();
   parseMappers := config.getParseMappers();
-  xsdTypesToJava := config.getXsdTypesToCodeGen();
+  xsdTypesToCodeGen := config.getXsdTypesToCodeGen();
 end;
 
 method XsdParserCore.updateConfig(config: ParserConfig);
 begin
-  xsdTypesToJava := config.getXsdTypesToCodeGen();
+  xsdTypesToCodeGen := config.getXsdTypesToCodeGen();
   parseMappers := config.getParseMappers();
 end;
 
@@ -173,7 +173,7 @@ end;
 
 class method XsdParserCore.getXsdTypesToCodeGen: Dictionary<String,String>;
 begin
-  exit xsdTypesToJava;
+  exit xsdTypesToCodeGen;
 end;
 
 method XsdParserCore.addFileToParse(schemaLocation: String);
@@ -318,7 +318,6 @@ begin
      theunsolvedBase
      .Where(unsolvedElement -> begin
        var theref := unsolvedElement.getRef();
-
        result := not theref.contains(":")
      end
      )
@@ -332,8 +331,6 @@ begin
     );
 
   end; // Filename in Scope
-
-
 end;
 
 method XsdParserCore.replaceUnsolvedImportedReference(concreteElementsMap: Dictionary<String,List<NamedConcreteElement>>; unsolvedReference: UnsolvedReference);

@@ -11,7 +11,7 @@
     <TargetFramework>.NETFramework4.5</TargetFramework>
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     <TestProject>TestApplication</TestProject>
-    <CrossPlatform>True</CrossPlatform>
+    <CrossPlatform>False</CrossPlatform>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Optimize>False</Optimize>
@@ -61,6 +61,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
     </None>
     <Compile Include="Properties\Settings.Designer.pas" />
+    <Compile Include="Src\Visitor_Base.pas" />
+    <Compile Include="Src\Visitor_Complex.pas" />
+    <Compile Include="Src\Visitor_Classes.pas" />
+    <Compile Include="Src\Visitor_Simple.pas" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Echoes.targets" />
   <Import Project="XsdParser.(Shared).projitems" Label="Shared" />
